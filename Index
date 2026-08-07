@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Rehab by G</title>
+<meta name="theme-color" content="#EAF2FB">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Rehab by G">
+<meta name="description" content="Evidence-based rehabilitation programmes designed by Chiropractic by G. Works fully offline.">
+<link id="manifestLink" rel="manifest" href="">
+<link id="touchIcon" rel="apple-touch-icon" href="">
+<link id="favIcon" rel="icon" href="">
+<style>
+/* ============================================================
+   TOKENS — soft blue / white, medical, calm, high-contrast
+   ============================================================ */
+:root{
+  --bg:#EEF4FB;
+  --surface:#FFFFFF;
+  --surface-2:#F3F8FD;
+  --surface-tint:#E4EFFB;
+  --border:#D8E4F1;
+  --text:#152436;
+  --text-dim:#516276;
+  --text-faint:#8494A6;
+  --blue:#2E6DA4;
+  --blue-deep:#1F4E7A;
+  --blue-tint:#DCEAF9;
+  --green:#1F9366;
+  --green-tint:#E1F4EC;
+  --amber:#B8720A;
+  --amber-tint:#FBEEDA;
+  --red:#C6394A;
+  --red-tint:#FBE3E6;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --radius-sm:11px;
+  --shadow:0 6px 20px rgba(31,78,122,.08);
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--bg); color:var(--text); font-family:var(--font);
+  overscroll-behavior-y:none; -webkit-font-smoothing:antialiased; font-size:17px; line-height:1.45;
+}
+button{font-family:inherit; -webkit-user-select:none; user-select:none;}
+::-webkit-scrollbar{width:0;height:0;}
+.hidden{display:none !important;}
+:focus-visible{outline:3px solid var(--blue); outline-offset:2px;}
+@media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+
+/* ============================================================
+   SHELL
+   ============================================================ */
+#app{
+  max-width:560px; margin:0 auto; min-height:100vh; position:relative;
+  padding-bottom:calc(92px + var(--safe-bottom));
+  background:var(--bg);
+}
+.topbar{
+  position:sticky; top:0; z-index:20; padding:calc(18px + var(--safe-top)) 20px 14px;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:12px;
+}
+.topbar-back{
+  width:46px; height:46px; border-radius:50%; border:1px solid var(--border);
+  background:var(--surface); display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  color:var(--blue-deep);
+}
+.topbar-brand{ font-size:21px; font-weight:800; letter-spacing:-.01em; color:var(--blue-deep); line-height:1.15;}
+.topbar-brand .g{ color:var(--blue);}
+.topbar-sub{font-size:13.5px; color:var(--text-dim); margin-top:2px; font-weight:600;}
+.icon-btn{
+  width:46px;height:46px;border-radius:50%; border:1px solid var(--border);
+  background:var(--surface); display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  color:var(--blue-deep);
+}
+.icon-btn svg{width:22px;height:22px;}
+
+.view{ padding:20px 20px 8px; }
+
+/* ============================================================
+   HOME — condition selection
+   ============================================================ */
+.hero-title{ font-size:26px; font-weight:800; color:var(--blue-deep); letter-spacing:-.01em; }
+.hero-sub{ font-size:15px; color:var(--text-dim); margin-top:6px; margin-bottom:22px; font-weight:500; }
+
+.section-label{ font-size:13px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:.04em; margin:26px 0 12px;}
+
+.condition-card{
+  display:flex; align-items:center; gap:16px; width:100%; text-align:left;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  padding:20px; box-shadow:var(--shadow); margin-bottom:14px; cursor:pointer;
+}
+.condition-icon{
+  width:60px; height:60px; border-radius:16px;
+  background:linear-gradient(150deg, var(--blue-tint), var(--surface-2));
+  color:var(--blue-deep); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:30px;
+  overflow:hidden;
+}
+.condition-icon svg{ width:100%; height:100%; display:block; }
+.condition-name{ font-size:18.5px; font-weight:800; color:var(--text); }
+.condition-meta{ font-size:13.5px; color:var(--text-dim); margin-top:3px; font-weight:600;}
+.condition-chevron{ margin-left:auto; color:var(--text-faint); flex-shrink:0;}
+
+.condition-card.locked{ opacity:.6; cursor:default; box-shadow:none; }
+.condition-card.locked .condition-icon{ background:var(--surface-2); color:var(--text-faint); border-color:var(--border);}
+.lock-badge{
+  font-size:11px; font-weight:800; color:var(--text-faint); background:var(--surface-2);
+  border:1px solid var(--border); border-radius:100px; padding:3px 10px; margin-top:4px; display:inline-block;
+}
+
+/* ============================================================
+   CONDITION SCREEN — stage list
+   ============================================================ */
+.condition-hero{
+  background:linear-gradient(135deg, var(--blue-tint), var(--surface-2)); border-radius:var(--radius-lg);
+  padding:22px; margin-bottom:22px; border:1px solid var(--border);
+}
+.condition-hero-title{ font-size:22px; font-weight:800; color:var(--blue-deep);}
+.condition-hero-sub{ font-size:14px; color:var(--text-dim); margin-top:6px; font-weight:500;}
+
+.stage-card{
+  display:flex; align-items:center; gap:16px; width:100%; text-align:left;
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  padding:20px; box-shadow:var(--shadow); margin-bottom:14px; cursor:pointer;
+}
+.stage-num{
+  width:52px; height:52px; border-radius:50%; background:var(--blue); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:800; flex-shrink:0;
+}
+.stage-name{ font-size:18px; font-weight:800; color:var(--text);}
+.stage-weeks{ font-size:13.5px; color:var(--blue-deep); font-weight:700; margin-top:2px;}
+.stage-progress-mini{ font-size:12.5px; color:var(--text-dim); margin-top:4px; font-weight:600;}
+
+/* ============================================================
+   PROGRESS BAR (shared)
+   ============================================================ */
+.progress-wrap{ margin:6px 0 4px;}
+.progress-label-row{ display:flex; justify-content:space-between; font-size:13px; font-weight:700; color:var(--text-dim); margin-bottom:6px;}
+.progress-track{ height:10px; border-radius:100px; background:var(--surface-2); border:1px solid var(--border); overflow:hidden;}
+.progress-fill{ height:100%; background:var(--blue); border-radius:100px; width:0%; transition:width .3s ease;}
+
+/* ============================================================
+   PATIENT EDUCATION
+   ============================================================ */
+.edu-block{
+  background:var(--surface); border:1px solid var(--border); border-left:5px solid var(--blue);
+  border-radius:var(--radius-md); padding:18px 20px; margin-bottom:22px;
+}
+.edu-title{ font-size:15px; font-weight:800; color:var(--blue-deep); margin-bottom:10px; display:flex; align-items:center; gap:8px;}
+.edu-list{ margin:0; padding-left:20px; }
+.edu-list li{ font-size:14.5px; color:var(--text-dim); margin-bottom:8px; font-weight:500;}
+.edu-list li:last-child{ margin-bottom:0;}
+
+/* ============================================================
+   PAIN RULE
+   ============================================================ */
+.pain-rule{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:18px 20px; margin-bottom:22px;}
+.pain-rule-title{ font-size:15px; font-weight:800; color:var(--text); margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+.pain-row{ display:flex; align-items:center; gap:12px; padding:10px 0; border-top:1px solid var(--border);}
+.pain-row:first-of-type{ border-top:none;}
+.pain-chip{ flex-shrink:0; width:64px; text-align:center; font-weight:800; font-size:13.5px; border-radius:100px; padding:6px 0;}
+.pain-chip.safe{ background:var(--green-tint); color:var(--green);}
+.pain-chip.caution{ background:var(--amber-tint); color:var(--amber);}
+.pain-chip.stop{ background:var(--red-tint); color:var(--red);}
+.pain-text{ font-size:14px; font-weight:600; color:var(--text-dim);}
+.pain-text b{ color:var(--text); font-weight:800;}
+
+/* ============================================================
+   EXERCISE CARD
+   ============================================================ */
+.exercise-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  padding:18px; margin-bottom:16px; box-shadow:var(--shadow);
+}
+.ex-top{ display:flex; align-items:flex-start; gap:14px;}
+.ex-illustration{
+  width:56px; height:56px; border-radius:14px; background:var(--blue-tint); color:var(--blue-deep);
+  display:flex; align-items:center; justify-content:center; font-size:26px; flex-shrink:0;
+}
+.ex-name{ font-size:17px; font-weight:800; color:var(--text); }
+.ex-dose{ font-size:13.5px; font-weight:700; color:var(--blue-deep); margin-top:3px;}
+.ex-check{
+  margin-left:auto; flex-shrink:0; width:34px; height:34px; border-radius:50%; border:2px solid var(--border);
+  background:var(--surface); display:flex; align-items:center; justify-content:center; color:transparent;
+}
+.ex-check.done{ background:var(--green); border-color:var(--green); color:#fff;}
+.ex-check svg{ width:18px; height:18px;}
+
+.ex-section{ margin-top:14px; }
+.ex-section-label{ font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--text-faint); margin-bottom:4px;}
+.ex-section-body{ font-size:14.5px; color:var(--text-dim); font-weight:500;}
+
+.ex-meta-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px;}
+.ex-meta-cell{ background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px; text-align:center;}
+.ex-meta-val{ font-size:15.5px; font-weight:800; color:var(--text);}
+.ex-meta-key{ font-size:10.5px; font-weight:700; color:var(--text-faint); text-transform:uppercase; letter-spacing:.03em; margin-top:2px;}
+
+.ex-mistakes{ background:var(--amber-tint); border-radius:var(--radius-sm); padding:12px 14px; margin-top:14px;}
+.ex-mistakes .ex-section-label{ color:var(--amber);}
+.ex-mistakes .ex-section-body{ color:#7A4C08;}
+
+.video-placeholder{
+  margin-top:14px; background:var(--surface-2); border:1.5px dashed var(--border); border-radius:var(--radius-sm);
+  padding:16px; display:flex; align-items:center; gap:12px; color:var(--text-faint);
+}
+.video-placeholder .vp-icon{
+  width:40px; height:40px; border-radius:50%; background:var(--surface); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--blue-deep);
+}
+.video-placeholder .vp-text{ font-size:13px; font-weight:700; color:var(--text-dim); }
+.video-placeholder .vp-sub{ font-size:11.5px; font-weight:600; color:var(--text-faint); margin-top:2px;}
+
+.mark-done-btn{
+  margin-top:16px; width:100%; padding:15px; border-radius:var(--radius-md); border:none;
+  background:var(--blue); color:#fff; font-size:15.5px; font-weight:800; display:flex; align-items:center;
+  justify-content:center; gap:8px; cursor:pointer;
+}
+.mark-done-btn.done{ background:var(--green-tint); color:var(--green); border:1.5px solid var(--green);}
+.mark-done-btn svg{ width:19px; height:19px;}
+
+/* ============================================================
+   PROGRESSION CRITERIA
+   ============================================================ */
+.progression-block{
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  padding:20px; margin-bottom:24px;
+}
+.progression-title{ font-size:15.5px; font-weight:800; color:var(--blue-deep); margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+.progression-item{ display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; font-size:14.5px; font-weight:600; color:var(--text-dim);}
+.progression-item:last-child{ margin-bottom:0;}
+.progression-item svg{ width:19px; height:19px; color:var(--green); flex-shrink:0; margin-top:1px;}
+
+.goals-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
+.goal-pill{ background:var(--blue-tint); color:var(--blue-deep); font-size:13px; font-weight:700; padding:8px 14px; border-radius:100px;}
+
+/* ============================================================
+   BOTTOM NAV
+   ============================================================ */
+.bottomnav{
+  position:fixed; left:0; right:0; bottom:0; z-index:30; max-width:560px; margin:0 auto;
+  background:var(--surface); border-top:1px solid var(--border);
+  display:flex; padding:8px 8px calc(8px + var(--safe-bottom));
+}
+.navbtn{
+  flex:1; background:none; border:none; display:flex; flex-direction:column; align-items:center; gap:4px;
+  padding:8px 4px; color:var(--text-faint); font-size:11.5px; font-weight:700; cursor:pointer; border-radius:14px;
+}
+.navbtn svg{ width:24px; height:24px;}
+.navbtn.active{ color:var(--blue);}
+
+/* ============================================================
+   PROGRESS SCREEN
+   ============================================================ */
+.summary-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; margin-bottom:16px; box-shadow:var(--shadow);}
+.summary-title{ font-size:16.5px; font-weight:800; color:var(--text); margin-bottom:4px;}
+.summary-sub{ font-size:13.5px; color:var(--text-dim); font-weight:600; margin-bottom:12px;}
+.empty-state{ text-align:center; padding:60px 20px; color:var(--text-dim);}
+.empty-state .es-icon{ font-size:44px; margin-bottom:12px;}
+.empty-state .es-title{ font-weight:800; color:var(--text); font-size:16px;}
+.empty-state .es-sub{ font-size:14px; margin-top:6px; font-weight:500;}
+
+/* ============================================================
+   SETTINGS / ABOUT
+   ============================================================ */
+.settings-list{ display:flex; flex-direction:column; gap:10px;}
+.setting-row{
+  display:flex; align-items:center; justify-content:space-between; background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--radius-md); padding:17px; cursor:pointer;
+}
+.setting-row .sr-label{ font-size:15px; font-weight:700; color:var(--text);}
+.setting-row .sr-sub{ font-size:12.5px; color:var(--text-dim); margin-top:2px; font-weight:500;}
+.setting-row.danger .sr-label{ color:var(--red);}
+.setting-row svg{ color:var(--blue-deep); flex-shrink:0;}
+.setting-row.danger svg{ color:var(--red);}
+
+.about-block{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px; text-align:center; margin-top:22px;}
+.about-brand{ font-size:20px; font-weight:800; color:var(--blue-deep); margin-bottom:6px;}
+.about-ver{ font-size:12.5px; color:var(--text-faint); font-weight:700;}
+.about-desc{ font-size:13.5px; color:var(--text-dim); margin-top:12px; line-height:1.6; font-weight:500;}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast{
+  position:fixed; left:50%; bottom:calc(104px + var(--safe-bottom)); transform:translateX(-50%) translateY(10px);
+  background:var(--blue-deep); color:#fff; padding:13px 20px;
+  border-radius:100px; font-size:14px; font-weight:700; z-index:80; opacity:0; transition:all .25s ease;
+  box-shadow:var(--shadow); white-space:nowrap; max-width:90%; text-overflow:ellipsis; overflow:hidden;
+}
+.toast.show{ opacity:1; transform:translateX(-50%) translateY(0);}
+
+/* ============================================================
+   DISCLAIMER MODAL
+   ============================================================ */
+.disclaimer-overlay{
+  position:fixed; inset:0; z-index:100; max-width:560px; margin:0 auto;
+  background:rgba(21,36,54,.55); display:flex; align-items:flex-end;
+  opacity:0; pointer-events:none; transition:opacity .2s ease;
+}
+.disclaimer-overlay.open{ opacity:1; pointer-events:auto; }
+.disclaimer-sheet{
+  background:var(--surface); width:100%; border-radius:24px 24px 0 0;
+  padding:26px 22px calc(22px + var(--safe-bottom)); max-height:86vh; overflow-y:auto;
+  transform:translateY(16px); transition:transform .25s cubic-bezier(.2,.8,.2,1);
+  border-top:4px solid var(--blue);
+}
+.disclaimer-overlay.open .disclaimer-sheet{ transform:translateY(0); }
+.disclaimer-badge{
+  display:inline-flex; align-items:center; gap:6px; background:var(--blue-tint); color:var(--blue-deep);
+  font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; padding:6px 12px;
+  border-radius:100px; margin-bottom:14px;
+}
+.disclaimer-title{ font-size:19px; font-weight:800; color:var(--text); margin-bottom:12px;}
+.disclaimer-intro{ font-size:14.5px; color:var(--text-dim); font-weight:500; margin-bottom:16px; line-height:1.55;}
+.disclaimer-list{ margin:0 0 16px; padding-left:20px;}
+.disclaimer-list li{ font-size:14.5px; color:var(--text-dim); font-weight:500; margin-bottom:10px; line-height:1.5;}
+.disclaimer-list li:last-child{ margin-bottom:0;}
+.disclaimer-consent{
+  font-size:13px; color:var(--text-faint); font-weight:500; line-height:1.55;
+  background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:14px 16px; margin-bottom:18px;
+}
+.disclaimer-btn{
+  width:100%; padding:16px; border-radius:var(--radius-md); border:none;
+  background:var(--blue); color:#fff; font-size:16px; font-weight:800; cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ============ TOP BAR (dynamic) ============ -->
+  <div class="topbar" id="topbar">
+    <button class="topbar-back hidden" id="backBtn" aria-label="Back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div>
+      <div class="topbar-brand" id="topbarTitle">Rehab by <span class="g">G</span></div>
+      <div class="topbar-sub" id="topbarSub">Chiropractic by G</div>
+    </div>
+  </div>
+
+  <!-- ============ MAIN VIEW (rendered by JS) ============ -->
+  <div class="view" id="mainView"></div>
+
+  <!-- ============ BOTTOM NAV ============ -->
+  <nav class="bottomnav" id="bottomNav">
+    <button class="navbtn active" data-tab="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+      <span>Home</span>
+    </button>
+    <button class="navbtn" data-tab="progress">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+      <span>Progress</span>
+    </button>
+    <button class="navbtn" data-tab="about">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></svg>
+      <span>About</span>
+    </button>
+  </nav>
+
+  <input type="file" id="importFile" accept="application/json" class="hidden">
+  <div class="toast" id="toast"></div>
+
+  <!-- ============ PATIENT DISCLAIMER (shown once, and re-viewable from About) ============ -->
+  <div class="disclaimer-overlay" id="disclaimerOverlay">
+    <div class="disclaimer-sheet">
+      <div class="disclaimer-badge">\u26A0\uFE0F Important</div>
+      <div class="disclaimer-title">Before you begin</div>
+      <div class="disclaimer-intro">This rehabilitation programme has been designed by Chiropractic by G to support your recovery following assessment by one of our practitioners.</div>
+      <div class="disclaimer-intro" style="margin-bottom:8px; font-weight:800; color:var(--text);">Please read before starting:</div>
+      <ul class="disclaimer-list">
+        <li>Perform each programme only if it has been recommended specifically for you.</li>
+        <li>Complete each exercise slowly and with good control.</li>
+        <li>Mild discomfort or muscle fatigue is normal, but stop immediately if you experience severe pain, dizziness, numbness, weakness, loss of balance or any other concerning symptoms.</li>
+        <li>Never force a movement beyond what feels comfortable.</li>
+        <li>Progress through the programme only when instructed within the app.</li>
+        <li>If your symptoms worsen, fail to improve, or you develop new symptoms, discontinue the exercises and contact Chiropractic by G or your healthcare provider.</li>
+        <li>This programme is intended for general rehabilitation guidance and does not replace an individual medical assessment or treatment.</li>
+      </ul>
+      <div class="disclaimer-consent">By continuing, you acknowledge that you are participating voluntarily, understand that all exercise carries some risk of injury, and accept responsibility for exercising within your own limits. Chiropractic by G, its practitioners and affiliates cannot accept responsibility for injuries resulting from exercises performed incorrectly, outside of prescribed recommendations, or contrary to professional advice.</div>
+      <button class="disclaimer-btn" id="disclaimerBtn">I Understand</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================================================
+   DATA MODEL
+   ------------------------------------------------------------------------------------------
+   Every rehabilitation programme lives in the CONDITIONS array below. Each condition owns its
+   own list of stages, and each stage owns its own list of exercises. Nothing in the rendering
+   or storage logic below needs to change to add a new programme — just append a new condition
+   object here.
+
+   When this project grows, this whole block is designed to be lifted out into its own file,
+   e.g. conditions/impingement.js, conditions/rotator-cuff.js, etc, one file per folder:
+     conditions/
+       impingement/
+       rotator-cuff/
+       neck/
+       back/
+       hip/
+   For now everything stays in one HTML file so the app remains a single static page that can
+   be served directly from GitHub Pages with zero build step.
+   ============================================================================================ */
+
+/* Default pain-scale bands used by every condition. A condition can override the traffic-light
+   text via its own `painRules`, and can add an extra clarifying line via `painNote`. */
+var PAIN_RULES = [
+  { chip:"safe",    range:"0\u20133/10", text:"Safe to continue as planned." },
+  { chip:"caution", range:"4\u20135/10", text:"Reduce your range of movement or repetitions." },
+  { chip:"stop",    range:"6+/10",  text:"Stop the exercise and contact your practitioner." }
+];
+
+function ex(id, name, sets, reps, frequency, description, why, mistakes, icon){
+  return { id:id, name:name, sets:sets, reps:reps, frequency:frequency||"Daily",
+           description:description, why:why, mistakes:mistakes, icon:icon||"\uD83D\uDCAA" };
+}
+
+var CONDITIONS = [
+  {
+    id:"shoulder-impingement",
+    name:"Shoulder Impingement Syndrome",
+    meta:"3 stages \u00B7 6+ week programme",
+    icon:"\u{1F9BE}",
+    available:true,
+    heroSub:"A staged, progressive loading programme. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    education:[
+      "Shoulder impingement does not usually mean something is being \u201Cpinched.\u201D",
+      "Pain often improves by gradually restoring strength and movement, not by avoiding it.",
+      "Some temporary discomfort during rehabilitation is normal and acceptable.",
+      "Complete rest often slows recovery down rather than speeding it up.",
+      "Consistency with your programme matters more than pushing hard occasionally."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Stage 1",
+        weeks:"Weeks 1\u20134",
+        goals:["Reduce pain","Restore movement","Begin cuff activation","Improve scapular control"],
+        exercises:[
+          ex("s1e1","Pendulum",2,"60 sec hold","Daily",
+            "Lean forward, supporting yourself on a table with your unaffected arm. Let the affected arm hang loosely and swing it gently in small circles and side to side.",
+            "Uses gravity to gently mobilise the shoulder early on, without needing the muscles around it to work.",
+            "Actively swinging the arm with muscle effort instead of letting it hang and swing passively; shrugging the shoulder during the movement."),
+          ex("s1e2","Assisted Flexion with Stick",3,"10","Daily",
+            "Holding a stick with both hands, use your unaffected arm to help lift the affected arm forward and overhead to a comfortable range, then lower slowly.",
+            "Restores overhead movement using the strong arm to control the range and avoid overloading irritated tissue.",
+            "Forcing the arm past the point of pain; shrugging the shoulder up towards the ear instead of gliding it smoothly."),
+          ex("s1e3","Assisted External Rotation",3,"10","Daily",
+            "Holding a stick with both hands, elbows tucked into your sides at 90\u00B0, use the unaffected arm to gently rotate the affected forearm outward.",
+            "Restores the rotation range needed for reaching and overhead tasks, with the stick limiting how far you go.",
+            "Letting the elbow drift away from your side; rushing the movement instead of moving slowly and under control."),
+          ex("s1e4","Wall Slides",3,"10","Daily",
+            "Stand facing a wall with your forearms resting on it. Slide your arms upward as far as comfortable while keeping contact with the wall, then return.",
+            "Encourages coordinated movement between the shoulder blade and arm, improving scapular control.",
+            "Arching the lower back to gain extra height; letting the shoulders hike up towards the ears during the slide."),
+          ex("s1e5","Scapular Setting",3,"15","Daily",
+            "Sit or stand tall. Gently draw your shoulder blades down and back, as if placing them in your back pockets, and hold briefly before releasing.",
+            "Builds awareness and control of the shoulder blade muscles that support the shoulder joint.",
+            "Over-squeezing the shoulder blades together; holding your breath during the hold."),
+          ex("s1e6","Isometric External Rotation",5,"20 sec hold","Daily",
+            "Elbow bent to 90\u00B0 and tucked into your side, push your forearm outward into a wall or a fixed hand without any movement occurring.",
+            "Isometric loading can build tendon capacity and reduce pain even while the shoulder is still irritable.",
+            "Using too much force too soon; letting the elbow lift away from your side."),
+          ex("s1e7","Isometric Abduction",5,"20 sec hold","Daily",
+            "Elbow bent to 90\u00B0 and tucked in, gently push your arm outward against a wall or fixed resistance without the arm actually moving.",
+            "Loads the shoulder muscles safely without moving through painful ranges.",
+            "Shrugging the shoulder up during the hold; pushing through sharp pain."),
+          ex("s1e8","Pec Minor Doorway Stretch",3,"30 sec hold","Daily",
+            "Stand in a doorway with your forearm on the frame at shoulder height. Gently lean forward through the doorway until you feel a stretch across the front of your shoulder.",
+            "Eases tightness at the front of the shoulder that can contribute to poor posture and impingement symptoms.",
+            "Overstretching into pain; arching the back instead of stepping through the hips."),
+          ex("s1e9","Posterior Capsule Stretch",3,"30 sec hold","Daily",
+            "Lying on the affected side, bend the elbow to 90\u00B0 and use your other hand to gently press the forearm down towards the bed until a stretch is felt at the back of the shoulder.",
+            "Improves flexibility at the back of the shoulder joint, which is commonly restricted with impingement.",
+            "Pressing too hard and forcing through pain; letting the shoulder roll forward during the stretch.")
+        ],
+        progression:[
+          "Pain is less than 3/10 during daily activity",
+          "Able to elevate the arm above shoulder height",
+          "Night pain has improved",
+          "Good control is shown during wall slides"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Stage 2",
+        weeks:"Weeks 4\u20136",
+        goals:["Increase strength","Improve endurance","Normalise movement"],
+        exercises:[
+          ex("s2e1","Band External Rotation",3,"12","3\u00D7 per week",
+            "Elbow tucked at 90\u00B0, holding a resistance band anchored to the side, rotate your forearm outward against the band's resistance, then return slowly.",
+            "Strengthens the rotator cuff muscles that stabilise and control the shoulder joint.",
+            "Letting the elbow drift forward or away from the body; using momentum instead of a controlled movement."),
+          ex("s2e2","Band Internal Rotation",3,"12","3\u00D7 per week",
+            "Elbow tucked at 90\u00B0, rotate your forearm inward across your body against the band's resistance, then return slowly.",
+            "Balances rotator cuff strength alongside the external rotation work.",
+            "Twisting through the trunk instead of the shoulder; moving too quickly through the range."),
+          ex("s2e3","Standing Rows",3,"15","3\u00D7 per week",
+            "Holding a band anchored in front of you, pull both elbows back, squeezing the shoulder blades together, then release slowly.",
+            "Strengthens the mid-back and shoulder blade muscles that support good shoulder posture.",
+            "Shrugging the shoulders instead of drawing the blades back; leaning back to generate momentum."),
+          ex("s2e4","Serratus Punches",3,"15","3\u00D7 per week",
+            "Lying on your back or standing, punch your arm straight up towards the ceiling, protracting the shoulder blade at the top of the movement.",
+            "Strengthens the serratus anterior, a key muscle for healthy shoulder blade movement.",
+            "Bending the elbow during the punch; not reaching fully at the top of the movement."),
+          ex("s2e5","Side Lying External Rotation",3,"12","3\u00D7 per week",
+            "Lying on your unaffected side, elbow bent and tucked into your side, lift the top arm's forearm upward, then lower slowly.",
+            "Adds gravity as resistance to further strengthen the external rotators.",
+            "Rolling the body backward to assist the lift; lifting too fast to control."),
+          ex("s2e6","Prone Y",3,"10","3\u00D7 per week",
+            "Lying face down, arms raised overhead in a \u201CY\u201D shape, lift the arms slightly off the ground and hold briefly.",
+            "Strengthens the lower trapezius, important for shoulder blade control overhead.",
+            "Shrugging through the neck; over-arching the lower back to lift higher."),
+          ex("s2e7","Prone T",3,"10","3\u00D7 per week",
+            "Lying face down, arms out to the sides in a \u201CT\u201D shape, lift the arms slightly and squeeze the shoulder blades together.",
+            "Strengthens the mid-trapezius and rhomboids for scapular stability.",
+            "Lifting the head instead of the arms; over-arching the back."),
+          ex("s2e8","Wall Push-Up Plus",3,"12","3\u00D7 per week",
+            "Hands on a wall at shoulder height, perform a push-up, then push slightly further away from the wall to round the shoulder blades at the end.",
+            "Strengthens the serratus anterior and prepares the shoulder for more demanding pushing exercises.",
+            "Sagging through the lower back; skipping the extra \u201Cplus\u201D push at the end."),
+          ex("s2e9","Pec Minor Doorway Stretch (continued)",3,"30 sec hold","Daily",
+            "Continue as in Stage 1 \u2014 stand in a doorway with your forearm on the frame and gently lean through until you feel a stretch.",
+            "Maintains the chest flexibility gained in Stage 1 as loading increases.",
+            "Overstretching into pain."),
+          ex("s2e10","Posterior Capsule Stretch (continued)",3,"30 sec hold","Daily",
+            "Continue as in Stage 1 \u2014 lying on the affected side, gently press the forearm down towards the bed.",
+            "Maintains flexibility at the back of the shoulder as strength work increases.",
+            "Forcing through pain instead of a gentle, sustained stretch.")
+        ],
+        progression:[
+          "Minimal pain during exercise and daily activity",
+          "Nearly full range of movement restored",
+          "Exercises performed with excellent control",
+          "Strength is noticeably improving"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Stage 3",
+        weeks:"Week 6+",
+        goals:["Return to normal life","Return to gym","Improve tendon capacity"],
+        exercises:[
+          ex("s3e1","Dumbbell Scaption",3,"10","3\u00D7 per week",
+            "Holding light dumbbells, raise your arms up in the plane of your shoulder blade (roughly 30\u201345\u00B0 in front of you) to shoulder height, then lower slowly.",
+            "Strengthens the shoulder through a functional range used in daily and sporting activities.",
+            "Raising above shoulder height too soon; shrugging the shoulders during the lift."),
+          ex("s3e2","Dumbbell Shoulder Press",3,"10","3\u00D7 per week",
+            "Press dumbbells overhead from shoulder height, moving only through a pain-free range, then lower with control.",
+            "Builds strength for overhead tasks while respecting the shoulder's current capacity.",
+            "Arching the lower back to gain extra range; pressing through sharp pain."),
+          ex("s3e3","Face Pulls",3,"15","3\u00D7 per week",
+            "Using a band or cable at head height, pull towards your face while rotating your hands so palms end facing forward, squeezing the shoulder blades.",
+            "Strengthens the rear shoulder and upper back muscles that support healthy shoulder posture.",
+            "Using the arms only without engaging the shoulder blades; leaning back to assist the pull."),
+          ex("s3e4","Lat Pulldown",3,"12","3\u00D7 per week",
+            "Using a cable or band overhead, pull the bar or band down towards your chest, then return slowly to the start.",
+            "Builds broader shoulder and back strength to support the whole shoulder complex.",
+            "Leaning back excessively; pulling the bar behind the neck."),
+          ex("s3e5","Chest Supported Rows",3,"12","3\u00D7 per week",
+            "Lying face down on an incline bench or supported surface, row dumbbells or a band towards your body, squeezing the shoulder blades.",
+            "Strengthens the back and shoulder blade muscles without stressing the lower back.",
+            "Using momentum to swing the weights; not fully squeezing at the top of the row."),
+          ex("s3e6","Farmer Carries",3,"40 metres","3\u00D7 per week",
+            "Holding a moderately heavy weight in each hand, walk for the set distance while keeping your shoulders back and posture tall.",
+            "Builds functional shoulder and core stability under load.",
+            "Letting the shoulders round forward; walking too fast and losing control of posture."),
+          ex("s3e7","Push-Ups (Wall \u2192 Incline \u2192 Floor)",3,"To tolerance","3\u00D7 per week",
+            "Begin with wall push-ups, progress to an inclined surface, and eventually the floor as strength allows.",
+            "Gradually rebuilds pushing strength and tendon capacity towards full function.",
+            "Progressing to a harder surface before mastering control at the current one; letting the hips sag."),
+          ex("s3e8","External Rotation at 90\u00B0",3,"12","3\u00D7 per week",
+            "With the arm raised to shoulder height and elbow bent to 90\u00B0, rotate the forearm upward against light resistance, then lower slowly.",
+            "Trains the rotator cuff in a position closer to overhead sport and lifting demands.",
+            "Dropping the elbow height during the set; rushing the tempo."),
+          ex("s3e9","Functional Lifting Drills",3,"As prescribed","3\u00D7 per week",
+            "Practise the specific lifting, reaching or sporting movements relevant to your daily life or return-to-sport goals, gradually increasing load and complexity.",
+            "Bridges the gap between rehabilitation exercises and a confident return to full activity.",
+            "Progressing load too quickly; avoiding movements out of fear rather than gradually reintroducing them.")
+        ],
+        progression:[
+          "Full, pain-free range of movement",
+          "Strength closely matches the unaffected side",
+          "Confident performing daily and sport-specific tasks",
+          "Discuss discharge or ongoing maintenance with your practitioner"
+        ]
+      }
+    ]
+  },
+  {
+    id:"hip-mobility",
+    name:"Hip Mobility",
+    meta:"3 stages \u00B7 6+ week programme",
+    icon:"\u{1F9CE}",
+    available:true,
+    heroSub:"A staged mobility and strength programme. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    purpose:[
+      "Improve hip mobility","Reduce stiffness","Improve hip rotation",
+      "Improve squat and walking mechanics","Reduce compensatory lower back movement","Improve glute activation"
+    ],
+    suitableFor:[
+      "General hip stiffness","Early hip osteoarthritis","Tight hips from prolonged sitting",
+      "Mild anterior hip pinching","Poor hip rotation","Recreational athletes","Runners","Golfers"
+    ],
+    painNote:"A stretching sensation is acceptable. Sharp pinching pain is not.",
+    education:[
+      "Hip stiffness usually improves with regular movement rather than prolonged stretching alone.",
+      "Mild discomfort while exercising is acceptable, but sharp or worsening pain is not.",
+      "Strength and mobility work together to improve hip function.",
+      "Improvements are usually gradual over several weeks.",
+      "Consistency is more important than doing long exercise sessions."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Stage 1",
+        weeks:"Weeks 1\u20132",
+        goals:["Restore comfortable movement","Reduce stiffness","Improve pelvic control"],
+        exercises:[
+          ex("h1e1","Cat-Camel",2,"10","Daily",
+            "On hands and knees, alternate between arching your back up towards the ceiling and letting it dip down towards the floor, moving slowly through your spine and pelvis.",
+            "Improves lumbar and pelvic mobility before hip movement.",
+            "Moving too fast through the range; keeping the arms or hips locked instead of letting the whole spine move.", "\uD83D\uDC31"),
+          ex("h1e2","Pelvic Tilts",3,"10","Daily",
+            "Lying on your back with knees bent, gently flatten your lower back into the floor by tilting your pelvis, then arch slightly, moving through a small comfortable range.",
+            "Improves pelvic awareness.",
+            "Using the legs to push instead of moving through the pelvis; holding your breath during the movement.", "\uD83E\uDDB4"),
+          ex("h1e3","Hip CARs (Controlled Articular Rotations)",2,"5 each direction","Daily",
+            "Standing and holding support, lift your knee up and slowly rotate the hip through its full available range \u2014 out, back, and down \u2014 in a smooth, controlled circle.",
+            "Improves joint control throughout the available range.",
+            "Twisting through the trunk instead of isolating the hip; rushing the movement instead of moving slowly and deliberately.", "\uD83D\uDD04"),
+          ex("h1e4","90/90 Hip Rotations",3,"8 each side","Daily",
+            "Sitting on the floor with both knees bent to 90\u00B0, one leg in front and one to the side, rotate both knees from one side to the other while keeping your chest tall.",
+            "Improves internal and external rotation.",
+            "Using your hands to push through the movement; letting the chest collapse forward instead of staying tall.", "\uD83E\uDE91"),
+          ex("h1e5","Half Kneeling Hip Flexor Stretch",3,"30 sec hold, each side","Daily",
+            "Kneel on one knee with the other foot planted in front. Keep your pelvis tucked underneath you and gently shift your weight forward until a stretch is felt at the front of the hip.",
+            "Lengthens the hip flexors, which are often tight from prolonged sitting.",
+            "Letting the pelvis tip forward instead of staying tucked; arching through the lower back to gain range.", "\uD83E\uDDCE"),
+          ex("h1e6","Figure Four Stretch",3,"30 sec hold","Daily",
+            "Lying on your back, cross one ankle over the opposite knee and gently pull the uncrossed thigh towards your chest until a stretch is felt through the outer hip.",
+            "Stretches the posterior hip.",
+            "Pulling hard into pain instead of a gentle sustained stretch; letting the crossed knee collapse inward.", "4\uFE0F\u20E3"),
+          ex("h1e7","Glute Bridge",3,"12","Daily",
+            "Lying on your back with knees bent, feet flat, lift your hips towards the ceiling and pause for 2 seconds at the top before lowering slowly.",
+            "Builds glute strength and activation to support hip and lower back control.",
+            "Overarching the lower back at the top; pushing through the toes instead of the heels.", "\uD83C\uDF51"),
+          ex("h1e8","Clamshells",3,"15","Daily",
+            "Lying on your side with knees bent and stacked, keep your feet together and lift your top knee open like a clamshell while keeping your pelvis stable.",
+            "Improves glute activation.",
+            "Rolling the pelvis backward to gain extra range; moving too fast instead of a slow, controlled lift.", "\uD83D\uDC1A")
+        ],
+        progression:[
+          "Walking feels easier",
+          "Less morning stiffness",
+          "Hip rotation improves",
+          "Can perform all exercises comfortably"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Stage 2",
+        weeks:"Weeks 3\u20136",
+        goals:["Increase mobility","Improve strength","Improve control"],
+        exercises:[
+          ex("h2e1","Hip CARs",2,"5 each direction","Daily",
+            "Continue as in Stage 1 \u2014 standing and holding support, slowly rotate the hip through its full available range in a smooth, controlled circle.",
+            "Maintains and builds on the joint control developed in Stage 1.",
+            "Twisting through the trunk instead of isolating the hip; rushing the movement.", "\uD83D\uDD04"),
+          ex("h2e2","90/90 Transitions",3,"8","3\u00D7 per week",
+            "From the 90/90 position, transition from one side to the other, aiming to move between sides without using your hands for support as you progress.",
+            "Builds active hip rotation strength and control needed for transitional movements.",
+            "Relying on the hands throughout instead of gradually reducing support; rushing the transition instead of controlling it.", "\uD83E\uDE91"),
+          ex("h2e3","Deep Squat Hold",3,"30 sec hold","3\u00D7 per week",
+            "Lower into a deep squat, holding onto a support such as a doorframe or pole if needed, and hold the position while breathing normally.",
+            "Improves comfortable hip, knee and ankle range needed for functional squatting.",
+            "Letting the heels lift off the ground; rounding through the lower back instead of keeping a tall spine.", "\uD83D\uDECB\uFE0F"),
+          ex("h2e4","World's Greatest Stretch",2,"6 each side","3\u00D7 per week",
+            "From a lunge position, place both hands inside your front foot, rotate your chest and reach one arm towards the ceiling, then return and repeat on the other side.",
+            "Mobilises the hips, thoracic spine and hamstrings together in one functional movement.",
+            "Rushing through the rotation; letting the back knee touch down heavily instead of controlling the lunge.", "\uD83C\uDF0D"),
+          ex("h2e5","Standing Hip Airplanes (Supported)",3,"6","3\u00D7 per week",
+            "Standing on one leg and holding onto support, hinge forward at the hip while rotating your pelvis and trunk, keeping the standing knee soft.",
+            "Builds rotational hip control in a standing, functional position.",
+            "Losing balance and rushing the movement; letting the standing knee collapse inward.", "\u2708\uFE0F"),
+          ex("h2e6","Single Leg Bridge",3,"10","3\u00D7 per week",
+            "In the bridge position, straighten one leg out and lift your hips using only the other leg, keeping your hips level throughout.",
+            "Progresses glute strength by challenging one side at a time.",
+            "Letting the hips drop or rotate to one side; overarching through the lower back.", "\uD83E\uDDB5"),
+          ex("h2e7","Monster Walks",3,"15 steps","3\u00D7 per week",
+            "With a resistance band around your ankles or knees in a mini-squat position, take small steps diagonally forward, keeping tension on the band throughout.",
+            "Strengthens the hip abductors used to control walking and squatting mechanics.",
+            "Standing too upright instead of staying in a mini-squat; letting the knees cave inward.", "\uD83D\uDC63"),
+          ex("h2e8","Lateral Band Walks",3,"15 steps","3\u00D7 per week",
+            "With a band around your ankles or knees in a mini-squat position, step sideways, keeping tension on the band and control on both the leading and trailing leg.",
+            "Further strengthens the hip abductors and improves lateral control.",
+            "Letting the trailing leg drag rather than stepping with control; standing too tall and losing the mini-squat position.", "\u2194\uFE0F"),
+          ex("h2e9","Romanian Deadlift (Bodyweight)",3,"10","3\u00D7 per week",
+            "Standing tall, hinge forward at the hips while keeping a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
+            "Builds the hip hinge pattern and posterior chain strength important for walking and lifting mechanics.",
+            "Bending through the lower back instead of hinging at the hips; letting the knees bend too much and turning it into a squat.", "\uD83C\uDFCB\uFE0F")
+        ],
+        progression:[
+          "Full, comfortable squat",
+          "Improved balance",
+          "Minimal stiffness",
+          "Good hip control"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Stage 3",
+        weeks:"Week 6+",
+        goals:["Maintain mobility","Increase strength","Improve athletic function"],
+        exercises:[
+          ex("h3e1","Hip CARs",2,"5 each direction","Daily",
+            "Continue as in earlier stages \u2014 standing and holding support, slowly rotate the hip through its full available range in a smooth, controlled circle.",
+            "Maintains long-term hip joint control and range.",
+            "Twisting through the trunk instead of isolating the hip; rushing the movement.", "\uD83D\uDD04"),
+          ex("h3e2","Cossack Squats",3,"8","3\u00D7 per week",
+            "Standing with feet wide, shift your weight into one leg and squat down on that side while the other leg stays straight, then push back to the centre and repeat on the other side.",
+            "Builds hip mobility and strength through a large range of motion used in athletic movement.",
+            "Letting the heel of the squatting leg lift off the ground; rushing through the range instead of controlling the descent.", "\uD83E\uDD38"),
+          ex("h3e3","Bulgarian Split Squats",3,"10","3\u00D7 per week",
+            "With your rear foot elevated on a bench behind you, lower into a lunge on the front leg until the back knee is close to the floor, then push back up.",
+            "Builds single-leg strength and hip control needed for walking, running and stairs.",
+            "Letting the front knee cave inward; placing the front foot too close to the bench, limiting range.", "\uD83C\uDFCB\uFE0F"),
+          ex("h3e4","Goblet Squats",3,"10","3\u00D7 per week",
+            "Holding a weight at your chest, squat down keeping your chest tall and knees tracking over your toes, then stand back up.",
+            "Builds overall squat strength and reinforces good squat mechanics.",
+            "Letting the knees collapse inward; rounding through the upper back.", "\uD83C\uDFC6"),
+          ex("h3e5","Single Leg Romanian Deadlift",3,"10","3\u00D7 per week",
+            "Standing on one leg, hinge forward at the hip while extending the other leg behind you, reaching towards the floor, then return to standing with control.",
+            "Builds single-leg strength, balance and hip control together.",
+            "Rotating the hips open instead of keeping them square; losing balance and rushing the movement.", "\uD83E\uDDBF"),
+          ex("h3e6","Copenhagen Side Plank (Modified)",3,"20 sec hold","3\u00D7 per week",
+            "Lying on your side with your top foot resting on a bench or step, lift your hips off the floor and hold, keeping your body in a straight line.",
+            "Strengthens the inner thigh and hip muscles that support pelvic control during single-leg activities.",
+            "Letting the hips sag or rotate; holding your breath instead of breathing normally through the hold.", "\uD83E\uDDCD"),
+          ex("h3e7","Walking Lunges",3,"12","3\u00D7 per week",
+            "Step forward into a lunge, lowering the back knee towards the floor, then push off and step through into the next lunge on the other side.",
+            "Builds functional strength and control for walking and athletic movement.",
+            "Taking too short a step, limiting range; letting the front knee travel too far past the toes and losing control.", "\uD83D\uDEB6"),
+          ex("h3e8","Step Ups",3,"12","3\u00D7 per week",
+            "Step up onto a box or step with one leg, driving through the heel to stand tall, then step back down with control.",
+            "Builds single-leg strength for stairs, hills and everyday function.",
+            "Pushing off the bottom leg instead of driving through the top leg; using momentum to \u201Cjump\u201D onto the step.", "\uD83E\uDE9C"),
+          ex("h3e9","Single Leg Balance with Reach",3,"30 sec","3\u00D7 per week",
+            "Standing on one leg, reach the opposite hand towards the floor or out to the side while maintaining balance, then return to standing tall.",
+            "Builds balance, hip control and confidence in single-leg positions relevant to sport and daily life.",
+            "Letting the standing knee wobble excessively; rushing the reach instead of moving with control.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Comfortable with all exercises and good control",
+          "Hip rotation and squat depth feel symmetrical side to side",
+          "Confident with daily activity, sport or exercise demands",
+          "Discuss ongoing maintenance with your practitioner"
+        ]
+      }
+    ]
+  },
+  {
+    id:"achilles-tendon",
+    name:"Achilles Tendon Injury",
+    meta:"4 stages \u00B7 8+ week programme",
+    icon:"\u{1F45F}",
+    available:true,
+    heroSub:"A staged, progressive loading programme for the Achilles tendon. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    purpose:[
+      "Reduce pain","Maintain walking ability","Gradually restore tendon loading",
+      "Improve calf strength","Restore tendon capacity","Return safely to running and sport"
+    ],
+    suitableFor:[
+      "Mid-portion Achilles tendinopathy",
+      "Mild insertional Achilles tendinopathy (modify exercises to avoid excessive dorsiflexion)",
+      "Minor Achilles strains"
+    ],
+    notSuitableFor:["Suspected Achilles rupture"],
+    painRules:[
+      { chip:"safe",    range:"0\u20133/10", text:"Safe to continue." },
+      { chip:"caution", range:"4\u20135/10", text:"Reduce repetitions or resistance." },
+      { chip:"stop",    range:"Above 5/10", text:"Stop and reduce loading." }
+    ],
+    painNote:[
+      "Pain should settle back to baseline within 24 hours.",
+      "Morning stiffness should gradually improve over time."
+    ],
+    education:[
+      "Achilles tendons become stronger through progressive loading.",
+      "Complete rest is usually not recommended unless advised by your practitioner.",
+      "Mild discomfort during rehabilitation is acceptable.",
+      "Pain should settle within 24 hours after exercise.",
+      "Morning stiffness is a useful way to monitor progress.",
+      "Recovery often takes several months, but consistent exercise leads to the best outcomes.",
+      "Progress is based on symptoms rather than specific dates."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Acute Phase",
+        weeks:"Weeks 0\u20132",
+        goals:["Reduce irritation","Maintain movement","Begin gentle tendon loading","Avoid complete rest"],
+        notes:["Do not force stretching if symptoms worsen."],
+        exercises:[
+          ex("a1e1","Ankle Pumps",2,"20","3\u20135\u00D7 daily",
+            "Sitting or lying with your leg relaxed, point your toes away from you and then pull them back up towards your shin, moving through your full comfortable ankle range.",
+            "Maintains ankle movement.",
+            "Moving too fast instead of a smooth, controlled pace; only moving through a small partial range.", "\uD83E\uDDB6"),
+          ex("a1e2","Ankle Circles",2,"15 each direction","Daily",
+            "Sitting with your leg relaxed, slowly rotate your ankle in a full circle, then reverse direction.",
+            "Maintains ankle joint mobility and gently encourages circulation around the injured area.",
+            "Rushing through the circles; moving only the toes instead of the whole ankle.", "\uD83D\uDD04"),
+          ex("a1e3","Seated Heel Raises",3,"15","Daily",
+            "Sitting with feet flat on the floor, slowly lift your heels off the ground as high as comfortable, then lower with control.",
+            "Begins gentle loading of the calf and Achilles tendon without the full weight of standing.",
+            "Lifting too quickly; not lowering with control.", "\uD83E\uDDB5"),
+          ex("a1e4","Double Leg Isometric Calf Raise Hold",5,"30\u201345 sec hold","Daily",
+            "Standing with feet hip-width apart, rise up onto the balls of both feet to a comfortable height and hold the position, using support for balance if needed.",
+            "Reduces pain while maintaining tendon loading.",
+            "Holding at a height that causes sharp pain; letting the heels drift together or apart during the hold.", "\u23F1\uFE0F"),
+          ex("a1e5","Weight Shifts",3,"15","Daily",
+            "Standing with feet hip-width apart, slowly shift your weight onto the affected leg, hold briefly, then shift back to the other side.",
+            "Builds tolerance to loading the affected leg in a controlled, low-demand way.",
+            "Shifting too quickly; avoiding fully loading the affected side out of guarding.", "\u2696\uFE0F"),
+          ex("a1e6","Balance on Two Feet",3,"30 sec hold","Daily",
+            "Standing with feet together or hip-width apart, focus on holding a steady, balanced position, using support nearby if needed.",
+            "Builds early proprioception and confidence while keeping load gentle.",
+            "Holding onto support more than needed; looking down at your feet instead of ahead.", "\uD83E\uDDCD"),
+          ex("a1e7","Gastrocnemius Stretch",3,"20\u201330 sec hold","Daily",
+            "Standing in a staggered stance facing a wall, back leg straight and heel on the floor, lean forward until a mild stretch is felt in the upper calf.",
+            "Maintains flexibility in the gastrocnemius muscle while respecting tendon irritability. Only stretch to mild tension.",
+            "Stretching into pain rather than mild tension; letting the back heel lift off the ground.", "\uD83E\uDDD8"),
+          ex("a1e8","Soleus Stretch",3,"20\u201330 sec hold","Daily",
+            "In the same staggered stance, bend the back knee slightly while keeping the heel down until a stretch is felt lower in the calf.",
+            "Targets the soleus muscle, which sits deeper than the gastrocnemius and also loads the Achilles.",
+            "Straightening the back knee, which shifts the stretch away from the soleus; forcing the stretch if symptoms worsen.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Walking comfortably",
+          "Pain less than 3/10",
+          "Morning stiffness improving"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Early Loading",
+        weeks:"Weeks 2\u20134",
+        goals:["Increase tendon load","Improve calf endurance","Restore confidence"],
+        exercises:[
+          ex("a2e1","Double Leg Heel Raises",3,"15","Daily",
+            "Standing with feet hip-width apart, rise up onto the balls of both feet over a slow 3-second count, then lower back down over another slow 3-second count.",
+            "Builds tendon and calf strength through a full, controlled range with a slow tempo.",
+            "Rushing the tempo instead of counting a full 3 seconds each way; not rising fully onto the toes.", "\uD83E\uDDB5"),
+          ex("a2e2","Single Leg Balance",3,"30\u201345 sec hold","Daily",
+            "Standing on the affected leg only, hold a steady balanced position, using support nearby if needed.",
+            "Builds single-leg strength endurance and proprioception needed for walking and running.",
+            "Relying heavily on support instead of gradually reducing it; letting the standing knee lock out stiffly.", "\uD83E\uDDCD"),
+          ex("a2e3","Heel Raise Holds",5,"45 sec hold","Daily",
+            "Rise up onto the balls of both feet to a comfortable height and hold the position for the full duration.",
+            "Builds isometric endurance in the calf and Achilles tendon.",
+            "Dropping the heels partway through the hold; holding at a height that causes sharp pain.", "\u23F1\uFE0F"),
+          ex("a2e4","Mini Squats",3,"12","3\u00D7 per week",
+            "Standing with feet shoulder-width apart, bend your knees into a small squat, keeping your heels on the floor, then return to standing.",
+            "Builds lower limb strength and control that supports walking and loading through the ankle and Achilles.",
+            "Letting the heels lift off the ground; letting the knees cave inward.", "\uD83E\uDDCE"),
+          ex("a2e5","Step Ups",3,"12","3\u00D7 per week",
+            "Step up onto a low step with the affected leg, driving through the heel to stand tall, then step back down with control.",
+            "Builds functional single-leg strength for stairs and daily activity.",
+            "Pushing off the trailing leg instead of driving through the top leg; stepping down without control.", "\uD83E\uDE9C"),
+          ex("a2e6","Resistance Band Plantarflexion",3,"15","3\u00D7 per week",
+            "Sitting with your leg out in front and a resistance band looped around the ball of your foot, point your toes away against the band's resistance, then return slowly.",
+            "Isolates and strengthens the calf and Achilles complex with adjustable resistance.",
+            "Using a jerky motion instead of a smooth, controlled push; not returning slowly against the band.", "\uD83C\uDF80"),
+          ex("a2e7","Gastrocnemius Stretch (continued)",3,"20\u201330 sec hold","Daily",
+            "Continue as in the Acute Phase \u2014 staggered stance, back leg straight and heel down, lean forward to a mild stretch.",
+            "Maintains calf flexibility as loading increases.",
+            "Stretching into pain rather than mild tension.", "\uD83E\uDDD8"),
+          ex("a2e8","Soleus Stretch (continued)",3,"20\u201330 sec hold","Daily",
+            "Continue as in the Acute Phase \u2014 staggered stance with the back knee slightly bent and heel down.",
+            "Maintains soleus flexibility as loading increases.",
+            "Straightening the back knee during the stretch.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Minimal pain",
+          "Good control",
+          "Able to perform 20 double-leg heel raises comfortably"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Strength Phase",
+        weeks:"Weeks 4\u20138",
+        goals:["Increase tendon strength","Improve calf muscle size","Restore function"],
+        notes:["Continue stretching after exercise."],
+        exercises:[
+          ex("a3e1","Single Leg Heel Raises",3,"12","3\u00D7 per week",
+            "Standing on the affected leg only, rise up onto the ball of your foot as high as comfortable, then lower with control.",
+            "Progresses calf and tendon strength by removing the support of the other leg.",
+            "Using momentum to bounce up; not lowering with full control.", "\uD83E\uDDB5"),
+          ex("a3e2","Heavy Slow Heel Raises",3,"10","3\u00D7 per week",
+            "Standing holding extra weight such as a backpack or dumbbells when appropriate, rise up onto your toes slowly, then lower slowly over several seconds.",
+            "Heavy, slow loading builds tendon capacity and calf strength effectively.",
+            "Adding weight before the bodyweight version is comfortable; rushing the tempo instead of moving slowly.", "\uD83C\uDF92"),
+          ex("a3e3","Bent Knee Heel Raises",3,"12","3\u00D7 per week",
+            "Standing with your knees slightly bent throughout, rise up onto the balls of your feet, then lower with control.",
+            "Targets the soleus muscle specifically, which contributes significantly to Achilles loading.",
+            "Straightening the knees during the movement; rushing through the reps.", "\uD83E\uDDB5"),
+          ex("a3e4","Split Squats",3,"10","3\u00D7 per week",
+            "In a staggered stance, lower your back knee towards the floor while keeping your front heel down, then push back up to standing.",
+            "Builds single-leg strength and control needed for walking, running and sport.",
+            "Letting the front knee travel too far past the toes; losing balance and rushing the movement.", "\uD83E\uDD3E"),
+          ex("a3e5","Romanian Deadlifts",3,"10","3\u00D7 per week",
+            "Standing tall, hinge forward at the hips with a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
+            "Builds posterior chain strength that supports the calf and Achilles during running and jumping.",
+            "Rounding through the lower back; bending the knees too much and turning it into a squat.", "\uD83C\uDFCB\uFE0F"),
+          ex("a3e6","Single Leg Balance with Reach",3,"30 sec","3\u00D7 per week",
+            "Standing on the affected leg, reach the opposite hand towards the floor or out to the side while maintaining balance, then return to standing tall.",
+            "Builds balance and control needed for uneven ground and sport-specific movement.",
+            "Letting the standing knee wobble excessively; rushing the reach instead of moving with control.", "\uD83E\uDDD8"),
+          ex("a3e7","Farmer Carries",3,"40 metres","3\u00D7 per week",
+            "Holding a moderately heavy weight in each hand, walk for the set distance keeping your posture tall and steps controlled.",
+            "Builds functional lower limb and core strength under load.",
+            "Letting the shoulders round forward; walking too fast and losing control of posture.", "\uD83C\uDFCB\uFE0F")
+        ],
+        progression:[
+          "Can perform at least 25 single-leg heel raises",
+          "Walking pain free",
+          "Minimal morning stiffness"
+        ]
+      },
+      {
+        id:"stage-4",
+        label:"Return to Sport",
+        weeks:"Week 8+",
+        goals:["Restore tendon capacity","Return to running","Return to jumping","Return to sport"],
+        notes:["Progress gradually each week if symptoms remain stable."],
+        exercises:[
+          ex("a4e1","Heavy Single Leg Heel Raises",4,"8","3\u00D7 per week",
+            "Standing on the affected leg holding extra weight if appropriate, rise up onto your toes as high as comfortable, then lower with control.",
+            "Builds the high-level tendon capacity needed for running, jumping and sport.",
+            "Using momentum instead of a controlled rise; reducing range to compensate for fatigue.", "\uD83E\uDDB5"),
+          ex("a4e2","Single Leg Decline Heel Raises",3,"12","3\u00D7 per week",
+            "Standing on the affected leg on a decline board or the edge of a step, lower your heel below the level of your toes, then rise back up. For mid-portion tendinopathy only \u2014 avoid for insertional Achilles pain.",
+            "Loads the mid-portion of the Achilles tendon through an extended range.",
+            "Performing this exercise with insertional Achilles pain, where it should be avoided; dropping too quickly instead of a slow, controlled lower.", "\uD83E\uDDB5"),
+          ex("a4e3","Skipping",3,"60 sec","3\u00D7 per week",
+            "Using a skipping rope or a light skipping motion, perform continuous small jumps for the set duration, landing softly.",
+            "Begins reintroducing elastic, spring-like loading of the Achilles tendon.",
+            "Landing heavily instead of softly through the forefoot; ignoring the 24-hour pain response.", "\u23F1\uFE0F"),
+          ex("a4e4","Pogos",3,"20","3\u00D7 per week",
+            "Standing tall, perform small, quick vertical hops using mostly your ankles, keeping your knees relatively straight.",
+            "Builds fast, reactive tendon stiffness needed for running and jumping sports.",
+            "Bending the knees too much and turning it into a squat jump; landing flat-footed instead of through the forefoot.", "\u26A1"),
+          ex("a4e5","Hopping",3,"15","3\u00D7 per week",
+            "On the affected leg, perform small forward hops, landing softly and absorbing the impact through the ankle and knee.",
+            "Builds single-leg power and tendon tolerance to impact.",
+            "Landing stiffly without absorbing through the ankle; hopping too far too soon.", "\uD83E\uDDB5"),
+          ex("a4e6","Lateral Hops",3,"15","3\u00D7 per week",
+            "On the affected leg, hop sideways over a small distance or line, landing softly under control before hopping back.",
+            "Builds multidirectional control and tendon tolerance for sport.",
+            "Landing with the knee collapsing inward; rushing the hops instead of controlling each landing.", "\u2194\uFE0F"),
+          ex("a4e7","Walking Lunges",3,"12","3\u00D7 per week",
+            "Step forward into a lunge, lowering the back knee towards the floor, then push off and step through into the next lunge on the other side.",
+            "Builds functional strength and control relevant to running and change of direction.",
+            "Taking too short a step, limiting range; letting the front knee travel too far past the toes.", "\uD83D\uDEB6"),
+          ex("a4e8","Step Down Control",3,"10","3\u00D7 per week",
+            "Standing on a step on the affected leg, slowly lower the other foot towards the floor with control, then return to standing.",
+            "Builds eccentric control of the calf and Achilles, important for absorbing load during running and landing.",
+            "Dropping down quickly instead of lowering slowly; letting the standing knee cave inward.", "\uD83E\uDE9C"),
+          ex("a4e9","Return to Running Programme",1,"Walk 2 min / Jog 1 min \u00D7 8","Week 1",
+            "Alternate walking for 2 minutes with jogging for 1 minute, repeating this cycle 8 times. Progress gradually each week if symptoms remain stable.",
+            "Gradually reintroduces running load in a structured way that respects tendon tolerance.",
+            "Progressing to the next week's running volume before symptoms have remained stable; skipping the walk intervals.", "\uD83C\uDFC3")
+        ],
+        progression:[
+          "Pain-free with running and jumping",
+          "Strength and hop tests comparable to the unaffected side",
+          "Confident returning to full training and competition",
+          "Discuss ongoing monitoring with your practitioner"
+        ]
+      }
+    ]
+  },
+  {
+    id:"neck-pain",
+    name:"Neck Pain",
+    meta:"4 stages \u00B7 8+ week programme",
+    icon:"\uD83D\uDC86",
+    available:true,
+    heroSub:"A staged mobility and strength programme for the neck and upper back. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    purpose:[
+      "Reduce neck pain and stiffness","Improve neck movement","Improve upper back mobility",
+      "Improve shoulder blade control","Restore normal neck muscle endurance",
+      "Improve strength of the postural muscles","Return to normal daily activities"
+    ],
+    suitableFor:[
+      "Mechanical neck pain","Neck stiffness","Mild cervicogenic headaches","General muscular neck pain"
+    ],
+    notSuitableFor:[
+      "Recent trauma","Progressive weakness","Severe arm numbness","Loss of coordination","Suspected fracture or infection"
+    ],
+    painRules:[
+      { chip:"safe",    range:"0\u20133/10", text:"Safe to continue." },
+      { chip:"caution", range:"4\u20135/10", text:"Reduce repetitions or movement." },
+      { chip:"stop",    range:"Above 5/10", text:"Stop the exercise." }
+    ],
+    painNote:[
+      "Pain should settle shortly after exercise.",
+      "Exercises should never cause worsening neurological symptoms."
+    ],
+    education:[
+      "Most neck pain improves with gradual movement and exercise.",
+      "The neck is a strong structure designed to move.",
+      "Mild discomfort during rehabilitation is normal.",
+      "Consistency is more important than intensity.",
+      "Gradually increasing strength and movement is one of the most effective ways to reduce recurring neck pain.",
+      "Good sleep, regular movement and general physical activity can all support recovery."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Stage 1",
+        weeks:"Weeks 0\u20132",
+        goals:["Reduce stiffness","Restore movement","Begin activation of the deep neck muscles","Improve shoulder blade control"],
+        exercises:[
+          ex("n1e1","Chin Tucks",3,"10","Daily",
+            "Sitting or standing tall, gently draw your chin straight back to create a \u201Cdouble chin\u201D, keeping your eyes level, and hold for 5 seconds before releasing.",
+            "Activates the deep neck flexors.",
+            "Tilting the head down instead of drawing it straight back; pushing too hard and causing strain.", "\uD83E\uDDCD"),
+          ex("n1e2","Neck Rotation",3,"10 each side","Daily",
+            "Sitting or standing tall, slowly turn your head to look over one shoulder as far as comfortable, then return to centre and repeat on the other side.",
+            "Restores rotational movement of the neck within a safe, comfortable range.",
+            "Forcing the movement past a comfortable range; rushing instead of moving slowly and smoothly.", "\uD83D\uDD04"),
+          ex("n1e3","Neck Side Flexion",3,"10 each side","Daily",
+            "Sitting or standing tall, slowly tilt your ear towards your shoulder on one side, keeping your shoulders relaxed, then return to centre and repeat on the other side.",
+            "Restores side-bending movement of the neck.",
+            "Lifting the shoulder to meet the ear instead of keeping shoulders relaxed; moving too quickly.", "\uD83E\uDDCD"),
+          ex("n1e4","Thoracic Extension over Chair",3,"10","Daily",
+            "Sitting with your hands behind your head, use the back of a chair at mid-back height and gently arch backwards over it to open through the upper back, then return to sitting tall.",
+            "Improves upper back mobility, which supports better neck posture and movement.",
+            "Extending through the lower back instead of the upper back; moving too fast.", "\uD83E\uDA91"),
+          ex("n1e5","Scapular Retractions",3,"15","Daily",
+            "Sitting or standing tall, draw your shoulder blades back and together as if squeezing a pencil between them, then release slowly.",
+            "Improves shoulder blade control, which supports the neck and upper back.",
+            "Shrugging the shoulders up towards the ears instead of drawing them back; over-arching the lower back.", "\uD83C\uDF9F\uFE0F"),
+          ex("n1e6","Doorway Pec Stretch",3,"30 sec hold","Daily",
+            "Stand in a doorway with your forearm on the frame at shoulder height and gently lean forward through the doorway until a gentle stretch is felt across the front of the chest.",
+            "Eases tightness at the front of the chest and shoulders that can contribute to poor neck posture.",
+            "Stretching into pain instead of a gentle stretch; arching the back instead of stepping through the hips.", "\uD83D\uDEAA"),
+          ex("n1e7","Levator Scapula Stretch",3,"30 sec hold, each side","Daily",
+            "Sitting tall, turn your head about 45\u00B0 to one side and gently draw it down towards your armpit on that side until a stretch is felt at the back and side of the neck.",
+            "Stretches the levator scapula muscle, which commonly becomes tight and contributes to neck stiffness.",
+            "Pulling too hard on the head; rounding the shoulders forward during the stretch.", "\uD83E\uDDD8"),
+          ex("n1e8","Upper Trapezius Stretch",3,"30 sec hold, each side","Daily",
+            "Sitting tall, gently tilt your ear towards one shoulder and use your hand to add light overpressure until a stretch is felt along the opposite side of the neck.",
+            "Stretches the upper trapezius, a common source of neck and shoulder tension.",
+            "Using excessive force with the hand; lifting the shoulder to reduce the stretch.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Pain improving",
+          "Neck movement increasing",
+          "Exercises completed comfortably"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Stage 2",
+        weeks:"Weeks 2\u20134",
+        goals:["Improve muscular endurance","Restore upper back movement","Improve shoulder blade stability"],
+        exercises:[
+          ex("n2e1","Chin Tucks with Head Lift",3,"10","Daily",
+            "Lying on your back with knees bent, perform a chin tuck and then gently lift your head slightly off the surface, holding for 5 seconds before lowering slowly.",
+            "Builds endurance in the deep neck flexor muscles beyond the seated chin tuck.",
+            "Lifting the head too high, which uses the larger neck muscles instead of the deep flexors; holding your breath during the hold.", "\uD83E\uDDCD"),
+          ex("n2e2","Resistance Band Rows",3,"15","3\u00D7 per week",
+            "Holding a band anchored in front of you, pull both elbows back, squeezing the shoulder blades together, then release slowly.",
+            "Strengthens the mid-back and shoulder blade muscles that support neck posture.",
+            "Shrugging the shoulders instead of drawing the blades back; leaning back to generate momentum.", "\uD83C\uDF80"),
+          ex("n2e3","Band Pull Aparts",3,"15","3\u00D7 per week",
+            "Holding a band with both hands out in front of you at shoulder height, pull the band apart by drawing your arms out to the sides, squeezing the shoulder blades together, then return slowly.",
+            "Strengthens the upper back and shoulder blade muscles, supporting good neck and shoulder posture.",
+            "Bending the elbows excessively; using momentum instead of a controlled pull.", "\uD83C\uDF80"),
+          ex("n2e4","Wall Angels",3,"10","3\u00D7 per week",
+            "Standing with your back against a wall, arms bent to 90\u00B0 and pressed against the wall, slowly slide your arms upward and back down while maintaining contact with the wall.",
+            "Improves shoulder blade control and upper back mobility together.",
+            "Arching the lower back away from the wall; losing contact with the wall during the movement.", "\uD83D\uDDFC"),
+          ex("n2e5","Open Book Thoracic Rotation",3,"10 each side","3\u00D7 per week",
+            "Lying on your side with knees bent and arms out in front, open your top arm across your body and rotate your chest towards the ceiling, following your hand with your eyes, then return.",
+            "Improves rotational mobility through the upper back, supporting overall neck and shoulder movement.",
+            "Letting the hips rotate along with the chest; rushing the movement instead of moving slowly.", "\uD83D\uDCD6"),
+          ex("n2e6","Thread the Needle",3,"8 each side","3\u00D7 per week",
+            "On hands and knees, thread one arm underneath your body and through the gap between your other arm and leg, rotating your upper back, then return to the start position.",
+            "Mobilises the upper back through a functional rotational pattern.",
+            "Moving through the lower back instead of the upper back; rushing through the movement.", "\uD83E\uDDF5"),
+          ex("n2e7","Doorway Pec Stretch (continued)",3,"30 sec hold","Daily",
+            "Continue as in Stage 1 \u2014 stand in a doorway with your forearm on the frame and gently lean forward until a gentle stretch is felt.",
+            "Maintains chest flexibility as loading increases.",
+            "Stretching into pain instead of a gentle stretch.", "\uD83D\uDEAA"),
+          ex("n2e8","Levator Scapula Stretch (continued)",3,"30 sec hold, each side","Daily",
+            "Continue as in Stage 1 \u2014 turn your head 45\u00B0 and gently draw it down towards your armpit until a stretch is felt.",
+            "Maintains flexibility in the levator scapula as loading increases.",
+            "Pulling too hard on the head.", "\uD83E\uDDD8"),
+          ex("n2e9","Upper Trapezius Stretch (continued)",3,"30 sec hold, each side","Daily",
+            "Continue as in Stage 1 \u2014 gently tilt your ear towards one shoulder with light overpressure from your hand.",
+            "Maintains upper trapezius flexibility as loading increases.",
+            "Using excessive force with the hand.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Near full neck movement",
+          "Minimal daily pain",
+          "Good control during exercises"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Stage 3",
+        weeks:"Weeks 4\u20138",
+        goals:["Increase strength","Improve endurance","Improve movement confidence"],
+        exercises:[
+          ex("n3e1","Resistance Band Rows",3,"15","3\u00D7 per week",
+            "Holding a band anchored in front of you, pull both elbows back, squeezing the shoulder blades together, then release slowly.",
+            "Continues to build mid-back and shoulder blade strength that supports neck posture.",
+            "Shrugging the shoulders instead of drawing the blades back; leaning back to generate momentum.", "\uD83C\uDF80"),
+          ex("n3e2","Face Pulls",3,"12","3\u00D7 per week",
+            "Using a band or cable at head height, pull towards your face while rotating your hands so palms end facing forward, squeezing the shoulder blades.",
+            "Strengthens the rear shoulder and upper back muscles that support healthy neck and shoulder posture.",
+            "Using the arms only without engaging the shoulder blades; leaning back to assist the pull.", "\uD83C\uDF80"),
+          ex("n3e3","Prone Y Raises",3,"10","3\u00D7 per week",
+            "Lying face down, arms raised overhead in a \u201CY\u201D shape, lift the arms slightly off the ground and hold briefly.",
+            "Strengthens the lower trapezius, important for shoulder blade and neck posture control.",
+            "Shrugging through the neck; over-arching the lower back to lift higher.", "\uD83E\uDDCD"),
+          ex("n3e4","Prone T Raises",3,"10","3\u00D7 per week",
+            "Lying face down, arms out to the sides in a \u201CT\u201D shape, lift the arms slightly and squeeze the shoulder blades together.",
+            "Strengthens the mid-trapezius and rhomboids for scapular stability.",
+            "Lifting the head instead of the arms; over-arching the back.", "\uD83E\uDDCD"),
+          ex("n3e5","Serratus Wall Slides",3,"12","3\u00D7 per week",
+            "Standing facing a wall with forearms resting on it, slide your arms upward as far as comfortable while keeping contact with the wall, then return.",
+            "Improves control of the shoulder blade against the ribcage, supporting the neck and shoulders.",
+            "Arching the lower back; letting the shoulders hike up towards the ears.", "\uD83D\uDDFC"),
+          ex("n3e6","Bird Dog",3,"10","3\u00D7 per week",
+            "On hands and knees, extend one arm forward and the opposite leg back at the same time, keeping your spine steady, then return and repeat on the other side.",
+            "Builds core and postural control that supports the spine, including the neck, during movement.",
+            "Rotating the hips or trunk during the movement; moving too quickly and losing balance.", "\uD83D\uDC15"),
+          ex("n3e7","Wall Push-Up Plus",3,"12","3\u00D7 per week",
+            "Hands on a wall at shoulder height, perform a push-up, then push slightly further away from the wall to round the shoulder blades at the end.",
+            "Strengthens the serratus anterior and prepares the shoulders for more demanding tasks.",
+            "Sagging through the lower back; skipping the extra \u201Cplus\u201D push at the end.", "\uD83D\uDCAA"),
+          ex("n3e8","Thoracic Extension",3,"10","3\u00D7 per week",
+            "Sitting tall or using a foam roller placed across your mid-back, gently extend backwards to open through the upper back, then return to sitting tall.",
+            "Continues to build upper back mobility that supports good neck posture.",
+            "Extending through the lower back instead of the upper back; moving too fast.", "\uD83E\uDA91"),
+          ex("n3e9","Open Book Stretch",3,"10","3\u00D7 per week",
+            "Lying on your side with knees bent, open your top arm across your body and rotate your chest towards the ceiling, following your hand with your eyes, then return.",
+            "Maintains rotational mobility through the upper back.",
+            "Letting the hips rotate along with the chest; rushing the movement.", "\uD83D\uDCD6"),
+          ex("n3e10","Pec Stretch",3,"30 sec hold","Daily",
+            "Stand in a doorway with your forearm on the frame at shoulder height and gently lean forward through the doorway until a stretch is felt across the front of the chest.",
+            "Maintains flexibility across the chest, supporting good neck and shoulder posture.",
+            "Stretching into pain instead of a gentle stretch; arching the back instead of stepping through the hips.", "\uD83D\uDEAA")
+        ],
+        progression:[
+          "Little or no pain",
+          "Full neck movement",
+          "Exercises completed with excellent control"
+        ]
+      },
+      {
+        id:"stage-4",
+        label:"Maintenance",
+        weeks:"Ongoing",
+        goals:["Maintain mobility","Prevent recurrence","Keep the neck and upper back strong"],
+        notes:["Repeat an earlier stage if symptoms flare up, and contact Chiropractic by G if pain returns or worsens."],
+        exercises:[
+          ex("n4e1","Chin Tucks",2,"10","Daily",
+            "Sitting or standing tall, gently draw your chin straight back to create a \u201Cdouble chin\u201D, keeping your eyes level, and hold briefly before releasing.",
+            "Maintains deep neck flexor activation long-term.",
+            "Tilting the head down instead of drawing it straight back.", "\uD83E\uDDCD"),
+          ex("n4e2","Band Rows",3,"15","3\u00D7 per week",
+            "Holding a band anchored in front of you, pull both elbows back, squeezing the shoulder blades together, then release slowly.",
+            "Maintains mid-back and shoulder blade strength that supports neck posture.",
+            "Shrugging the shoulders instead of drawing the blades back.", "\uD83C\uDF80"),
+          ex("n4e3","Face Pulls",3,"15","3\u00D7 per week",
+            "Using a band or cable at head height, pull towards your face while rotating your hands so palms end facing forward, squeezing the shoulder blades.",
+            "Maintains rear shoulder and upper back strength.",
+            "Using the arms only without engaging the shoulder blades.", "\uD83C\uDF80"),
+          ex("n4e4","Wall Angels",2,"12","3\u00D7 per week",
+            "Standing with your back against a wall, arms bent to 90\u00B0 and pressed against the wall, slowly slide your arms upward and back down while maintaining contact with the wall.",
+            "Maintains shoulder blade control and upper back mobility.",
+            "Arching the lower back away from the wall.", "\uD83D\uDDFC"),
+          ex("n4e5","Thoracic Extension",2,"10","Daily",
+            "Sitting tall or using a foam roller placed across your mid-back, gently extend backwards to open through the upper back, then return to sitting tall.",
+            "Maintains upper back mobility that supports good neck posture.",
+            "Extending through the lower back instead of the upper back.", "\uD83E\uDA91"),
+          ex("n4e6","Open Book Stretch",2,"10","Daily",
+            "Lying on your side with knees bent, open your top arm across your body and rotate your chest towards the ceiling, following your hand with your eyes, then return.",
+            "Maintains rotational mobility through the upper back.",
+            "Letting the hips rotate along with the chest.", "\uD83D\uDCD6"),
+          ex("n4e7","Doorway Pec Stretch",3,"30 sec hold","Daily",
+            "Stand in a doorway with your forearm on the frame at shoulder height and gently lean forward through the doorway until a gentle stretch is felt across the front of the chest.",
+            "Maintains chest flexibility, supporting good neck and shoulder posture.",
+            "Stretching into pain instead of a gentle stretch.", "\uD83D\uDEAA"),
+          ex("n4e8","Farmer Carries",3,"40 metres","2\u00D7 per week",
+            "Holding a moderately heavy weight in each hand, walk for the set distance while keeping your posture tall and shoulders back.",
+            "Builds functional shoulder, neck and core stability under load.",
+            "Letting the shoulders round forward; walking too fast and losing control of posture.", "\uD83C\uDFCB\uFE0F"),
+          ex("n4e9","Walking",1,"20\u201330 minutes","Most days",
+            "Go for a comfortable walk outdoors or on a treadmill, keeping a relaxed, upright posture throughout.",
+            "Regular general activity supports overall recovery and helps prevent recurring stiffness.",
+            "Walking with a forward, hunched head posture; skipping walks for long stretches then doing too much at once.", "\uD83D\uDEB6")
+        ],
+        progression:[
+          "Continue this routine long-term to maintain your gains",
+          "Repeat an earlier stage if symptoms flare up",
+          "Contact your practitioner if pain returns or worsens"
+        ]
+      }
+    ]
+  },
+  { id:"rotator-cuff",   name:"Rotator Cuff Tear",           icon:"\u{1F4AA}", available:false },
+  { id:"tennis-elbow",   name:"Tennis Elbow",                icon:"\u{1F3BE}", available:false },
+  { id:"golfers-elbow",  name:"Golfer's Elbow",              icon:"\u26F3", available:false },
+  { id:"low-back-pain",  name:"Low Back Pain",               icon:"\u{1F9B4}", available:false },
+  { id:"hip-pain",       name:"Hip Pain",                    icon:"\u{1F9CD}", available:false },
+  { id:"trochanteric",   name:"Trochanteric Pain Syndrome",  icon:"\u{1FA7B}", available:false },
+  { id:"pregnancy",      name:"Pregnancy",                   icon:"\u{1F930}", available:false },
+  { id:"plantar-fasciitis", name:"Plantar Fasciitis",        icon:"\u{1F9B6}", available:false }
+];
+
+/* ============================================================================================
+   STORAGE
+   ============================================================================================ */
+var LS_COMPLETED = "rbg_completed_exercises";
+var LS_SETTINGS  = "rbg_settings";
+var LS_DISCLAIMER = "rbg_disclaimer_acknowledged_v1";
+var LS_FEEDBACK = "rbg_exercise_feedback";
+
+/* Quick post-exercise check-in shown after marking an exercise complete (Shoulder Impingement
+   programme only, for now). Codes A-D are fixed options; E is an open text field. */
+var FEEDBACK_OPTIONS = [
+  { code:"A", label:"- Felt good and strong" },
+  { code:"B", label:"- Felt good, slight pain" },
+  { code:"C", label:"- Couldn't finish due to pain" },
+  { code:"D", label:"- Couldn't do any" },
+  { code:"E", label:"- Other" }
+];
+
+function loadJSON(key, fallback){
+  try{ var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
+  catch(e){ return fallback; }
+}
+function saveJSON(key, val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){ /* storage unavailable */ }
+}
+
+var state = {
+  completed: loadJSON(LS_COMPLETED, {}),   // { exerciseId: true }
+  feedback:  loadJSON(LS_FEEDBACK, {}),    // { exerciseId: { code:"A".."E", note:"" } }
+  settings:  loadJSON(LS_SETTINGS, {}),
+  view: "home",                            // home | condition | stage | progress | about
+  tab: "home",                              // which bottom-nav tab is active
+  conditionId: null,
+  stageId: null
+};
+function persistCompleted(){ saveJSON(LS_COMPLETED, state.completed); }
+function persistFeedback(){ saveJSON(LS_FEEDBACK, state.feedback); }
+function persistSettings(){ saveJSON(LS_SETTINGS, state.settings); }
+
+/* ============================================================================================
+   UTILS
+   ============================================================================================ */
+function $(sel, scope){ return (scope||document).querySelector(sel); }
+function $all(sel, scope){ return Array.prototype.slice.call((scope||document).querySelectorAll(sel)); }
+function el(tag, cls, html){
+  var e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(html !== undefined) e.innerHTML = html;
+  return e;
+}
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function getCondition(id){
+  for(var i=0;i<CONDITIONS.length;i++){ if(CONDITIONS[i].id===id) return CONDITIONS[i]; }
+  return null;
+}
+function getStage(condition, stageId){
+  if(!condition || !condition.stages) return null;
+  for(var i=0;i<condition.stages.length;i++){ if(condition.stages[i].id===stageId) return condition.stages[i]; }
+  return null;
+}
+function stageCompletion(stage){
+  var done=0;
+  for(var i=0;i<stage.exercises.length;i++){ if(state.completed[stage.exercises[i].id]) done++; }
+  return { done:done, total:stage.exercises.length };
+}
+function toast(msg){
+  var t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(function(){ t.classList.remove("show"); }, 2200);
+}
+var CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>';
+
+/* ============================================================================================
+   NAVIGATION / TOP BAR
+   ============================================================================================ */
+function showBack(show){ $("#backBtn").classList.toggle("hidden", !show); }
+
+function setTopbar(title, sub){
+  $("#topbarTitle").innerHTML = title;
+  $("#topbarSub").textContent = sub || "";
+}
+
+function goHome(){ state.view="home"; state.tab="home"; state.conditionId=null; state.stageId=null; render(); window.scrollTo(0,0); }
+function goCondition(id){ state.view="condition"; state.conditionId=id; state.stageId=null; render(); window.scrollTo(0,0); }
+function goStage(conditionId, stageId){ state.view="stage"; state.conditionId=conditionId; state.stageId=stageId; render(); window.scrollTo(0,0); }
+function goTab(tab){ state.tab=tab; state.view=tab; state.conditionId=null; state.stageId=null; render(); window.scrollTo(0,0); }
+
+$("#backBtn").addEventListener("click", function(){
+  if(state.view === "stage"){ goCondition(state.conditionId); }
+  else if(state.view === "condition"){ goHome(); }
+  else { goHome(); }
+});
+$all(".navbtn").forEach(function(b){
+  b.addEventListener("click", function(){ goTab(b.dataset.tab); });
+});
+
+/* ============================================================================================
+   RENDER: ROUTER
+   ============================================================================================ */
+function render(){
+  $all(".navbtn").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === state.tab); });
+  showBack(state.view === "condition" || state.view === "stage");
+
+  var mount = $("#mainView");
+  mount.innerHTML = "";
+
+  if(state.view === "home"){
+    setTopbar('Rehab by <span class="g">G</span>', "Chiropractic by G");
+    mount.appendChild(renderHome());
+  } else if(state.view === "condition"){
+    var c = getCondition(state.conditionId);
+    setTopbar(esc(c.name), "Choose a stage");
+    mount.appendChild(renderCondition(c));
+  } else if(state.view === "stage"){
+    var c2 = getCondition(state.conditionId);
+    var s = getStage(c2, state.stageId);
+    setTopbar(esc(c2.name), s.label + " \u00B7 " + s.weeks);
+    mount.appendChild(renderStage(c2, s));
+  } else if(state.view === "progress"){
+    setTopbar('Rehab by <span class="g">G</span>', "Your progress");
+    mount.appendChild(renderProgress());
+  } else if(state.view === "about"){
+    setTopbar('Rehab by <span class="g">G</span>', "About & settings");
+    mount.appendChild(renderAbout());
+  }
+}
+
+/* ============================================================================================
+   RENDER: HOME
+   ============================================================================================ */
+function renderHome(){
+  var wrap = el("div");
+  wrap.innerHTML =
+    '<div class="hero-title">Choose your programme</div>' +
+    '<div class="hero-sub">Evidence-based rehabilitation programmes designed by Chiropractic by G.</div>';
+
+  CONDITIONS.forEach(function(c){
+    if(!c.available) return;
+    var card = el("button", "condition-card");
+    card.innerHTML =
+      '<div class="condition-icon">'+c.icon+'</div>' +
+      '<div><div class="condition-name">'+esc(c.name)+'</div>' +
+      '<div class="condition-meta">'+esc(c.meta)+'</div></div>' +
+      '<div class="condition-chevron"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></div>';
+    card.addEventListener("click", function(){ goCondition(c.id); });
+    wrap.appendChild(card);
+  });
+
+  var label = el("div","section-label","More programmes");
+  wrap.appendChild(label);
+
+  CONDITIONS.forEach(function(c){
+    if(c.available) return;
+    var card = el("div", "condition-card locked");
+    card.innerHTML =
+      '<div class="condition-icon">'+c.icon+'</div>' +
+      '<div><div class="condition-name">'+esc(c.name)+'</div>' +
+      '<div class="lock-badge">Coming soon</div></div>';
+    card.addEventListener("click", function(){ toast(c.name + " isn't available yet"); });
+    wrap.appendChild(card);
+  });
+
+  return wrap;
+}
+
+/* ============================================================================================
+   RENDER: CONDITION (stage list)
+   ============================================================================================ */
+function renderCondition(condition){
+  var wrap = el("div");
+  var hero = el("div","condition-hero");
+  hero.innerHTML =
+    '<div class="condition-hero-title">'+esc(condition.name)+'</div>' +
+    '<div class="condition-hero-sub">'+esc(condition.heroSub || "A staged, progressive loading programme. Work through each stage in order, and only move on once you meet the criteria at the end of it.")+'</div>';
+  wrap.appendChild(hero);
+
+  if(condition.purpose && condition.purpose.length){
+    wrap.appendChild(el("div","section-label","Purpose"));
+    var purposeRow = el("div","goals-row");
+    purposeRow.innerHTML = condition.purpose.map(function(p){ return '<div class="goal-pill">'+esc(p)+'</div>'; }).join("");
+    wrap.appendChild(purposeRow);
+  }
+
+  if(condition.suitableFor && condition.suitableFor.length){
+    wrap.appendChild(el("div","section-label","Suitable for"));
+    var suitRow = el("div","goals-row");
+    suitRow.innerHTML = condition.suitableFor.map(function(p){ return '<div class="goal-pill">'+esc(p)+'</div>'; }).join("");
+    wrap.appendChild(suitRow);
+  }
+
+  if(condition.notSuitableFor && condition.notSuitableFor.length){
+    var warn = el("div","pain-rule");
+    warn.style.marginBottom = "22px";
+    var warnRows = condition.notSuitableFor.map(function(p){
+      return '<div class="pain-row"><div class="pain-chip stop">No</div><div class="pain-text">'+esc(p)+'</div></div>';
+    }).join("");
+    warn.innerHTML = '<div class="pain-rule-title">\u26D4 Not suitable for</div>' + warnRows;
+    wrap.appendChild(warn);
+  }
+
+  wrap.appendChild(el("div","section-label","Stages"));
+  condition.stages.forEach(function(s, idx){
+    var c = stageCompletion(s);
+    var card = el("button","stage-card");
+    card.innerHTML =
+      '<div class="stage-num">'+(idx+1)+'</div>' +
+      '<div><div class="stage-name">'+esc(s.label)+'</div>' +
+      '<div class="stage-weeks">'+esc(s.weeks)+'</div>' +
+      '<div class="stage-progress-mini">'+c.done+' / '+c.total+' exercises completed</div></div>' +
+      '<div class="condition-chevron"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></div>';
+    card.addEventListener("click", function(){ goStage(condition.id, s.id); });
+    wrap.appendChild(card);
+  });
+
+  wrap.appendChild(renderEducation(condition));
+  return wrap;
+}
+
+/* ============================================================================================
+   RENDER: SHARED — patient education & pain rule
+   ============================================================================================ */
+function renderEducation(condition){
+  var box = el("div","edu-block");
+  var items = (condition && condition.education) || [];
+  var lis = items.map(function(t){ return "<li>"+esc(t)+"</li>"; }).join("");
+  box.innerHTML =
+    '<div class="edu-title">\u{1F393} What to expect</div>' +
+    '<ul class="edu-list">'+lis+'</ul>';
+  return box;
+}
+function renderPainRule(condition){
+  var box = el("div","pain-rule");
+  var rules = (condition && condition.painRules) || PAIN_RULES;
+  var rows = rules.map(function(r){
+    return '<div class="pain-row"><div class="pain-chip '+r.chip+'">'+esc(r.range)+'</div>' +
+           '<div class="pain-text">'+esc(r.text)+'</div></div>';
+  }).join("");
+  var notes = [];
+  if(condition && condition.painNote){
+    notes = Array.isArray(condition.painNote) ? condition.painNote : [condition.painNote];
+  }
+  var noteHtml = notes.map(function(n){
+    return '<div class="pain-row"><div class="pain-text" style="font-style:italic;">'+esc(n)+'</div></div>';
+  }).join("");
+  box.innerHTML = '<div class="pain-rule-title">\u26A0\uFE0F Pain during exercise</div>' + rows + noteHtml;
+  return box;
+}
+
+/* ============================================================================================
+   RENDER: STAGE (exercise list)
+   ============================================================================================ */
+function renderStage(condition, stage){
+  var wrap = el("div");
+  var comp = stageCompletion(stage);
+  var pct = comp.total ? Math.round((comp.done/comp.total)*100) : 0;
+
+  var progBox = el("div","progress-wrap");
+  progBox.innerHTML =
+    '<div class="progress-label-row"><span>'+comp.done+' / '+comp.total+' exercises</span><span>'+pct+'%</span></div>' +
+    '<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div>';
+  wrap.appendChild(progBox);
+
+  var goals = el("div","goals-row");
+  goals.style.marginTop = "16px";
+  goals.innerHTML = stage.goals.map(function(g){ return '<div class="goal-pill">'+esc(g)+'</div>'; }).join("");
+  wrap.appendChild(goals);
+
+  wrap.appendChild(renderPainRule(condition));
+
+  if(stage.notes && stage.notes.length){
+    var notesBox = el("div","edu-block");
+    notesBox.style.borderLeftColor = "var(--amber)";
+    var noteLis = stage.notes.map(function(t){ return "<li>"+esc(t)+"</li>"; }).join("");
+    notesBox.innerHTML = '<div class="edu-title" style="color:var(--amber);">\u{1F4DD} Notes for this stage</div><ul class="edu-list">'+noteLis+'</ul>';
+    wrap.appendChild(notesBox);
+  }
+
+  stage.exercises.forEach(function(exercise){
+    wrap.appendChild(renderExerciseCard(exercise, stage, condition));
+  });
+
+  var progBlock = el("div","progression-block");
+  var items = stage.progression.map(function(p){
+    return '<div class="progression-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg><span>'+esc(p)+'</span></div>';
+  }).join("");
+  progBlock.innerHTML = '<div class="progression-title">\u2705 Ready for the next stage when\u2026</div>' + items;
+  wrap.appendChild(progBlock);
+
+  wrap.appendChild(renderEducation(condition));
+
+  return wrap;
+}
+
+function renderExerciseCard(exercise, stage, condition){
+  var card = el("div","exercise-card");
+  card.dataset.exerciseId = exercise.id;
+  var isDone = !!state.completed[exercise.id];
+  var feedbackEnabled = !!(condition && condition.id === "shoulder-impingement");
+  var fb = state.feedback[exercise.id] || null;
+
+  card.innerHTML =
+    '<div class="ex-top">' +
+      '<div class="ex-illustration">'+exercise.icon+'</div>' +
+      '<div><div class="ex-name">'+esc(exercise.name)+'</div>' +
+      '<div class="ex-dose">'+exercise.sets+' \u00D7 '+esc(exercise.reps)+'</div></div>' +
+      '<button class="ex-check'+(isDone?" done":"")+'" aria-label="Mark exercise complete">'+CHECK_ICON+'</button>' +
+    '</div>' +
+    '<div class="ex-section"><div class="ex-section-label">How to perform it</div>' +
+      '<div class="ex-section-body">'+esc(exercise.description)+'</div></div>' +
+    '<div class="ex-section"><div class="ex-section-label">Why we do it</div>' +
+      '<div class="ex-section-body">'+esc(exercise.why)+'</div></div>' +
+    '<div class="ex-meta-grid">' +
+      '<div class="ex-meta-cell"><div class="ex-meta-val">'+exercise.sets+'</div><div class="ex-meta-key">Sets</div></div>' +
+      '<div class="ex-meta-cell"><div class="ex-meta-val">'+esc(exercise.reps)+'</div><div class="ex-meta-key">Reps</div></div>' +
+      '<div class="ex-meta-cell"><div class="ex-meta-val">'+esc(exercise.frequency)+'</div><div class="ex-meta-key">Frequency</div></div>' +
+    '</div>' +
+    '<div class="ex-mistakes"><div class="ex-section-label">Common mistakes</div>' +
+      '<div class="ex-section-body">'+esc(exercise.mistakes)+'</div></div>' +
+    '<div class="video-placeholder" data-video-url="" data-video-type="">' +
+      '<div class="vp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3l14 9-14 9V3z"/></svg></div>' +
+      '<div><div class="vp-text">Video demonstration</div><div class="vp-sub">Coming soon</div></div>' +
+    '</div>' +
+    '<button class="mark-done-btn'+(isDone?" done":"")+'">'+(isDone ? (CHECK_ICON+" Completed") : "Mark as done")+'</button>';
+
+  if(feedbackEnabled && isDone){
+    var fbBlock = el("div","feedback-block");
+    var optionsHtml = FEEDBACK_OPTIONS.map(function(opt){
+      var selected = fb && fb.code === opt.code;
+      return '<button type="button" class="feedback-option'+(selected?" selected":"")+'" data-code="'+opt.code+'">' +
+             '<span class="feedback-letter">'+opt.code+'</span><span class="feedback-label">'+esc(opt.label)+'</span></button>';
+    }).join("");
+    var showOther = fb && fb.code === "E";
+    fbBlock.innerHTML =
+      '<div class="feedback-title">How did that feel?</div>' +
+      optionsHtml +
+      '<textarea class="feedback-other-input'+(showOther?"":" hidden")+'" placeholder="Tell us more\u2026">'+(showOther && fb.note ? esc(fb.note) : "")+'</textarea>' +
+      '<div class="feedback-saved'+((fb && fb.code) ? "" : " hidden")+'">\u2713 Saved</div>';
+    card.appendChild(fbBlock);
+
+    $all(".feedback-option", fbBlock).forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var code = btn.dataset.code;
+        var existingNote = (state.feedback[exercise.id] && state.feedback[exercise.id].note) || "";
+        state.feedback[exercise.id] = { code:code, note: code==="E" ? existingNote : "" };
+        persistFeedback();
+        render();
+      });
+    });
+    var otherInput = $(".feedback-other-input", fbBlock);
+    otherInput.addEventListener("input", function(){
+      state.feedback[exercise.id] = { code:"E", note: otherInput.value };
+      persistFeedback();
+    });
+  }
+
+  function toggle(){
+    var nowDone = !state.completed[exercise.id];
+    state.completed[exercise.id] = nowDone;
+    persistCompleted();
+    // refresh just this card's completion visuals plus the stage progress bar
+    render();
+  }
+  card.querySelector(".ex-check").addEventListener("click", toggle);
+  card.querySelector(".mark-done-btn").addEventListener("click", toggle);
+
+  return card;
+}
+
+/* ============================================================================================
+   RENDER: PROGRESS TAB
+   ============================================================================================ */
+function renderProgress(){
+  var wrap = el("div");
+  var any = false;
+
+  CONDITIONS.forEach(function(condition){
+    if(!condition.available) return;
+    any = true;
+    var totalDone=0, totalAll=0;
+    condition.stages.forEach(function(s){ var c=stageCompletion(s); totalDone+=c.done; totalAll+=c.total; });
+    var pct = totalAll ? Math.round((totalDone/totalAll)*100) : 0;
+
+    var card = el("div","summary-card");
+    card.innerHTML =
+      '<div class="summary-title">'+esc(condition.name)+'</div>' +
+      '<div class="summary-sub">'+totalDone+' / '+totalAll+' exercises completed overall</div>' +
+      '<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div>';
+    wrap.appendChild(card);
+
+    condition.stages.forEach(function(s){
+      var c = stageCompletion(s);
+      var spct = c.total ? Math.round((c.done/c.total)*100) : 0;
+      var row = el("div","summary-card");
+      row.style.marginLeft = "12px";
+      row.innerHTML =
+        '<div class="summary-title" style="font-size:15px;">'+esc(s.label)+' \u2014 '+esc(s.weeks)+'</div>' +
+        '<div class="summary-sub">'+c.done+' / '+c.total+' exercises</div>' +
+        '<div class="progress-track"><div class="progress-fill" style="width:'+spct+'%"></div></div>';
+      row.addEventListener("click", function(){ goStage(condition.id, s.id); });
+      row.style.cursor = "pointer";
+      wrap.appendChild(row);
+    });
+  });
+
+  if(!any){
+    var empty = el("div","empty-state");
+    empty.innerHTML =
+      '<div class="es-icon">\u{1F4CB}</div>' +
+      '<div class="es-title">No programme started yet</div>' +
+      '<div class="es-sub">Choose a condition from Home to begin tracking your progress.</div>';
+    wrap.appendChild(empty);
+  }
+  return wrap;
+}
+
+/* ============================================================================================
+   RENDER: ABOUT / SETTINGS TAB
+   ============================================================================================ */
+function renderAbout(){
+  var wrap = el("div");
+  var list = el("div","settings-list");
+
+  var disclaimerRow = el("div","setting-row");
+  disclaimerRow.innerHTML =
+    '<div><div class="sr-label">Patient disclaimer</div><div class="sr-sub">Read the important notice again</div></div>' +
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>';
+  disclaimerRow.addEventListener("click", function(){ showDisclaimer(); });
+  list.appendChild(disclaimerRow);
+
+  var installRow = el("div","setting-row");
+  installRow.id = "installRow";
+  installRow.innerHTML =
+    '<div><div class="sr-label">Install app</div><div class="sr-sub">Add Rehab by G to your home screen</div></div>' +
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke-width="2" stroke="currentColor"><path d="M12 3v14M6 11l6 6 6-6M5 21h14"/></svg>';
+  installRow.addEventListener("click", function(){
+    if(deferredInstallPrompt){
+      deferredInstallPrompt.prompt();
+      deferredInstallPrompt.userChoice.finally(function(){ deferredInstallPrompt = null; });
+    } else {
+      toast("Use your browser's \u201CAdd to Home Screen\u201D option");
+    }
+  });
+  list.appendChild(installRow);
+
+  var exportRow = el("div","setting-row");
+  exportRow.innerHTML =
+    '<div><div class="sr-label">Export progress</div><div class="sr-sub">Save your completed exercises as a file</div></div>' +
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke-width="2" stroke="currentColor"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>';
+  exportRow.addEventListener("click", function(){
+    var payload = { exportedAt:new Date().toISOString(), version:1, completed:state.completed };
+    var blob = new Blob([JSON.stringify(payload,null,2)], {type:"application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = "rehab-by-g-progress.json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+    toast("Progress exported");
+  });
+  list.appendChild(exportRow);
+
+  var importRow = el("div","setting-row");
+  importRow.innerHTML =
+    '<div><div class="sr-label">Import progress</div><div class="sr-sub">Restore from a saved file</div></div>' +
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke-width="2" stroke="currentColor"><path d="M12 21V9M7 14l5-5 5 5M5 3h14"/></svg>';
+  importRow.addEventListener("click", function(){ $("#importFile").click(); });
+  list.appendChild(importRow);
+
+  var resetRow = el("div","setting-row danger");
+  resetRow.innerHTML =
+    '<div><div class="sr-label">Reset all progress</div><div class="sr-sub">Erase completed exercises on this device</div></div>' +
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke-width="2" stroke="currentColor"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>';
+  resetRow.addEventListener("click", function(){
+    if(confirm("This will permanently erase your saved exercise progress on this device. Continue?")){
+      state.completed = {};
+      persistCompleted();
+      toast("Progress reset");
+      render();
+    }
+  });
+  list.appendChild(resetRow);
+
+  wrap.appendChild(list);
+
+  var about = el("div","about-block");
+  about.innerHTML =
+    '<div class="about-brand">Rehab by G</div>' +
+    '<div class="about-ver">Version 2.0.0 \u00B7 Fully offline</div>' +
+    '<div class="about-desc">Evidence-based rehabilitation programmes designed by Chiropractic by G. Everything you complete is saved right here on your device \u2014 no account, no internet connection required, no tracking.</div>';
+  wrap.appendChild(about);
+
+  return wrap;
+}
+
+$("#importFile").addEventListener("change", function(e){
+  var file = e.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    try{
+      var data = JSON.parse(reader.result);
+      if(data && data.completed){
+        state.completed = data.completed;
+        persistCompleted();
+        toast("Progress imported");
+        render();
+      } else {
+        toast("That file doesn't look like a Rehab by G backup");
+      }
+    }catch(err){
+      toast("Couldn't read that file");
+    }
+    $("#importFile").value = "";
+  };
+  reader.readAsText(file);
+});
+
+/* ============================================================================================
+   PWA: install prompt, manifest & service worker (fully self-contained, no network required)
+   ============================================================================================ */
+var deferredInstallPrompt = null;
+window.addEventListener("beforeinstallprompt", function(e){
+  e.preventDefault();
+  deferredInstallPrompt = e;
+});
+
+function setupManifest(){
+  var iconSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="40" fill="%232E6DA4"/><text x="96" y="124" font-size="92" text-anchor="middle" font-family="-apple-system,Helvetica,Arial,sans-serif" font-weight="900" fill="%23FFFFFF">R</text></svg>';
+  var iconUri = "data:image/svg+xml," + iconSvg;
+  var manifest = {
+    name: "Rehab by G",
+    short_name: "Rehab by G",
+    description: "Evidence-based rehabilitation programmes designed by Chiropractic by G.",
+    start_url: ".",
+    display: "standalone",
+    background_color: "#EEF4FB",
+    theme_color: "#EAF2FB",
+    icons: [
+      {src: iconUri, sizes:"192x192", type:"image/svg+xml"},
+      {src: iconUri, sizes:"512x512", type:"image/svg+xml"}
+    ]
+  };
+  var manifestBlob = new Blob([JSON.stringify(manifest)], {type:"application/manifest+json"});
+  var manifestUrl = URL.createObjectURL(manifestBlob);
+  $("#manifestLink").setAttribute("href", manifestUrl);
+  $("#touchIcon").setAttribute("href", iconUri);
+  $("#favIcon").setAttribute("href", iconUri);
+}
+function setupServiceWorker(){
+  if(!("serviceWorker" in navigator)) return;
+  try{
+    var swSrc = "self.addEventListener('install',function(e){self.skipWaiting();});" +
+                "self.addEventListener('activate',function(e){self.clients.claim();});" +
+                "self.addEventListener('fetch',function(e){});";
+    var blob = new Blob([swSrc], {type:"text/javascript"});
+    var swUrl = URL.createObjectURL(blob);
+    navigator.serviceWorker.register(swUrl).catch(function(){ /* best-effort */ });
+  }catch(e){ /* page already works fully offline without a service worker */ }
+}
+
+/* ============================================================================================
+   PATIENT DISCLAIMER
+   ============================================================================================ */
+function showDisclaimer(){ $("#disclaimerOverlay").classList.add("open"); }
+function hideDisclaimer(){ $("#disclaimerOverlay").classList.remove("open"); }
+$("#disclaimerBtn").addEventListener("click", function(){
+  saveJSON(LS_DISCLAIMER, true);
+  hideDisclaimer();
+});
+
+/* ============================================================================================
+   INIT
+   ============================================================================================ */
+function init(){
+  setupManifest();
+  setupServiceWorker();
+  render();
+  if(!loadJSON(LS_DISCLAIMER, false)){ showDisclaimer(); }
+}
+init();
+
+})();
+</script>
+</body>
+</html>
