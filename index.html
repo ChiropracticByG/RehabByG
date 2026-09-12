@@ -433,572 +433,167 @@ function ex(id, name, sets, reps, frequency, description, why, mistakes, icon){
 }
 
 var CONDITIONS = [
-  {
-    id:"shoulder-impingement",
-    name:"Shoulder Impingement Syndrome",
+
+{
+    id:"low-back-pain",
+    name:"Low Back Pain",
     meta:"3 stages \u00B7 6+ week programme",
-    icon:"\u{1F9BE}",
+    icon:"\u{1F9B4}",
     available:true,
-    heroSub:"A staged, progressive loading programme. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
-    education:[
-      "Shoulder impingement does not usually mean something is being \u201Cpinched.\u201D",
-      "Pain often improves by gradually restoring strength and movement, not by avoiding it.",
-      "Some temporary discomfort during rehabilitation is normal and acceptable.",
-      "Complete rest often slows recovery down rather than speeding it up.",
-      "Consistency with your programme matters more than pushing hard occasionally."
-    ],
-    stages:[
-      {
-        id:"stage-1",
-        label:"Stage 1",
-        weeks:"Weeks 1\u20134",
-        goals:["Reduce pain","Restore movement","Begin cuff activation","Improve scapular control"],
-        exercises:[
-          ex("s1e1","Pendulum",2,"60 sec hold","Daily",
-            "Lean forward, supporting yourself on a table with your unaffected arm. Let the affected arm hang loosely and swing it gently in small circles and side to side.",
-            "Uses gravity to gently mobilise the shoulder early on, without needing the muscles around it to work.",
-            "Actively swinging the arm with muscle effort instead of letting it hang and swing passively; shrugging the shoulder during the movement."),
-          ex("s1e2","Assisted Flexion with Stick",3,"10","Daily",
-            "Holding a stick with both hands, use your unaffected arm to help lift the affected arm forward and overhead to a comfortable range, then lower slowly.",
-            "Restores overhead movement using the strong arm to control the range and avoid overloading irritated tissue.",
-            "Forcing the arm past the point of pain; shrugging the shoulder up towards the ear instead of gliding it smoothly."),
-          ex("s1e3","Assisted External Rotation",3,"10","Daily",
-            "Holding a stick with both hands, elbows tucked into your sides at 90\u00B0, use the unaffected arm to gently rotate the affected forearm outward.",
-            "Restores the rotation range needed for reaching and overhead tasks, with the stick limiting how far you go.",
-            "Letting the elbow drift away from your side; rushing the movement instead of moving slowly and under control."),
-          ex("s1e4","Wall Slides",3,"10","Daily",
-            "Stand facing a wall with your forearms resting on it. Slide your arms upward as far as comfortable while keeping contact with the wall, then return.",
-            "Encourages coordinated movement between the shoulder blade and arm, improving scapular control.",
-            "Arching the lower back to gain extra height; letting the shoulders hike up towards the ears during the slide."),
-          ex("s1e5","Scapular Setting",3,"15","Daily",
-            "Sit or stand tall. Gently draw your shoulder blades down and back, as if placing them in your back pockets, and hold briefly before releasing.",
-            "Builds awareness and control of the shoulder blade muscles that support the shoulder joint.",
-            "Over-squeezing the shoulder blades together; holding your breath during the hold."),
-          ex("s1e6","Isometric External Rotation",5,"20 sec hold","Daily",
-            "Elbow bent to 90\u00B0 and tucked into your side, push your forearm outward into a wall or a fixed hand without any movement occurring.",
-            "Isometric loading can build tendon capacity and reduce pain even while the shoulder is still irritable.",
-            "Using too much force too soon; letting the elbow lift away from your side."),
-          ex("s1e7","Isometric Abduction",5,"20 sec hold","Daily",
-            "Elbow bent to 90\u00B0 and tucked in, gently push your arm outward against a wall or fixed resistance without the arm actually moving.",
-            "Loads the shoulder muscles safely without moving through painful ranges.",
-            "Shrugging the shoulder up during the hold; pushing through sharp pain."),
-          ex("s1e8","Pec Minor Doorway Stretch",3,"30 sec hold","Daily",
-            "Stand in a doorway with your forearm on the frame at shoulder height. Gently lean forward through the doorway until you feel a stretch across the front of your shoulder.",
-            "Eases tightness at the front of the shoulder that can contribute to poor posture and impingement symptoms.",
-            "Overstretching into pain; arching the back instead of stepping through the hips."),
-          ex("s1e9","Posterior Capsule Stretch",3,"30 sec hold","Daily",
-            "Lying on the affected side, bend the elbow to 90\u00B0 and use your other hand to gently press the forearm down towards the bed until a stretch is felt at the back of the shoulder.",
-            "Improves flexibility at the back of the shoulder joint, which is commonly restricted with impingement.",
-            "Pressing too hard and forcing through pain; letting the shoulder roll forward during the stretch.")
-        ],
-        progression:[
-          "Pain is less than 3/10 during daily activity",
-          "Able to elevate the arm above shoulder height",
-          "Night pain has improved",
-          "Good control is shown during wall slides"
-        ]
-      },
-      {
-        id:"stage-2",
-        label:"Stage 2",
-        weeks:"Weeks 4\u20136",
-        goals:["Increase strength","Improve endurance","Normalise movement"],
-        exercises:[
-          ex("s2e1","Band External Rotation",3,"12","3\u00D7 per week",
-            "Elbow tucked at 90\u00B0, holding a resistance band anchored to the side, rotate your forearm outward against the band's resistance, then return slowly.",
-            "Strengthens the rotator cuff muscles that stabilise and control the shoulder joint.",
-            "Letting the elbow drift forward or away from the body; using momentum instead of a controlled movement."),
-          ex("s2e2","Band Internal Rotation",3,"12","3\u00D7 per week",
-            "Elbow tucked at 90\u00B0, rotate your forearm inward across your body against the band's resistance, then return slowly.",
-            "Balances rotator cuff strength alongside the external rotation work.",
-            "Twisting through the trunk instead of the shoulder; moving too quickly through the range."),
-          ex("s2e3","Standing Rows",3,"15","3\u00D7 per week",
-            "Holding a band anchored in front of you, pull both elbows back, squeezing the shoulder blades together, then release slowly.",
-            "Strengthens the mid-back and shoulder blade muscles that support good shoulder posture.",
-            "Shrugging the shoulders instead of drawing the blades back; leaning back to generate momentum."),
-          ex("s2e4","Serratus Punches",3,"15","3\u00D7 per week",
-            "Lying on your back or standing, punch your arm straight up towards the ceiling, protracting the shoulder blade at the top of the movement.",
-            "Strengthens the serratus anterior, a key muscle for healthy shoulder blade movement.",
-            "Bending the elbow during the punch; not reaching fully at the top of the movement."),
-          ex("s2e5","Side Lying External Rotation",3,"12","3\u00D7 per week",
-            "Lying on your unaffected side, elbow bent and tucked into your side, lift the top arm's forearm upward, then lower slowly.",
-            "Adds gravity as resistance to further strengthen the external rotators.",
-            "Rolling the body backward to assist the lift; lifting too fast to control."),
-          ex("s2e6","Prone Y",3,"10","3\u00D7 per week",
-            "Lying face down, arms raised overhead in a \u201CY\u201D shape, lift the arms slightly off the ground and hold briefly.",
-            "Strengthens the lower trapezius, important for shoulder blade control overhead.",
-            "Shrugging through the neck; over-arching the lower back to lift higher."),
-          ex("s2e7","Prone T",3,"10","3\u00D7 per week",
-            "Lying face down, arms out to the sides in a \u201CT\u201D shape, lift the arms slightly and squeeze the shoulder blades together.",
-            "Strengthens the mid-trapezius and rhomboids for scapular stability.",
-            "Lifting the head instead of the arms; over-arching the back."),
-          ex("s2e8","Wall Push-Up Plus",3,"12","3\u00D7 per week",
-            "Hands on a wall at shoulder height, perform a push-up, then push slightly further away from the wall to round the shoulder blades at the end.",
-            "Strengthens the serratus anterior and prepares the shoulder for more demanding pushing exercises.",
-            "Sagging through the lower back; skipping the extra \u201Cplus\u201D push at the end."),
-          ex("s2e9","Pec Minor Doorway Stretch (continued)",3,"30 sec hold","Daily",
-            "Continue as in Stage 1 \u2014 stand in a doorway with your forearm on the frame and gently lean through until you feel a stretch.",
-            "Maintains the chest flexibility gained in Stage 1 as loading increases.",
-            "Overstretching into pain."),
-          ex("s2e10","Posterior Capsule Stretch (continued)",3,"30 sec hold","Daily",
-            "Continue as in Stage 1 \u2014 lying on the affected side, gently press the forearm down towards the bed.",
-            "Maintains flexibility at the back of the shoulder as strength work increases.",
-            "Forcing through pain instead of a gentle, sustained stretch.")
-        ],
-        progression:[
-          "Minimal pain during exercise and daily activity",
-          "Nearly full range of movement restored",
-          "Exercises performed with excellent control",
-          "Strength is noticeably improving"
-        ]
-      },
-      {
-        id:"stage-3",
-        label:"Stage 3",
-        weeks:"Week 6+",
-        goals:["Return to normal life","Return to gym","Improve tendon capacity"],
-        exercises:[
-          ex("s3e1","Dumbbell Scaption",3,"10","3\u00D7 per week",
-            "Holding light dumbbells, raise your arms up in the plane of your shoulder blade (roughly 30\u201345\u00B0 in front of you) to shoulder height, then lower slowly.",
-            "Strengthens the shoulder through a functional range used in daily and sporting activities.",
-            "Raising above shoulder height too soon; shrugging the shoulders during the lift."),
-          ex("s3e2","Dumbbell Shoulder Press",3,"10","3\u00D7 per week",
-            "Press dumbbells overhead from shoulder height, moving only through a pain-free range, then lower with control.",
-            "Builds strength for overhead tasks while respecting the shoulder's current capacity.",
-            "Arching the lower back to gain extra range; pressing through sharp pain."),
-          ex("s3e3","Face Pulls",3,"15","3\u00D7 per week",
-            "Using a band or cable at head height, pull towards your face while rotating your hands so palms end facing forward, squeezing the shoulder blades.",
-            "Strengthens the rear shoulder and upper back muscles that support healthy shoulder posture.",
-            "Using the arms only without engaging the shoulder blades; leaning back to assist the pull."),
-          ex("s3e4","Lat Pulldown",3,"12","3\u00D7 per week",
-            "Using a cable or band overhead, pull the bar or band down towards your chest, then return slowly to the start.",
-            "Builds broader shoulder and back strength to support the whole shoulder complex.",
-            "Leaning back excessively; pulling the bar behind the neck."),
-          ex("s3e5","Chest Supported Rows",3,"12","3\u00D7 per week",
-            "Lying face down on an incline bench or supported surface, row dumbbells or a band towards your body, squeezing the shoulder blades.",
-            "Strengthens the back and shoulder blade muscles without stressing the lower back.",
-            "Using momentum to swing the weights; not fully squeezing at the top of the row."),
-          ex("s3e6","Farmer Carries",3,"40 metres","3\u00D7 per week",
-            "Holding a moderately heavy weight in each hand, walk for the set distance while keeping your shoulders back and posture tall.",
-            "Builds functional shoulder and core stability under load.",
-            "Letting the shoulders round forward; walking too fast and losing control of posture."),
-          ex("s3e7","Push-Ups (Wall \u2192 Incline \u2192 Floor)",3,"To tolerance","3\u00D7 per week",
-            "Begin with wall push-ups, progress to an inclined surface, and eventually the floor as strength allows.",
-            "Gradually rebuilds pushing strength and tendon capacity towards full function.",
-            "Progressing to a harder surface before mastering control at the current one; letting the hips sag."),
-          ex("s3e8","External Rotation at 90\u00B0",3,"12","3\u00D7 per week",
-            "With the arm raised to shoulder height and elbow bent to 90\u00B0, rotate the forearm upward against light resistance, then lower slowly.",
-            "Trains the rotator cuff in a position closer to overhead sport and lifting demands.",
-            "Dropping the elbow height during the set; rushing the tempo."),
-          ex("s3e9","Functional Lifting Drills",3,"As prescribed","3\u00D7 per week",
-            "Practise the specific lifting, reaching or sporting movements relevant to your daily life or return-to-sport goals, gradually increasing load and complexity.",
-            "Bridges the gap between rehabilitation exercises and a confident return to full activity.",
-            "Progressing load too quickly; avoiding movements out of fear rather than gradually reintroducing them.")
-        ],
-        progression:[
-          "Full, pain-free range of movement",
-          "Strength closely matches the unaffected side",
-          "Confident performing daily and sport-specific tasks",
-          "Discuss discharge or ongoing maintenance with your practitioner"
-        ]
-      }
-    ]
-  },
-  {
-    id:"hip-mobility",
-    name:"Hip Mobility",
-    meta:"3 stages \u00B7 6+ week programme",
-    icon:"\u{1F9CE}",
-    available:true,
-    heroSub:"A staged mobility and strength programme. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    heroSub:"A staged, progressive programme to help restore comfortable movement, strength and confidence with everyday activity.",
     purpose:[
-      "Improve hip mobility","Reduce stiffness","Improve hip rotation",
-      "Improve squat and walking mechanics","Reduce compensatory lower back movement","Improve glute activation"
+      "Reduce pain and stiffness","Restore comfortable movement","Improve trunk and hip strength",
+      "Improve confidence with movement","Improve tolerance to everyday loading","Return to normal activity"
     ],
     suitableFor:[
-      "General hip stiffness","Early hip osteoarthritis","Tight hips from prolonged sitting",
-      "Mild anterior hip pinching","Poor hip rotation","Recreational athletes","Runners","Golfers"
+      "Non-specific low back pain","Mechanical low back pain","Low back stiffness",
+      "General muscular low back pain","Recurrent uncomplicated low back pain",
+      "Reduced tolerance to bending, lifting or prolonged sitting"
     ],
-    painNote:"A stretching sensation is acceptable. Sharp pinching pain is not.",
-    education:[
-      "Hip stiffness usually improves with regular movement rather than prolonged stretching alone.",
-      "Mild discomfort while exercising is acceptable, but sharp or worsening pain is not.",
-      "Strength and mobility work together to improve hip function.",
-      "Improvements are usually gradual over several weeks.",
-      "Consistency is more important than doing long exercise sessions."
+    notSuitableFor:[
+      "Recent significant trauma","Suspected fracture","Progressive weakness in the leg(s)",
+      "New bowel or bladder changes","Numbness in the saddle area",
+      "Severe or rapidly worsening nerve-related symptoms","Suspected serious underlying illness",
+      "Any presentation that hasn't yet been assessed, where something more serious is suspected"
     ],
-    stages:[
-      {
-        id:"stage-1",
-        label:"Stage 1",
-        weeks:"Weeks 1\u20132",
-        goals:["Restore comfortable movement","Reduce stiffness","Improve pelvic control"],
-        exercises:[
-          ex("h1e1","Cat-Camel",2,"10","Daily",
-            "On hands and knees, alternate between arching your back up towards the ceiling and letting it dip down towards the floor, moving slowly through your spine and pelvis.",
-            "Improves lumbar and pelvic mobility before hip movement.",
-            "Moving too fast through the range; keeping the arms or hips locked instead of letting the whole spine move.", "\uD83D\uDC31"),
-          ex("h1e2","Pelvic Tilts",3,"10","Daily",
-            "Lying on your back with knees bent, gently flatten your lower back into the floor by tilting your pelvis, then arch slightly, moving through a small comfortable range.",
-            "Improves pelvic awareness.",
-            "Using the legs to push instead of moving through the pelvis; holding your breath during the movement.", "\uD83E\uDDB4"),
-          ex("h1e3","Hip CARs (Controlled Articular Rotations)",2,"5 each direction","Daily",
-            "Standing and holding support, lift your knee up and slowly rotate the hip through its full available range \u2014 out, back, and down \u2014 in a smooth, controlled circle.",
-            "Improves joint control throughout the available range.",
-            "Twisting through the trunk instead of isolating the hip; rushing the movement instead of moving slowly and deliberately.", "\uD83D\uDD04"),
-          ex("h1e4","90/90 Hip Rotations",3,"8 each side","Daily",
-            "Sitting on the floor with both knees bent to 90\u00B0, one leg in front and one to the side, rotate both knees from one side to the other while keeping your chest tall.",
-            "Improves internal and external rotation.",
-            "Using your hands to push through the movement; letting the chest collapse forward instead of staying tall.", "\uD83E\uDE91"),
-          ex("h1e5","Half Kneeling Hip Flexor Stretch",3,"30 sec hold, each side","Daily",
-            "Kneel on one knee with the other foot planted in front. Keep your pelvis tucked underneath you and gently shift your weight forward until a stretch is felt at the front of the hip.",
-            "Lengthens the hip flexors, which are often tight from prolonged sitting.",
-            "Letting the pelvis tip forward instead of staying tucked; arching through the lower back to gain range.", "\uD83E\uDDCE"),
-          ex("h1e6","Figure Four Stretch",3,"30 sec hold","Daily",
-            "Lying on your back, cross one ankle over the opposite knee and gently pull the uncrossed thigh towards your chest until a stretch is felt through the outer hip.",
-            "Stretches the posterior hip.",
-            "Pulling hard into pain instead of a gentle sustained stretch; letting the crossed knee collapse inward.", "4\uFE0F\u20E3"),
-          ex("h1e7","Glute Bridge",3,"12","Daily",
-            "Lying on your back with knees bent, feet flat, lift your hips towards the ceiling and pause for 2 seconds at the top before lowering slowly.",
-            "Builds glute strength and activation to support hip and lower back control.",
-            "Overarching the lower back at the top; pushing through the toes instead of the heels.", "\uD83C\uDF51"),
-          ex("h1e8","Clamshells",3,"15","Daily",
-            "Lying on your side with knees bent and stacked, keep your feet together and lift your top knee open like a clamshell while keeping your pelvis stable.",
-            "Improves glute activation.",
-            "Rolling the pelvis backward to gain extra range; moving too fast instead of a slow, controlled lift.", "\uD83D\uDC1A")
-        ],
-        progression:[
-          "Walking feels easier",
-          "Less morning stiffness",
-          "Hip rotation improves",
-          "Can perform all exercises comfortably"
-        ]
-      },
-      {
-        id:"stage-2",
-        label:"Stage 2",
-        weeks:"Weeks 3\u20136",
-        goals:["Increase mobility","Improve strength","Improve control"],
-        exercises:[
-          ex("h2e1","Hip CARs",2,"5 each direction","Daily",
-            "Continue as in Stage 1 \u2014 standing and holding support, slowly rotate the hip through its full available range in a smooth, controlled circle.",
-            "Maintains and builds on the joint control developed in Stage 1.",
-            "Twisting through the trunk instead of isolating the hip; rushing the movement.", "\uD83D\uDD04"),
-          ex("h2e2","90/90 Transitions",3,"8","3\u00D7 per week",
-            "From the 90/90 position, transition from one side to the other, aiming to move between sides without using your hands for support as you progress.",
-            "Builds active hip rotation strength and control needed for transitional movements.",
-            "Relying on the hands throughout instead of gradually reducing support; rushing the transition instead of controlling it.", "\uD83E\uDE91"),
-          ex("h2e3","Deep Squat Hold",3,"30 sec hold","3\u00D7 per week",
-            "Lower into a deep squat, holding onto a support such as a doorframe or pole if needed, and hold the position while breathing normally.",
-            "Improves comfortable hip, knee and ankle range needed for functional squatting.",
-            "Letting the heels lift off the ground; rounding through the lower back instead of keeping a tall spine.", "\uD83D\uDECB\uFE0F"),
-          ex("h2e4","World's Greatest Stretch",2,"6 each side","3\u00D7 per week",
-            "From a lunge position, place both hands inside your front foot, rotate your chest and reach one arm towards the ceiling, then return and repeat on the other side.",
-            "Mobilises the hips, thoracic spine and hamstrings together in one functional movement.",
-            "Rushing through the rotation; letting the back knee touch down heavily instead of controlling the lunge.", "\uD83C\uDF0D"),
-          ex("h2e5","Standing Hip Airplanes (Supported)",3,"6","3\u00D7 per week",
-            "Standing on one leg and holding onto support, hinge forward at the hip while rotating your pelvis and trunk, keeping the standing knee soft.",
-            "Builds rotational hip control in a standing, functional position.",
-            "Losing balance and rushing the movement; letting the standing knee collapse inward.", "\u2708\uFE0F"),
-          ex("h2e6","Single Leg Bridge",3,"10","3\u00D7 per week",
-            "In the bridge position, straighten one leg out and lift your hips using only the other leg, keeping your hips level throughout.",
-            "Progresses glute strength by challenging one side at a time.",
-            "Letting the hips drop or rotate to one side; overarching through the lower back.", "\uD83E\uDDB5"),
-          ex("h2e7","Monster Walks",3,"15 steps","3\u00D7 per week",
-            "With a resistance band around your ankles or knees in a mini-squat position, take small steps diagonally forward, keeping tension on the band throughout.",
-            "Strengthens the hip abductors used to control walking and squatting mechanics.",
-            "Standing too upright instead of staying in a mini-squat; letting the knees cave inward.", "\uD83D\uDC63"),
-          ex("h2e8","Lateral Band Walks",3,"15 steps","3\u00D7 per week",
-            "With a band around your ankles or knees in a mini-squat position, step sideways, keeping tension on the band and control on both the leading and trailing leg.",
-            "Further strengthens the hip abductors and improves lateral control.",
-            "Letting the trailing leg drag rather than stepping with control; standing too tall and losing the mini-squat position.", "\u2194\uFE0F"),
-          ex("h2e9","Romanian Deadlift (Bodyweight)",3,"10","3\u00D7 per week",
-            "Standing tall, hinge forward at the hips while keeping a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
-            "Builds the hip hinge pattern and posterior chain strength important for walking and lifting mechanics.",
-            "Bending through the lower back instead of hinging at the hips; letting the knees bend too much and turning it into a squat.", "\uD83C\uDFCB\uFE0F")
-        ],
-        progression:[
-          "Full, comfortable squat",
-          "Improved balance",
-          "Minimal stiffness",
-          "Good hip control"
-        ]
-      },
-      {
-        id:"stage-3",
-        label:"Stage 3",
-        weeks:"Week 6+",
-        goals:["Maintain mobility","Increase strength","Improve athletic function"],
-        exercises:[
-          ex("h3e1","Hip CARs",2,"5 each direction","Daily",
-            "Continue as in earlier stages \u2014 standing and holding support, slowly rotate the hip through its full available range in a smooth, controlled circle.",
-            "Maintains long-term hip joint control and range.",
-            "Twisting through the trunk instead of isolating the hip; rushing the movement.", "\uD83D\uDD04"),
-          ex("h3e2","Cossack Squats",3,"8","3\u00D7 per week",
-            "Standing with feet wide, shift your weight into one leg and squat down on that side while the other leg stays straight, then push back to the centre and repeat on the other side.",
-            "Builds hip mobility and strength through a large range of motion used in athletic movement.",
-            "Letting the heel of the squatting leg lift off the ground; rushing through the range instead of controlling the descent.", "\uD83E\uDD38"),
-          ex("h3e3","Bulgarian Split Squats",3,"10","3\u00D7 per week",
-            "With your rear foot elevated on a bench behind you, lower into a lunge on the front leg until the back knee is close to the floor, then push back up.",
-            "Builds single-leg strength and hip control needed for walking, running and stairs.",
-            "Letting the front knee cave inward; placing the front foot too close to the bench, limiting range.", "\uD83C\uDFCB\uFE0F"),
-          ex("h3e4","Goblet Squats",3,"10","3\u00D7 per week",
-            "Holding a weight at your chest, squat down keeping your chest tall and knees tracking over your toes, then stand back up.",
-            "Builds overall squat strength and reinforces good squat mechanics.",
-            "Letting the knees collapse inward; rounding through the upper back.", "\uD83C\uDFC6"),
-          ex("h3e5","Single Leg Romanian Deadlift",3,"10","3\u00D7 per week",
-            "Standing on one leg, hinge forward at the hip while extending the other leg behind you, reaching towards the floor, then return to standing with control.",
-            "Builds single-leg strength, balance and hip control together.",
-            "Rotating the hips open instead of keeping them square; losing balance and rushing the movement.", "\uD83E\uDDBF"),
-          ex("h3e6","Copenhagen Side Plank (Modified)",3,"20 sec hold","3\u00D7 per week",
-            "Lying on your side with your top foot resting on a bench or step, lift your hips off the floor and hold, keeping your body in a straight line.",
-            "Strengthens the inner thigh and hip muscles that support pelvic control during single-leg activities.",
-            "Letting the hips sag or rotate; holding your breath instead of breathing normally through the hold.", "\uD83E\uDDCD"),
-          ex("h3e7","Walking Lunges",3,"12","3\u00D7 per week",
-            "Step forward into a lunge, lowering the back knee towards the floor, then push off and step through into the next lunge on the other side.",
-            "Builds functional strength and control for walking and athletic movement.",
-            "Taking too short a step, limiting range; letting the front knee travel too far past the toes and losing control.", "\uD83D\uDEB6"),
-          ex("h3e8","Step Ups",3,"12","3\u00D7 per week",
-            "Step up onto a box or step with one leg, driving through the heel to stand tall, then step back down with control.",
-            "Builds single-leg strength for stairs, hills and everyday function.",
-            "Pushing off the bottom leg instead of driving through the top leg; using momentum to \u201Cjump\u201D onto the step.", "\uD83E\uDE9C"),
-          ex("h3e9","Single Leg Balance with Reach",3,"30 sec","3\u00D7 per week",
-            "Standing on one leg, reach the opposite hand towards the floor or out to the side while maintaining balance, then return to standing tall.",
-            "Builds balance, hip control and confidence in single-leg positions relevant to sport and daily life.",
-            "Letting the standing knee wobble excessively; rushing the reach instead of moving with control.", "\uD83E\uDDD8")
-        ],
-        progression:[
-          "Comfortable with all exercises and good control",
-          "Hip rotation and squat depth feel symmetrical side to side",
-          "Confident with daily activity, sport or exercise demands",
-          "Discuss ongoing maintenance with your practitioner"
-        ]
-      }
-    ]
-  },
-  {
-    id:"achilles-tendon",
-    name:"Achilles Tendon Injury",
-    meta:"4 stages \u00B7 8+ week programme",
-    icon:"\u{1F45F}",
-    available:true,
-    heroSub:"A staged, progressive loading programme for the Achilles tendon. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
-    purpose:[
-      "Reduce pain","Maintain walking ability","Gradually restore tendon loading",
-      "Improve calf strength","Restore tendon capacity","Return safely to running and sport"
-    ],
-    suitableFor:[
-      "Mid-portion Achilles tendinopathy",
-      "Mild insertional Achilles tendinopathy (modify exercises to avoid excessive dorsiflexion)",
-      "Minor Achilles strains"
-    ],
-    notSuitableFor:["Suspected Achilles rupture"],
     painRules:[
-      { chip:"safe",    range:"0\u20133/10", text:"Safe to continue." },
-      { chip:"caution", range:"4\u20135/10", text:"Reduce repetitions or resistance." },
-      { chip:"stop",    range:"Above 5/10", text:"Stop and reduce loading." }
+      { chip:"safe",    range:"0\u20133/10", text:"Generally acceptable \u2014 continue if movement stays controlled and symptoms settle appropriately." },
+      { chip:"caution", range:"4\u20135/10", text:"Reduce range, repetitions, resistance or intensity." },
+      { chip:"stop",    range:"6+/10", text:"Stop that exercise, and contact your practitioner if symptoms don't settle or feel concerning." }
     ],
     painNote:[
-      "Pain should settle back to baseline within 24 hours.",
-      "Morning stiffness should gradually improve over time."
+      "Mild symptoms during rehabilitation can occur and don't necessarily mean harm.",
+      "Symptoms should not progressively worsen from session to session.",
+      "New or worsening leg weakness, numbness, or other neurological symptoms are a reason to stop and seek advice.",
+      "Judge your response over the following hours or the next day, rather than assuming every sensation means you've caused damage."
     ],
     education:[
-      "Achilles tendons become stronger through progressive loading.",
-      "Complete rest is usually not recommended unless advised by your practitioner.",
-      "Mild discomfort during rehabilitation is acceptable.",
-      "Pain should settle within 24 hours after exercise.",
-      "Morning stiffness is a useful way to monitor progress.",
-      "Recovery often takes several months, but consistent exercise leads to the best outcomes.",
-      "Progress is based on symptoms rather than specific dates."
+      "Most uncomplicated low back pain improves with time and appropriate activity.",
+      "Your back is designed to move and load, not to be protected indefinitely.",
+      "Avoiding all movement can increase sensitivity and reduce confidence over time.",
+      "Gradual strengthening can improve both capacity and confidence.",
+      "There is no single perfect posture that prevents back pain.",
+      "Recovery is often non-linear \u2014 good days and bad days are both normal.",
+      "Staying generally active is usually more helpful than prolonged rest."
     ],
     stages:[
       {
         id:"stage-1",
-        label:"Acute Phase",
+        label:"Stage 1",
         weeks:"Weeks 0\u20132",
-        goals:["Reduce irritation","Maintain movement","Begin gentle tendon loading","Avoid complete rest"],
-        notes:["Do not force stretching if symptoms worsen."],
+        goals:["Reduce fear of movement","Restore comfortable lumbar and hip movement","Maintain normal daily activity","Begin gentle trunk activation","Improve confidence with movement"],
         exercises:[
-          ex("a1e1","Ankle Pumps",2,"20","3\u20135\u00D7 daily",
-            "Sitting or lying with your leg relaxed, point your toes away from you and then pull them back up towards your shin, moving through your full comfortable ankle range.",
-            "Maintains ankle movement.",
-            "Moving too fast instead of a smooth, controlled pace; only moving through a small partial range.", "\uD83E\uDDB6"),
-          ex("a1e2","Ankle Circles",2,"15 each direction","Daily",
-            "Sitting with your leg relaxed, slowly rotate your ankle in a full circle, then reverse direction.",
-            "Maintains ankle joint mobility and gently encourages circulation around the injured area.",
-            "Rushing through the circles; moving only the toes instead of the whole ankle.", "\uD83D\uDD04"),
-          ex("a1e3","Seated Heel Raises",3,"15","Daily",
-            "Sitting with feet flat on the floor, slowly lift your heels off the ground as high as comfortable, then lower with control.",
-            "Begins gentle loading of the calf and Achilles tendon without the full weight of standing.",
-            "Lifting too quickly; not lowering with control.", "\uD83E\uDDB5"),
-          ex("a1e4","Double Leg Isometric Calf Raise Hold",5,"30\u201345 sec hold","Daily",
-            "Standing with feet hip-width apart, rise up onto the balls of both feet to a comfortable height and hold the position, using support for balance if needed.",
-            "Reduces pain while maintaining tendon loading.",
-            "Holding at a height that causes sharp pain; letting the heels drift together or apart during the hold.", "\u23F1\uFE0F"),
-          ex("a1e5","Weight Shifts",3,"15","Daily",
-            "Standing with feet hip-width apart, slowly shift your weight onto the affected leg, hold briefly, then shift back to the other side.",
-            "Builds tolerance to loading the affected leg in a controlled, low-demand way.",
-            "Shifting too quickly; avoiding fully loading the affected side out of guarding.", "\u2696\uFE0F"),
-          ex("a1e6","Balance on Two Feet",3,"30 sec hold","Daily",
-            "Standing with feet together or hip-width apart, focus on holding a steady, balanced position, using support nearby if needed.",
-            "Builds early proprioception and confidence while keeping load gentle.",
-            "Holding onto support more than needed; looking down at your feet instead of ahead.", "\uD83E\uDDCD"),
-          ex("a1e7","Gastrocnemius Stretch",3,"20\u201330 sec hold","Daily",
-            "Standing in a staggered stance facing a wall, back leg straight and heel on the floor, lean forward until a mild stretch is felt in the upper calf.",
-            "Maintains flexibility in the gastrocnemius muscle while respecting tendon irritability. Only stretch to mild tension.",
-            "Stretching into pain rather than mild tension; letting the back heel lift off the ground.", "\uD83E\uDDD8"),
-          ex("a1e8","Soleus Stretch",3,"20\u201330 sec hold","Daily",
-            "In the same staggered stance, bend the back knee slightly while keeping the heel down until a stretch is felt lower in the calf.",
-            "Targets the soleus muscle, which sits deeper than the gastrocnemius and also loads the Achilles.",
-            "Straightening the back knee, which shifts the stretch away from the soleus; forcing the stretch if symptoms worsen.", "\uD83E\uDDD8")
+          ex("lb1e1","Walking",1,"10\u201315 minutes","Daily",
+            "Go for a comfortable walk at a relaxed pace, choosing a distance or time that feels manageable today.",
+            "Walking keeps you moving and helps calm symptoms without putting excessive strain on your back.",
+            "Avoiding walking altogether out of fear; trying to walk too far too soon and then stopping completely for days afterward.", "\uD83D\uDEB6"),
+          ex("lb1e2","Pelvic Tilts",2,"10","Daily",
+            "Lie on your back with your knees bent. Gently flatten your lower back into the floor, then arch it slightly, moving through a small, comfortable range.",
+            "Gently reintroduces movement to the lower back in a safe, controlled way.",
+            "Using your legs to push instead of moving through your pelvis; forcing a big range of movement.", "\uD83E\uDDB4"),
+          ex("lb1e3","Cat-Camel",2,"8\u201310","Daily",
+            "Start on your hands and knees. Slowly round your back towards the ceiling, then gently move into a comfortable arch. Move slowly and stay within a comfortable range.",
+            "Restores comfortable movement through the whole spine.",
+            "Moving too fast; forcing the end ranges instead of staying comfortable.", "\uD83D\uDC31"),
+          ex("lb1e4","Knee-to-Chest",2,"8 each leg","Daily",
+            "Lying on your back, gently draw one knee up towards your chest, holding it lightly with your hands, then lower it back down and repeat on the other side.",
+            "A gentle mobility exercise that can ease stiffness in the lower back and hips.",
+            "Pulling forcefully into pain; holding your breath during the movement.", "\uD83E\uDDCE"),
+          ex("lb1e5","Glute Bridge",2,"10","Daily",
+            "Lying on your back with knees bent and feet flat, gently lift your hips a small amount off the floor, then lower slowly with control.",
+            "Begins gentle activation of the glutes and trunk muscles that support the lower back.",
+            "Lifting too high too soon; arching hard through the lower back instead of a controlled lift.", "\uD83C\uDF51"),
+          ex("lb1e6","Abdominal Bracing",2,"10, hold 5 sec","Daily",
+            "Lying on your back or sitting tall, gently tighten your stomach muscles as if preparing for a light tap, without holding your breath, then release.",
+            "Builds early trunk control to support the spine during daily movement.",
+            "Bracing too hard or holding your breath; sucking the stomach in rather than gently bracing.", "\uD83D\uDCAA")
         ],
         progression:[
-          "Walking comfortably",
-          "Pain less than 3/10",
-          "Morning stiffness improving"
+          "Walking is comfortable",
+          "Daily activities are becoming easier",
+          "Exercises can be performed with good control",
+          "Symptoms are settling after exercise"
         ]
       },
       {
         id:"stage-2",
-        label:"Early Loading",
-        weeks:"Weeks 2\u20134",
-        goals:["Increase tendon load","Improve calf endurance","Restore confidence"],
+        label:"Stage 2",
+        weeks:"Weeks 2\u20136",
+        goals:["Increase trunk and hip strength","Improve load tolerance","Improve movement control","Return to normal household/work activities","Reduce fear of bending and lifting"],
         exercises:[
-          ex("a2e1","Double Leg Heel Raises",3,"15","Daily",
-            "Standing with feet hip-width apart, rise up onto the balls of both feet over a slow 3-second count, then lower back down over another slow 3-second count.",
-            "Builds tendon and calf strength through a full, controlled range with a slow tempo.",
-            "Rushing the tempo instead of counting a full 3 seconds each way; not rising fully onto the toes.", "\uD83E\uDDB5"),
-          ex("a2e2","Single Leg Balance",3,"30\u201345 sec hold","Daily",
-            "Standing on the affected leg only, hold a steady balanced position, using support nearby if needed.",
-            "Builds single-leg strength endurance and proprioception needed for walking and running.",
-            "Relying heavily on support instead of gradually reducing it; letting the standing knee lock out stiffly.", "\uD83E\uDDCD"),
-          ex("a2e3","Heel Raise Holds",5,"45 sec hold","Daily",
-            "Rise up onto the balls of both feet to a comfortable height and hold the position for the full duration.",
-            "Builds isometric endurance in the calf and Achilles tendon.",
-            "Dropping the heels partway through the hold; holding at a height that causes sharp pain.", "\u23F1\uFE0F"),
-          ex("a2e4","Mini Squats",3,"12","3\u00D7 per week",
-            "Standing with feet shoulder-width apart, bend your knees into a small squat, keeping your heels on the floor, then return to standing.",
-            "Builds lower limb strength and control that supports walking and loading through the ankle and Achilles.",
-            "Letting the heels lift off the ground; letting the knees cave inward.", "\uD83E\uDDCE"),
-          ex("a2e5","Step Ups",3,"12","3\u00D7 per week",
-            "Step up onto a low step with the affected leg, driving through the heel to stand tall, then step back down with control.",
-            "Builds functional single-leg strength for stairs and daily activity.",
-            "Pushing off the trailing leg instead of driving through the top leg; stepping down without control.", "\uD83E\uDE9C"),
-          ex("a2e6","Resistance Band Plantarflexion",3,"15","3\u00D7 per week",
-            "Sitting with your leg out in front and a resistance band looped around the ball of your foot, point your toes away against the band's resistance, then return slowly.",
-            "Isolates and strengthens the calf and Achilles complex with adjustable resistance.",
-            "Using a jerky motion instead of a smooth, controlled push; not returning slowly against the band.", "\uD83C\uDF80"),
-          ex("a2e7","Gastrocnemius Stretch (continued)",3,"20\u201330 sec hold","Daily",
-            "Continue as in the Acute Phase \u2014 staggered stance, back leg straight and heel down, lean forward to a mild stretch.",
-            "Maintains calf flexibility as loading increases.",
-            "Stretching into pain rather than mild tension.", "\uD83E\uDDD8"),
-          ex("a2e8","Soleus Stretch (continued)",3,"20\u201330 sec hold","Daily",
-            "Continue as in the Acute Phase \u2014 staggered stance with the back knee slightly bent and heel down.",
-            "Maintains soleus flexibility as loading increases.",
-            "Straightening the back knee during the stretch.", "\uD83E\uDDD8")
+          ex("lb2e1","Glute Bridge Progression",3,"10","3\u00D7 per week",
+            "Lying on your back with knees bent, lift your hips further and hold briefly at the top before lowering with control. Progress by pausing longer or lifting one foot slightly.",
+            "Builds greater glute and trunk strength to support the lower back during daily activities.",
+            "Overarching the lower back at the top; rushing the lowering phase instead of controlling it.", "\uD83C\uDF51"),
+          ex("lb2e2","Bird Dog",3,"8 each side","3\u00D7 per week",
+            "On hands and knees, extend one arm forward and the opposite leg back at the same time, keeping your trunk steady, then return and repeat on the other side.",
+            "Builds coordination and control of the trunk muscles that support the spine during movement.",
+            "Rotating the hips or trunk during the movement; moving too fast and losing control.", "\uD83D\uDC15"),
+          ex("lb2e3","Side Plank from Knees",3,"15\u201320 sec hold, each side","3\u00D7 per week",
+            "Lying on your side with your knees bent, prop yourself up on your forearm and lift your hips off the floor, keeping a straight line from your shoulders to your knees.",
+            "Builds strength in the muscles at the side of the trunk that support the lower back.",
+            "Letting the hips sag towards the floor; holding your breath during the hold.", "\uD83E\uDDCD"),
+          ex("lb2e4","Bodyweight Squat",3,"10","3\u00D7 per week",
+            "Standing with feet shoulder-width apart, bend your knees and hips to lower down as if sitting into a chair, keeping your chest tall, then stand back up.",
+            "Builds functional lower-body and trunk strength for everyday movements like sitting and standing.",
+            "Letting the knees cave inward; rounding through the lower back at the bottom of the squat.", "\uD83E\uDDCE"),
+          ex("lb2e5","Hip Hinge Drill",3,"10","3\u00D7 per week",
+            "Standing tall with a soft bend in your knees, push your hips backward while keeping your back relatively straight, lowering your chest slightly forward, then return to standing.",
+            "Teaches a safe and confident bending pattern that carries over to lifting and everyday tasks.",
+            "Bending mainly through the lower back instead of the hips; rounding the back excessively.", "\u2696\uFE0F"),
+          ex("lb2e6","Walking Progression",1,"15\u201325 minutes","Most days",
+            "Continue your daily walks, gradually increasing the distance or time as it feels comfortable.",
+            "Builds general activity tolerance and confidence with movement.",
+            "Increasing distance too quickly; stopping walking altogether after a difficult day instead of adjusting the amount.", "\uD83D\uDEB6")
         ],
         progression:[
-          "Minimal pain",
-          "Good control",
-          "Able to perform 20 double-leg heel raises comfortably"
+          "Exercises can be performed with good control",
+          "Able to bend and straighten with improved confidence",
+          "Symptoms are settling after exercise",
+          "Able to tolerate progressively greater loading"
         ]
       },
       {
         id:"stage-3",
-        label:"Strength Phase",
-        weeks:"Weeks 4\u20138",
-        goals:["Increase tendon strength","Improve calf muscle size","Restore function"],
-        notes:["Continue stretching after exercise."],
+        label:"Stage 3",
+        weeks:"Week 6+",
+        goals:["Restore functional strength","Improve lifting capacity","Return to gym/recreational activity","Build confidence with bending, lifting and carrying","Develop long-term self-management"],
         exercises:[
-          ex("a3e1","Single Leg Heel Raises",3,"12","3\u00D7 per week",
-            "Standing on the affected leg only, rise up onto the ball of your foot as high as comfortable, then lower with control.",
-            "Progresses calf and tendon strength by removing the support of the other leg.",
-            "Using momentum to bounce up; not lowering with full control.", "\uD83E\uDDB5"),
-          ex("a3e2","Heavy Slow Heel Raises",3,"10","3\u00D7 per week",
-            "Standing holding extra weight such as a backpack or dumbbells when appropriate, rise up onto your toes slowly, then lower slowly over several seconds.",
-            "Heavy, slow loading builds tendon capacity and calf strength effectively.",
-            "Adding weight before the bodyweight version is comfortable; rushing the tempo instead of moving slowly.", "\uD83C\uDF92"),
-          ex("a3e3","Bent Knee Heel Raises",3,"12","3\u00D7 per week",
-            "Standing with your knees slightly bent throughout, rise up onto the balls of your feet, then lower with control.",
-            "Targets the soleus muscle specifically, which contributes significantly to Achilles loading.",
-            "Straightening the knees during the movement; rushing through the reps.", "\uD83E\uDDB5"),
-          ex("a3e4","Split Squats",3,"10","3\u00D7 per week",
-            "In a staggered stance, lower your back knee towards the floor while keeping your front heel down, then push back up to standing.",
-            "Builds single-leg strength and control needed for walking, running and sport.",
-            "Letting the front knee travel too far past the toes; losing balance and rushing the movement.", "\uD83E\uDD3E"),
-          ex("a3e5","Romanian Deadlifts",3,"10","3\u00D7 per week",
-            "Standing tall, hinge forward at the hips with a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
-            "Builds posterior chain strength that supports the calf and Achilles during running and jumping.",
+          ex("lb3e1","Goblet Squat",3,"10","3\u00D7 per week",
+            "Holding a weight at your chest, squat down keeping your chest tall and knees tracking over your toes, then stand back up.",
+            "Builds meaningful lower-body and trunk strength for daily and recreational activities.",
+            "Letting the knees collapse inward; rounding through the upper back.", "\uD83C\uDFC6"),
+          ex("lb3e2","Romanian Deadlift",3,"10","3\u00D7 per week",
+            "Standing tall holding a weight in front of you, hinge forward at the hips with a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
+            "Builds confidence and strength with a bending and lifting pattern used in everyday life.",
             "Rounding through the lower back; bending the knees too much and turning it into a squat.", "\uD83C\uDFCB\uFE0F"),
-          ex("a3e6","Single Leg Balance with Reach",3,"30 sec","3\u00D7 per week",
-            "Standing on the affected leg, reach the opposite hand towards the floor or out to the side while maintaining balance, then return to standing tall.",
-            "Builds balance and control needed for uneven ground and sport-specific movement.",
-            "Letting the standing knee wobble excessively; rushing the reach instead of moving with control.", "\uD83E\uDDD8"),
-          ex("a3e7","Farmer Carries",3,"40 metres","3\u00D7 per week",
-            "Holding a moderately heavy weight in each hand, walk for the set distance keeping your posture tall and steps controlled.",
-            "Builds functional lower limb and core strength under load.",
-            "Letting the shoulders round forward; walking too fast and losing control of posture.", "\uD83C\uDFCB\uFE0F")
+          ex("lb3e3","Split Squat",3,"10 each side","3\u00D7 per week",
+            "In a staggered stance, lower your back knee towards the floor while keeping your front heel down, then push back up to standing.",
+            "Builds single-leg strength and control for walking, stairs and uneven ground.",
+            "Letting the front knee travel too far past the toes; losing balance and rushing the movement.", "\uD83E\uDD3E"),
+          ex("lb3e4","Loaded Carry",3,"40 metres","3\u00D7 per week",
+            "Holding a moderately heavy weight in each hand, walk for the set distance while keeping your posture tall and steps controlled.",
+            "Builds functional trunk and grip strength that carries over to everyday lifting and carrying tasks.",
+            "Letting the shoulders round forward; walking too fast and losing control of posture.", "\uD83C\uDFCB\uFE0F"),
+          ex("lb3e5","Full Side Plank",3,"20\u201330 sec hold, each side","3\u00D7 per week",
+            "Lying on your side with legs straight, prop yourself up on your forearm and lift your hips off the floor, keeping a straight line from your shoulders to your feet.",
+            "Progresses trunk side strength beyond the supported knee version.",
+            "Letting the hips sag or rotate; holding your breath during the hold.", "\uD83E\uDDCD"),
+          ex("lb3e6","Functional Lifting Drills",3,"10","3\u00D7 per week",
+            "Practise lifting and carrying objects relevant to your daily life or work, using a comfortable hip hinge or squat pattern and gradually increasing the load.",
+            "Bridges the gap between rehabilitation exercises and confident, functional lifting.",
+            "Progressing load too quickly; avoiding lifting entirely out of fear rather than gradually reintroducing it.", "\uD83D\uDCE6")
         ],
         progression:[
-          "Can perform at least 25 single-leg heel raises",
-          "Walking pain free",
-          "Minimal morning stiffness"
-        ]
-      },
-      {
-        id:"stage-4",
-        label:"Return to Sport",
-        weeks:"Week 8+",
-        goals:["Restore tendon capacity","Return to running","Return to jumping","Return to sport"],
-        notes:["Progress gradually each week if symptoms remain stable."],
-        exercises:[
-          ex("a4e1","Heavy Single Leg Heel Raises",4,"8","3\u00D7 per week",
-            "Standing on the affected leg holding extra weight if appropriate, rise up onto your toes as high as comfortable, then lower with control.",
-            "Builds the high-level tendon capacity needed for running, jumping and sport.",
-            "Using momentum instead of a controlled rise; reducing range to compensate for fatigue.", "\uD83E\uDDB5"),
-          ex("a4e2","Single Leg Decline Heel Raises",3,"12","3\u00D7 per week",
-            "Standing on the affected leg on a decline board or the edge of a step, lower your heel below the level of your toes, then rise back up. For mid-portion tendinopathy only \u2014 avoid for insertional Achilles pain.",
-            "Loads the mid-portion of the Achilles tendon through an extended range.",
-            "Performing this exercise with insertional Achilles pain, where it should be avoided; dropping too quickly instead of a slow, controlled lower.", "\uD83E\uDDB5"),
-          ex("a4e3","Skipping",3,"60 sec","3\u00D7 per week",
-            "Using a skipping rope or a light skipping motion, perform continuous small jumps for the set duration, landing softly.",
-            "Begins reintroducing elastic, spring-like loading of the Achilles tendon.",
-            "Landing heavily instead of softly through the forefoot; ignoring the 24-hour pain response.", "\u23F1\uFE0F"),
-          ex("a4e4","Pogos",3,"20","3\u00D7 per week",
-            "Standing tall, perform small, quick vertical hops using mostly your ankles, keeping your knees relatively straight.",
-            "Builds fast, reactive tendon stiffness needed for running and jumping sports.",
-            "Bending the knees too much and turning it into a squat jump; landing flat-footed instead of through the forefoot.", "\u26A1"),
-          ex("a4e5","Hopping",3,"15","3\u00D7 per week",
-            "On the affected leg, perform small forward hops, landing softly and absorbing the impact through the ankle and knee.",
-            "Builds single-leg power and tendon tolerance to impact.",
-            "Landing stiffly without absorbing through the ankle; hopping too far too soon.", "\uD83E\uDDB5"),
-          ex("a4e6","Lateral Hops",3,"15","3\u00D7 per week",
-            "On the affected leg, hop sideways over a small distance or line, landing softly under control before hopping back.",
-            "Builds multidirectional control and tendon tolerance for sport.",
-            "Landing with the knee collapsing inward; rushing the hops instead of controlling each landing.", "\u2194\uFE0F"),
-          ex("a4e7","Walking Lunges",3,"12","3\u00D7 per week",
-            "Step forward into a lunge, lowering the back knee towards the floor, then push off and step through into the next lunge on the other side.",
-            "Builds functional strength and control relevant to running and change of direction.",
-            "Taking too short a step, limiting range; letting the front knee travel too far past the toes.", "\uD83D\uDEB6"),
-          ex("a4e8","Step Down Control",3,"10","3\u00D7 per week",
-            "Standing on a step on the affected leg, slowly lower the other foot towards the floor with control, then return to standing.",
-            "Builds eccentric control of the calf and Achilles, important for absorbing load during running and landing.",
-            "Dropping down quickly instead of lowering slowly; letting the standing knee cave inward.", "\uD83E\uDE9C"),
-          ex("a4e9","Return to Running Programme",1,"Walk 2 min / Jog 1 min \u00D7 8","Week 1",
-            "Alternate walking for 2 minutes with jogging for 1 minute, repeating this cycle 8 times. Progress gradually each week if symptoms remain stable.",
-            "Gradually reintroduces running load in a structured way that respects tendon tolerance.",
-            "Progressing to the next week's running volume before symptoms have remained stable; skipping the walk intervals.", "\uD83C\uDFC3")
-        ],
-        progression:[
-          "Pain-free with running and jumping",
-          "Strength and hop tests comparable to the unaffected side",
-          "Confident returning to full training and competition",
-          "Discuss ongoing monitoring with your practitioner"
+          "Confident bending, lifting and carrying in daily life",
+          "Comfortable returning to gym, sport or recreational activity",
+          "Able to manage occasional flare-ups independently using earlier stages",
+          "Discuss ongoing self-management with your practitioner if needed"
         ]
       }
     ]
   },
-  {
+{
     id:"neck-pain",
     name:"Neck Pain",
     meta:"4 stages \u00B7 8+ week programme",
@@ -1233,11 +828,885 @@ var CONDITIONS = [
       }
     ]
   },
+{
+    id:"hip-mobility",
+    name:"Hip Mobility",
+    meta:"3 stages \u00B7 6+ week programme",
+    icon:"\u{1F9CE}",
+    available:true,
+    heroSub:"A staged mobility and strength programme. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    purpose:[
+      "Improve hip mobility","Reduce stiffness","Improve hip rotation",
+      "Improve squat and walking mechanics","Reduce compensatory lower back movement","Improve glute activation"
+    ],
+    suitableFor:[
+      "General hip stiffness","Early hip osteoarthritis","Tight hips from prolonged sitting",
+      "Mild anterior hip pinching","Poor hip rotation","Recreational athletes","Runners","Golfers"
+    ],
+    painNote:"A stretching sensation is acceptable. Sharp pinching pain is not.",
+    education:[
+      "Hip stiffness usually improves with regular movement rather than prolonged stretching alone.",
+      "Mild discomfort while exercising is acceptable, but sharp or worsening pain is not.",
+      "Strength and mobility work together to improve hip function.",
+      "Improvements are usually gradual over several weeks.",
+      "Consistency is more important than doing long exercise sessions."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Stage 1",
+        weeks:"Weeks 1\u20132",
+        goals:["Restore comfortable movement","Reduce stiffness","Improve pelvic control"],
+        exercises:[
+          ex("h1e1","Cat-Camel",2,"10","Daily",
+            "On hands and knees, alternate between arching your back up towards the ceiling and letting it dip down towards the floor, moving slowly through your spine and pelvis.",
+            "Improves lumbar and pelvic mobility before hip movement.",
+            "Moving too fast through the range; keeping the arms or hips locked instead of letting the whole spine move.", "\uD83D\uDC31"),
+          ex("h1e2","Pelvic Tilts",3,"10","Daily",
+            "Lying on your back with knees bent, gently flatten your lower back into the floor by tilting your pelvis, then arch slightly, moving through a small comfortable range.",
+            "Improves pelvic awareness.",
+            "Using the legs to push instead of moving through the pelvis; holding your breath during the movement.", "\uD83E\uDDB4"),
+          ex("h1e3","Hip CARs (Controlled Articular Rotations)",2,"5 each direction","Daily",
+            "Standing and holding support, lift your knee up and slowly rotate the hip through its full available range \u2014 out, back, and down \u2014 in a smooth, controlled circle.",
+            "Improves joint control throughout the available range.",
+            "Twisting through the trunk instead of isolating the hip; rushing the movement instead of moving slowly and deliberately.", "\uD83D\uDD04"),
+          ex("h1e4","90/90 Hip Rotations",3,"8 each side","Daily",
+            "Sitting on the floor with both knees bent to 90\u00B0, one leg in front and one to the side, rotate both knees from one side to the other while keeping your chest tall.",
+            "Improves internal and external rotation.",
+            "Using your hands to push through the movement; letting the chest collapse forward instead of staying tall.", "\uD83E\uDE91"),
+          ex("h1e5","Half Kneeling Hip Flexor Stretch",3,"30 sec hold, each side","Daily",
+            "Kneel on one knee with the other foot planted in front. Keep your pelvis tucked underneath you and gently shift your weight forward until a stretch is felt at the front of the hip.",
+            "Lengthens the hip flexors, which are often tight from prolonged sitting.",
+            "Letting the pelvis tip forward instead of staying tucked; arching through the lower back to gain range.", "\uD83E\uDDCE"),
+          ex("h1e6","Figure Four Stretch",3,"30 sec hold","Daily",
+            "Lying on your back, cross one ankle over the opposite knee and gently pull the uncrossed thigh towards your chest until a stretch is felt through the outer hip.",
+            "Stretches the posterior hip.",
+            "Pulling hard into pain instead of a gentle sustained stretch; letting the crossed knee collapse inward.", "4\uFE0F\u20E3"),
+          ex("h1e7","Glute Bridge",3,"12","Daily",
+            "Lying on your back with knees bent, feet flat, lift your hips towards the ceiling and pause for 2 seconds at the top before lowering slowly.",
+            "Builds glute strength and activation to support hip and lower back control.",
+            "Overarching the lower back at the top; pushing through the toes instead of the heels.", "\uD83C\uDF51"),
+          ex("h1e8","Clamshells",3,"15","Daily",
+            "Lying on your side with knees bent and stacked, keep your feet together and lift your top knee open like a clamshell while keeping your pelvis stable.",
+            "Improves glute activation.",
+            "Rolling the pelvis backward to gain extra range; moving too fast instead of a slow, controlled lift.", "\uD83D\uDC1A")
+        ],
+        progression:[
+          "Walking feels easier",
+          "Less morning stiffness",
+          "Hip rotation improves",
+          "Can perform all exercises comfortably"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Stage 2",
+        weeks:"Weeks 3\u20136",
+        goals:["Increase mobility","Improve strength","Improve control"],
+        exercises:[
+          ex("h2e1","Hip CARs",2,"5 each direction","Daily",
+            "Continue as in Stage 1 \u2014 standing and holding support, slowly rotate the hip through its full available range in a smooth, controlled circle.",
+            "Maintains and builds on the joint control developed in Stage 1.",
+            "Twisting through the trunk instead of isolating the hip; rushing the movement.", "\uD83D\uDD04"),
+          ex("h2e2","90/90 Transitions",3,"8","3\u00D7 per week",
+            "From the 90/90 position, transition from one side to the other, aiming to move between sides without using your hands for support as you progress.",
+            "Builds active hip rotation strength and control needed for transitional movements.",
+            "Relying on the hands throughout instead of gradually reducing support; rushing the transition instead of controlling it.", "\uD83E\uDE91"),
+          ex("h2e3","Deep Squat Hold",3,"30 sec hold","3\u00D7 per week",
+            "Lower into a deep squat, holding onto a support such as a doorframe or pole if needed, and hold the position while breathing normally.",
+            "Improves comfortable hip, knee and ankle range needed for functional squatting.",
+            "Letting the heels lift off the ground; rounding through the lower back instead of keeping a tall spine.", "\uD83D\uDECB\uFE0F"),
+          ex("h2e4","World's Greatest Stretch",2,"6 each side","3\u00D7 per week",
+            "From a lunge position, place both hands inside your front foot, rotate your chest and reach one arm towards the ceiling, then return and repeat on the other side.",
+            "Mobilises the hips, thoracic spine and hamstrings together in one functional movement.",
+            "Rushing through the rotation; letting the back knee touch down heavily instead of controlling the lunge.", "\uD83C\uDF0D"),
+          ex("h2e5","Standing Hip Airplanes (Supported)",3,"6","3\u00D7 per week",
+            "Standing on one leg and holding onto support, hinge forward at the hip while rotating your pelvis and trunk, keeping the standing knee soft.",
+            "Builds rotational hip control in a standing, functional position.",
+            "Losing balance and rushing the movement; letting the standing knee collapse inward.", "\u2708\uFE0F"),
+          ex("h2e6","Single Leg Bridge",3,"10","3\u00D7 per week",
+            "In the bridge position, straighten one leg out and lift your hips using only the other leg, keeping your hips level throughout.",
+            "Progresses glute strength by challenging one side at a time.",
+            "Letting the hips drop or rotate to one side; overarching through the lower back.", "\uD83E\uDDB5"),
+          ex("h2e7","Monster Walks",3,"15 steps","3\u00D7 per week",
+            "With a resistance band around your ankles or knees in a mini-squat position, take small steps diagonally forward, keeping tension on the band throughout.",
+            "Strengthens the hip abductors used to control walking and squatting mechanics.",
+            "Standing too upright instead of staying in a mini-squat; letting the knees cave inward.", "\uD83D\uDC63"),
+          ex("h2e8","Lateral Band Walks",3,"15 steps","3\u00D7 per week",
+            "With a band around your ankles or knees in a mini-squat position, step sideways, keeping tension on the band and control on both the leading and trailing leg.",
+            "Further strengthens the hip abductors and improves lateral control.",
+            "Letting the trailing leg drag rather than stepping with control; standing too tall and losing the mini-squat position.", "\u2194\uFE0F"),
+          ex("h2e9","Romanian Deadlift (Bodyweight)",3,"10","3\u00D7 per week",
+            "Standing tall, hinge forward at the hips while keeping a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
+            "Builds the hip hinge pattern and posterior chain strength important for walking and lifting mechanics.",
+            "Bending through the lower back instead of hinging at the hips; letting the knees bend too much and turning it into a squat.", "\uD83C\uDFCB\uFE0F")
+        ],
+        progression:[
+          "Full, comfortable squat",
+          "Improved balance",
+          "Minimal stiffness",
+          "Good hip control"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Stage 3",
+        weeks:"Week 6+",
+        goals:["Maintain mobility","Increase strength","Improve athletic function"],
+        exercises:[
+          ex("h3e1","Hip CARs",2,"5 each direction","Daily",
+            "Continue as in earlier stages \u2014 standing and holding support, slowly rotate the hip through its full available range in a smooth, controlled circle.",
+            "Maintains long-term hip joint control and range.",
+            "Twisting through the trunk instead of isolating the hip; rushing the movement.", "\uD83D\uDD04"),
+          ex("h3e2","Cossack Squats",3,"8","3\u00D7 per week",
+            "Standing with feet wide, shift your weight into one leg and squat down on that side while the other leg stays straight, then push back to the centre and repeat on the other side.",
+            "Builds hip mobility and strength through a large range of motion used in athletic movement.",
+            "Letting the heel of the squatting leg lift off the ground; rushing through the range instead of controlling the descent.", "\uD83E\uDD38"),
+          ex("h3e3","Bulgarian Split Squats",3,"10","3\u00D7 per week",
+            "With your rear foot elevated on a bench behind you, lower into a lunge on the front leg until the back knee is close to the floor, then push back up.",
+            "Builds single-leg strength and hip control needed for walking, running and stairs.",
+            "Letting the front knee cave inward; placing the front foot too close to the bench, limiting range.", "\uD83C\uDFCB\uFE0F"),
+          ex("h3e4","Goblet Squats",3,"10","3\u00D7 per week",
+            "Holding a weight at your chest, squat down keeping your chest tall and knees tracking over your toes, then stand back up.",
+            "Builds overall squat strength and reinforces good squat mechanics.",
+            "Letting the knees collapse inward; rounding through the upper back.", "\uD83C\uDFC6"),
+          ex("h3e5","Single Leg Romanian Deadlift",3,"10","3\u00D7 per week",
+            "Standing on one leg, hinge forward at the hip while extending the other leg behind you, reaching towards the floor, then return to standing with control.",
+            "Builds single-leg strength, balance and hip control together.",
+            "Rotating the hips open instead of keeping them square; losing balance and rushing the movement.", "\uD83E\uDDBF"),
+          ex("h3e6","Copenhagen Side Plank (Modified)",3,"20 sec hold","3\u00D7 per week",
+            "Lying on your side with your top foot resting on a bench or step, lift your hips off the floor and hold, keeping your body in a straight line.",
+            "Strengthens the inner thigh and hip muscles that support pelvic control during single-leg activities.",
+            "Letting the hips sag or rotate; holding your breath instead of breathing normally through the hold.", "\uD83E\uDDCD"),
+          ex("h3e7","Walking Lunges",3,"12","3\u00D7 per week",
+            "Step forward into a lunge, lowering the back knee towards the floor, then push off and step through into the next lunge on the other side.",
+            "Builds functional strength and control for walking and athletic movement.",
+            "Taking too short a step, limiting range; letting the front knee travel too far past the toes and losing control.", "\uD83D\uDEB6"),
+          ex("h3e8","Step Ups",3,"12","3\u00D7 per week",
+            "Step up onto a box or step with one leg, driving through the heel to stand tall, then step back down with control.",
+            "Builds single-leg strength for stairs, hills and everyday function.",
+            "Pushing off the bottom leg instead of driving through the top leg; using momentum to \u201Cjump\u201D onto the step.", "\uD83E\uDE9C"),
+          ex("h3e9","Single Leg Balance with Reach",3,"30 sec","3\u00D7 per week",
+            "Standing on one leg, reach the opposite hand towards the floor or out to the side while maintaining balance, then return to standing tall.",
+            "Builds balance, hip control and confidence in single-leg positions relevant to sport and daily life.",
+            "Letting the standing knee wobble excessively; rushing the reach instead of moving with control.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Comfortable with all exercises and good control",
+          "Hip rotation and squat depth feel symmetrical side to side",
+          "Confident with daily activity, sport or exercise demands",
+          "Discuss ongoing maintenance with your practitioner"
+        ]
+      }
+    ]
+  },
+{
+    id:"shoulder-impingement",
+    name:"Shoulder Impingement Syndrome",
+    meta:"3 stages \u00B7 6+ week programme",
+    icon:"\u{1F9BE}",
+    available:true,
+    heroSub:"A staged, progressive loading programme. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    education:[
+      "Shoulder impingement does not usually mean something is being \u201Cpinched.\u201D",
+      "Pain often improves by gradually restoring strength and movement, not by avoiding it.",
+      "Some temporary discomfort during rehabilitation is normal and acceptable.",
+      "Complete rest often slows recovery down rather than speeding it up.",
+      "Consistency with your programme matters more than pushing hard occasionally."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Stage 1",
+        weeks:"Weeks 1\u20134",
+        goals:["Reduce pain","Restore movement","Begin cuff activation","Improve scapular control"],
+        exercises:[
+          ex("s1e1","Pendulum",2,"60 sec hold","Daily",
+            "Lean forward, supporting yourself on a table with your unaffected arm. Let the affected arm hang loosely and swing it gently in small circles and side to side.",
+            "Uses gravity to gently mobilise the shoulder early on, without needing the muscles around it to work.",
+            "Actively swinging the arm with muscle effort instead of letting it hang and swing passively; shrugging the shoulder during the movement."),
+          ex("s1e2","Assisted Flexion with Stick",3,"10","Daily",
+            "Holding a stick with both hands, use your unaffected arm to help lift the affected arm forward and overhead to a comfortable range, then lower slowly.",
+            "Restores overhead movement using the strong arm to control the range and avoid overloading irritated tissue.",
+            "Forcing the arm past the point of pain; shrugging the shoulder up towards the ear instead of gliding it smoothly."),
+          ex("s1e3","Assisted External Rotation",3,"10","Daily",
+            "Holding a stick with both hands, elbows tucked into your sides at 90\u00B0, use the unaffected arm to gently rotate the affected forearm outward.",
+            "Restores the rotation range needed for reaching and overhead tasks, with the stick limiting how far you go.",
+            "Letting the elbow drift away from your side; rushing the movement instead of moving slowly and under control."),
+          ex("s1e4","Wall Slides",3,"10","Daily",
+            "Stand facing a wall with your forearms resting on it. Slide your arms upward as far as comfortable while keeping contact with the wall, then return.",
+            "Encourages coordinated movement between the shoulder blade and arm, improving scapular control.",
+            "Arching the lower back to gain extra height; letting the shoulders hike up towards the ears during the slide."),
+          ex("s1e5","Scapular Setting",3,"15","Daily",
+            "Sit or stand tall. Gently draw your shoulder blades down and back, as if placing them in your back pockets, and hold briefly before releasing.",
+            "Builds awareness and control of the shoulder blade muscles that support the shoulder joint.",
+            "Over-squeezing the shoulder blades together; holding your breath during the hold."),
+          ex("s1e6","Isometric External Rotation",5,"20 sec hold","Daily",
+            "Elbow bent to 90\u00B0 and tucked into your side, push your forearm outward into a wall or a fixed hand without any movement occurring.",
+            "Isometric loading can build tendon capacity and reduce pain even while the shoulder is still irritable.",
+            "Using too much force too soon; letting the elbow lift away from your side."),
+          ex("s1e7","Isometric Abduction",5,"20 sec hold","Daily",
+            "Elbow bent to 90\u00B0 and tucked in, gently push your arm outward against a wall or fixed resistance without the arm actually moving.",
+            "Loads the shoulder muscles safely without moving through painful ranges.",
+            "Shrugging the shoulder up during the hold; pushing through sharp pain."),
+          ex("s1e8","Pec Minor Doorway Stretch",3,"30 sec hold","Daily",
+            "Stand in a doorway with your forearm on the frame at shoulder height. Gently lean forward through the doorway until you feel a stretch across the front of your shoulder.",
+            "Eases tightness at the front of the shoulder that can contribute to poor posture and impingement symptoms.",
+            "Overstretching into pain; arching the back instead of stepping through the hips."),
+          ex("s1e9","Posterior Capsule Stretch",3,"30 sec hold","Daily",
+            "Lying on the affected side, bend the elbow to 90\u00B0 and use your other hand to gently press the forearm down towards the bed until a stretch is felt at the back of the shoulder.",
+            "Improves flexibility at the back of the shoulder joint, which is commonly restricted with impingement.",
+            "Pressing too hard and forcing through pain; letting the shoulder roll forward during the stretch.")
+        ],
+        progression:[
+          "Pain is less than 3/10 during daily activity",
+          "Able to elevate the arm above shoulder height",
+          "Night pain has improved",
+          "Good control is shown during wall slides"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Stage 2",
+        weeks:"Weeks 4\u20136",
+        goals:["Increase strength","Improve endurance","Normalise movement"],
+        exercises:[
+          ex("s2e1","Band External Rotation",3,"12","3\u00D7 per week",
+            "Elbow tucked at 90\u00B0, holding a resistance band anchored to the side, rotate your forearm outward against the band's resistance, then return slowly.",
+            "Strengthens the rotator cuff muscles that stabilise and control the shoulder joint.",
+            "Letting the elbow drift forward or away from the body; using momentum instead of a controlled movement."),
+          ex("s2e2","Band Internal Rotation",3,"12","3\u00D7 per week",
+            "Elbow tucked at 90\u00B0, rotate your forearm inward across your body against the band's resistance, then return slowly.",
+            "Balances rotator cuff strength alongside the external rotation work.",
+            "Twisting through the trunk instead of the shoulder; moving too quickly through the range."),
+          ex("s2e3","Standing Rows",3,"15","3\u00D7 per week",
+            "Holding a band anchored in front of you, pull both elbows back, squeezing the shoulder blades together, then release slowly.",
+            "Strengthens the mid-back and shoulder blade muscles that support good shoulder posture.",
+            "Shrugging the shoulders instead of drawing the blades back; leaning back to generate momentum."),
+          ex("s2e4","Serratus Punches",3,"15","3\u00D7 per week",
+            "Lying on your back or standing, punch your arm straight up towards the ceiling, protracting the shoulder blade at the top of the movement.",
+            "Strengthens the serratus anterior, a key muscle for healthy shoulder blade movement.",
+            "Bending the elbow during the punch; not reaching fully at the top of the movement."),
+          ex("s2e5","Side Lying External Rotation",3,"12","3\u00D7 per week",
+            "Lying on your unaffected side, elbow bent and tucked into your side, lift the top arm's forearm upward, then lower slowly.",
+            "Adds gravity as resistance to further strengthen the external rotators.",
+            "Rolling the body backward to assist the lift; lifting too fast to control."),
+          ex("s2e6","Prone Y",3,"10","3\u00D7 per week",
+            "Lying face down, arms raised overhead in a \u201CY\u201D shape, lift the arms slightly off the ground and hold briefly.",
+            "Strengthens the lower trapezius, important for shoulder blade control overhead.",
+            "Shrugging through the neck; over-arching the lower back to lift higher."),
+          ex("s2e7","Prone T",3,"10","3\u00D7 per week",
+            "Lying face down, arms out to the sides in a \u201CT\u201D shape, lift the arms slightly and squeeze the shoulder blades together.",
+            "Strengthens the mid-trapezius and rhomboids for scapular stability.",
+            "Lifting the head instead of the arms; over-arching the back."),
+          ex("s2e8","Wall Push-Up Plus",3,"12","3\u00D7 per week",
+            "Hands on a wall at shoulder height, perform a push-up, then push slightly further away from the wall to round the shoulder blades at the end.",
+            "Strengthens the serratus anterior and prepares the shoulder for more demanding pushing exercises.",
+            "Sagging through the lower back; skipping the extra \u201Cplus\u201D push at the end."),
+          ex("s2e9","Pec Minor Doorway Stretch (continued)",3,"30 sec hold","Daily",
+            "Continue as in Stage 1 \u2014 stand in a doorway with your forearm on the frame and gently lean through until you feel a stretch.",
+            "Maintains the chest flexibility gained in Stage 1 as loading increases.",
+            "Overstretching into pain."),
+          ex("s2e10","Posterior Capsule Stretch (continued)",3,"30 sec hold","Daily",
+            "Continue as in Stage 1 \u2014 lying on the affected side, gently press the forearm down towards the bed.",
+            "Maintains flexibility at the back of the shoulder as strength work increases.",
+            "Forcing through pain instead of a gentle, sustained stretch.")
+        ],
+        progression:[
+          "Minimal pain during exercise and daily activity",
+          "Nearly full range of movement restored",
+          "Exercises performed with excellent control",
+          "Strength is noticeably improving"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Stage 3",
+        weeks:"Week 6+",
+        goals:["Return to normal life","Return to gym","Improve tendon capacity"],
+        exercises:[
+          ex("s3e1","Dumbbell Scaption",3,"10","3\u00D7 per week",
+            "Holding light dumbbells, raise your arms up in the plane of your shoulder blade (roughly 30\u201345\u00B0 in front of you) to shoulder height, then lower slowly.",
+            "Strengthens the shoulder through a functional range used in daily and sporting activities.",
+            "Raising above shoulder height too soon; shrugging the shoulders during the lift."),
+          ex("s3e2","Dumbbell Shoulder Press",3,"10","3\u00D7 per week",
+            "Press dumbbells overhead from shoulder height, moving only through a pain-free range, then lower with control.",
+            "Builds strength for overhead tasks while respecting the shoulder's current capacity.",
+            "Arching the lower back to gain extra range; pressing through sharp pain."),
+          ex("s3e3","Face Pulls",3,"15","3\u00D7 per week",
+            "Using a band or cable at head height, pull towards your face while rotating your hands so palms end facing forward, squeezing the shoulder blades.",
+            "Strengthens the rear shoulder and upper back muscles that support healthy shoulder posture.",
+            "Using the arms only without engaging the shoulder blades; leaning back to assist the pull."),
+          ex("s3e4","Lat Pulldown",3,"12","3\u00D7 per week",
+            "Using a cable or band overhead, pull the bar or band down towards your chest, then return slowly to the start.",
+            "Builds broader shoulder and back strength to support the whole shoulder complex.",
+            "Leaning back excessively; pulling the bar behind the neck."),
+          ex("s3e5","Chest Supported Rows",3,"12","3\u00D7 per week",
+            "Lying face down on an incline bench or supported surface, row dumbbells or a band towards your body, squeezing the shoulder blades.",
+            "Strengthens the back and shoulder blade muscles without stressing the lower back.",
+            "Using momentum to swing the weights; not fully squeezing at the top of the row."),
+          ex("s3e6","Farmer Carries",3,"40 metres","3\u00D7 per week",
+            "Holding a moderately heavy weight in each hand, walk for the set distance while keeping your shoulders back and posture tall.",
+            "Builds functional shoulder and core stability under load.",
+            "Letting the shoulders round forward; walking too fast and losing control of posture."),
+          ex("s3e7","Push-Ups (Wall \u2192 Incline \u2192 Floor)",3,"To tolerance","3\u00D7 per week",
+            "Begin with wall push-ups, progress to an inclined surface, and eventually the floor as strength allows.",
+            "Gradually rebuilds pushing strength and tendon capacity towards full function.",
+            "Progressing to a harder surface before mastering control at the current one; letting the hips sag."),
+          ex("s3e8","External Rotation at 90\u00B0",3,"12","3\u00D7 per week",
+            "With the arm raised to shoulder height and elbow bent to 90\u00B0, rotate the forearm upward against light resistance, then lower slowly.",
+            "Trains the rotator cuff in a position closer to overhead sport and lifting demands.",
+            "Dropping the elbow height during the set; rushing the tempo."),
+          ex("s3e9","Functional Lifting Drills",3,"As prescribed","3\u00D7 per week",
+            "Practise the specific lifting, reaching or sporting movements relevant to your daily life or return-to-sport goals, gradually increasing load and complexity.",
+            "Bridges the gap between rehabilitation exercises and a confident return to full activity.",
+            "Progressing load too quickly; avoiding movements out of fear rather than gradually reintroducing them.")
+        ],
+        progression:[
+          "Full, pain-free range of movement",
+          "Strength closely matches the unaffected side",
+          "Confident performing daily and sport-specific tasks",
+          "Discuss discharge or ongoing maintenance with your practitioner"
+        ]
+      }
+    ]
+  },
+{
+    id:"achilles-tendon",
+    name:"Achilles Tendon Injury",
+    meta:"4 stages \u00B7 8+ week programme",
+    icon:"\u{1F45F}",
+    available:true,
+    heroSub:"A staged, progressive loading programme for the Achilles tendon. Work through each stage in order, and only move on once you meet the criteria at the end of it.",
+    purpose:[
+      "Reduce pain","Maintain walking ability","Gradually restore tendon loading",
+      "Improve calf strength","Restore tendon capacity","Return safely to running and sport"
+    ],
+    suitableFor:[
+      "Mid-portion Achilles tendinopathy",
+      "Mild insertional Achilles tendinopathy (modify exercises to avoid excessive dorsiflexion)",
+      "Minor Achilles strains"
+    ],
+    notSuitableFor:["Suspected Achilles rupture"],
+    painRules:[
+      { chip:"safe",    range:"0\u20133/10", text:"Safe to continue." },
+      { chip:"caution", range:"4\u20135/10", text:"Reduce repetitions or resistance." },
+      { chip:"stop",    range:"Above 5/10", text:"Stop and reduce loading." }
+    ],
+    painNote:[
+      "Pain should settle back to baseline within 24 hours.",
+      "Morning stiffness should gradually improve over time."
+    ],
+    education:[
+      "Achilles tendons become stronger through progressive loading.",
+      "Complete rest is usually not recommended unless advised by your practitioner.",
+      "Mild discomfort during rehabilitation is acceptable.",
+      "Pain should settle within 24 hours after exercise.",
+      "Morning stiffness is a useful way to monitor progress.",
+      "Recovery often takes several months, but consistent exercise leads to the best outcomes.",
+      "Progress is based on symptoms rather than specific dates."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Acute Phase",
+        weeks:"Weeks 0\u20132",
+        goals:["Reduce irritation","Maintain movement","Begin gentle tendon loading","Avoid complete rest"],
+        notes:["Do not force stretching if symptoms worsen."],
+        exercises:[
+          ex("a1e1","Ankle Pumps",2,"20","3\u20135\u00D7 daily",
+            "Sitting or lying with your leg relaxed, point your toes away from you and then pull them back up towards your shin, moving through your full comfortable ankle range.",
+            "Maintains ankle movement.",
+            "Moving too fast instead of a smooth, controlled pace; only moving through a small partial range.", "\uD83E\uDDB6"),
+          ex("a1e2","Ankle Circles",2,"15 each direction","Daily",
+            "Sitting with your leg relaxed, slowly rotate your ankle in a full circle, then reverse direction.",
+            "Maintains ankle joint mobility and gently encourages circulation around the injured area.",
+            "Rushing through the circles; moving only the toes instead of the whole ankle.", "\uD83D\uDD04"),
+          ex("a1e3","Seated Heel Raises",3,"15","Daily",
+            "Sitting with feet flat on the floor, slowly lift your heels off the ground as high as comfortable, then lower with control.",
+            "Begins gentle loading of the calf and Achilles tendon without the full weight of standing.",
+            "Lifting too quickly; not lowering with control.", "\uD83E\uDDB5"),
+          ex("a1e4","Double Leg Isometric Calf Raise Hold",5,"30\u201345 sec hold","Daily",
+            "Standing with feet hip-width apart, rise up onto the balls of both feet to a comfortable height and hold the position, using support for balance if needed.",
+            "Reduces pain while maintaining tendon loading.",
+            "Holding at a height that causes sharp pain; letting the heels drift together or apart during the hold.", "\u23F1\uFE0F"),
+          ex("a1e5","Weight Shifts",3,"15","Daily",
+            "Standing with feet hip-width apart, slowly shift your weight onto the affected leg, hold briefly, then shift back to the other side.",
+            "Builds tolerance to loading the affected leg in a controlled, low-demand way.",
+            "Shifting too quickly; avoiding fully loading the affected side out of guarding.", "\u2696\uFE0F"),
+          ex("a1e6","Balance on Two Feet",3,"30 sec hold","Daily",
+            "Standing with feet together or hip-width apart, focus on holding a steady, balanced position, using support nearby if needed.",
+            "Builds early proprioception and confidence while keeping load gentle.",
+            "Holding onto support more than needed; looking down at your feet instead of ahead.", "\uD83E\uDDCD"),
+          ex("a1e7","Gastrocnemius Stretch",3,"20\u201330 sec hold","Daily",
+            "Standing in a staggered stance facing a wall, back leg straight and heel on the floor, lean forward until a mild stretch is felt in the upper calf.",
+            "Maintains flexibility in the gastrocnemius muscle while respecting tendon irritability. Only stretch to mild tension.",
+            "Stretching into pain rather than mild tension; letting the back heel lift off the ground.", "\uD83E\uDDD8"),
+          ex("a1e8","Soleus Stretch",3,"20\u201330 sec hold","Daily",
+            "In the same staggered stance, bend the back knee slightly while keeping the heel down until a stretch is felt lower in the calf.",
+            "Targets the soleus muscle, which sits deeper than the gastrocnemius and also loads the Achilles.",
+            "Straightening the back knee, which shifts the stretch away from the soleus; forcing the stretch if symptoms worsen.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Walking comfortably",
+          "Pain less than 3/10",
+          "Morning stiffness improving"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Early Loading",
+        weeks:"Weeks 2\u20134",
+        goals:["Increase tendon load","Improve calf endurance","Restore confidence"],
+        exercises:[
+          ex("a2e1","Double Leg Heel Raises",3,"15","Daily",
+            "Standing with feet hip-width apart, rise up onto the balls of both feet over a slow 3-second count, then lower back down over another slow 3-second count.",
+            "Builds tendon and calf strength through a full, controlled range with a slow tempo.",
+            "Rushing the tempo instead of counting a full 3 seconds each way; not rising fully onto the toes.", "\uD83E\uDDB5"),
+          ex("a2e2","Single Leg Balance",3,"30\u201345 sec hold","Daily",
+            "Standing on the affected leg only, hold a steady balanced position, using support nearby if needed.",
+            "Builds single-leg strength endurance and proprioception needed for walking and running.",
+            "Relying heavily on support instead of gradually reducing it; letting the standing knee lock out stiffly.", "\uD83E\uDDCD"),
+          ex("a2e3","Heel Raise Holds",5,"45 sec hold","Daily",
+            "Rise up onto the balls of both feet to a comfortable height and hold the position for the full duration.",
+            "Builds isometric endurance in the calf and Achilles tendon.",
+            "Dropping the heels partway through the hold; holding at a height that causes sharp pain.", "\u23F1\uFE0F"),
+          ex("a2e4","Mini Squats",3,"12","3\u00D7 per week",
+            "Standing with feet shoulder-width apart, bend your knees into a small squat, keeping your heels on the floor, then return to standing.",
+            "Builds lower limb strength and control that supports walking and loading through the ankle and Achilles.",
+            "Letting the heels lift off the ground; letting the knees cave inward.", "\uD83E\uDDCE"),
+          ex("a2e5","Step Ups",3,"12","3\u00D7 per week",
+            "Step up onto a low step with the affected leg, driving through the heel to stand tall, then step back down with control.",
+            "Builds functional single-leg strength for stairs and daily activity.",
+            "Pushing off the trailing leg instead of driving through the top leg; stepping down without control.", "\uD83E\uDE9C"),
+          ex("a2e6","Resistance Band Plantarflexion",3,"15","3\u00D7 per week",
+            "Sitting with your leg out in front and a resistance band looped around the ball of your foot, point your toes away against the band's resistance, then return slowly.",
+            "Isolates and strengthens the calf and Achilles complex with adjustable resistance.",
+            "Using a jerky motion instead of a smooth, controlled push; not returning slowly against the band.", "\uD83C\uDF80"),
+          ex("a2e7","Gastrocnemius Stretch (continued)",3,"20\u201330 sec hold","Daily",
+            "Continue as in the Acute Phase \u2014 staggered stance, back leg straight and heel down, lean forward to a mild stretch.",
+            "Maintains calf flexibility as loading increases.",
+            "Stretching into pain rather than mild tension.", "\uD83E\uDDD8"),
+          ex("a2e8","Soleus Stretch (continued)",3,"20\u201330 sec hold","Daily",
+            "Continue as in the Acute Phase \u2014 staggered stance with the back knee slightly bent and heel down.",
+            "Maintains soleus flexibility as loading increases.",
+            "Straightening the back knee during the stretch.", "\uD83E\uDDD8")
+        ],
+        progression:[
+          "Minimal pain",
+          "Good control",
+          "Able to perform 20 double-leg heel raises comfortably"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Strength Phase",
+        weeks:"Weeks 4\u20138",
+        goals:["Increase tendon strength","Improve calf muscle size","Restore function"],
+        notes:["Continue stretching after exercise."],
+        exercises:[
+          ex("a3e1","Single Leg Heel Raises",3,"12","3\u00D7 per week",
+            "Standing on the affected leg only, rise up onto the ball of your foot as high as comfortable, then lower with control.",
+            "Progresses calf and tendon strength by removing the support of the other leg.",
+            "Using momentum to bounce up; not lowering with full control.", "\uD83E\uDDB5"),
+          ex("a3e2","Heavy Slow Heel Raises",3,"10","3\u00D7 per week",
+            "Standing holding extra weight such as a backpack or dumbbells when appropriate, rise up onto your toes slowly, then lower slowly over several seconds.",
+            "Heavy, slow loading builds tendon capacity and calf strength effectively.",
+            "Adding weight before the bodyweight version is comfortable; rushing the tempo instead of moving slowly.", "\uD83C\uDF92"),
+          ex("a3e3","Bent Knee Heel Raises",3,"12","3\u00D7 per week",
+            "Standing with your knees slightly bent throughout, rise up onto the balls of your feet, then lower with control.",
+            "Targets the soleus muscle specifically, which contributes significantly to Achilles loading.",
+            "Straightening the knees during the movement; rushing through the reps.", "\uD83E\uDDB5"),
+          ex("a3e4","Split Squats",3,"10","3\u00D7 per week",
+            "In a staggered stance, lower your back knee towards the floor while keeping your front heel down, then push back up to standing.",
+            "Builds single-leg strength and control needed for walking, running and sport.",
+            "Letting the front knee travel too far past the toes; losing balance and rushing the movement.", "\uD83E\uDD3E"),
+          ex("a3e5","Romanian Deadlifts",3,"10","3\u00D7 per week",
+            "Standing tall, hinge forward at the hips with a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
+            "Builds posterior chain strength that supports the calf and Achilles during running and jumping.",
+            "Rounding through the lower back; bending the knees too much and turning it into a squat.", "\uD83C\uDFCB\uFE0F"),
+          ex("a3e6","Single Leg Balance with Reach",3,"30 sec","3\u00D7 per week",
+            "Standing on the affected leg, reach the opposite hand towards the floor or out to the side while maintaining balance, then return to standing tall.",
+            "Builds balance and control needed for uneven ground and sport-specific movement.",
+            "Letting the standing knee wobble excessively; rushing the reach instead of moving with control.", "\uD83E\uDDD8"),
+          ex("a3e7","Farmer Carries",3,"40 metres","3\u00D7 per week",
+            "Holding a moderately heavy weight in each hand, walk for the set distance keeping your posture tall and steps controlled.",
+            "Builds functional lower limb and core strength under load.",
+            "Letting the shoulders round forward; walking too fast and losing control of posture.", "\uD83C\uDFCB\uFE0F")
+        ],
+        progression:[
+          "Can perform at least 25 single-leg heel raises",
+          "Walking pain free",
+          "Minimal morning stiffness"
+        ]
+      },
+      {
+        id:"stage-4",
+        label:"Return to Sport",
+        weeks:"Week 8+",
+        goals:["Restore tendon capacity","Return to running","Return to jumping","Return to sport"],
+        notes:["Progress gradually each week if symptoms remain stable."],
+        exercises:[
+          ex("a4e1","Heavy Single Leg Heel Raises",4,"8","3\u00D7 per week",
+            "Standing on the affected leg holding extra weight if appropriate, rise up onto your toes as high as comfortable, then lower with control.",
+            "Builds the high-level tendon capacity needed for running, jumping and sport.",
+            "Using momentum instead of a controlled rise; reducing range to compensate for fatigue.", "\uD83E\uDDB5"),
+          ex("a4e2","Single Leg Decline Heel Raises",3,"12","3\u00D7 per week",
+            "Standing on the affected leg on a decline board or the edge of a step, lower your heel below the level of your toes, then rise back up. For mid-portion tendinopathy only \u2014 avoid for insertional Achilles pain.",
+            "Loads the mid-portion of the Achilles tendon through an extended range.",
+            "Performing this exercise with insertional Achilles pain, where it should be avoided; dropping too quickly instead of a slow, controlled lower.", "\uD83E\uDDB5"),
+          ex("a4e3","Skipping",3,"60 sec","3\u00D7 per week",
+            "Using a skipping rope or a light skipping motion, perform continuous small jumps for the set duration, landing softly.",
+            "Begins reintroducing elastic, spring-like loading of the Achilles tendon.",
+            "Landing heavily instead of softly through the forefoot; ignoring the 24-hour pain response.", "\u23F1\uFE0F"),
+          ex("a4e4","Pogos",3,"20","3\u00D7 per week",
+            "Standing tall, perform small, quick vertical hops using mostly your ankles, keeping your knees relatively straight.",
+            "Builds fast, reactive tendon stiffness needed for running and jumping sports.",
+            "Bending the knees too much and turning it into a squat jump; landing flat-footed instead of through the forefoot.", "\u26A1"),
+          ex("a4e5","Hopping",3,"15","3\u00D7 per week",
+            "On the affected leg, perform small forward hops, landing softly and absorbing the impact through the ankle and knee.",
+            "Builds single-leg power and tendon tolerance to impact.",
+            "Landing stiffly without absorbing through the ankle; hopping too far too soon.", "\uD83E\uDDB5"),
+          ex("a4e6","Lateral Hops",3,"15","3\u00D7 per week",
+            "On the affected leg, hop sideways over a small distance or line, landing softly under control before hopping back.",
+            "Builds multidirectional control and tendon tolerance for sport.",
+            "Landing with the knee collapsing inward; rushing the hops instead of controlling each landing.", "\u2194\uFE0F"),
+          ex("a4e7","Walking Lunges",3,"12","3\u00D7 per week",
+            "Step forward into a lunge, lowering the back knee towards the floor, then push off and step through into the next lunge on the other side.",
+            "Builds functional strength and control relevant to running and change of direction.",
+            "Taking too short a step, limiting range; letting the front knee travel too far past the toes.", "\uD83D\uDEB6"),
+          ex("a4e8","Step Down Control",3,"10","3\u00D7 per week",
+            "Standing on a step on the affected leg, slowly lower the other foot towards the floor with control, then return to standing.",
+            "Builds eccentric control of the calf and Achilles, important for absorbing load during running and landing.",
+            "Dropping down quickly instead of lowering slowly; letting the standing knee cave inward.", "\uD83E\uDE9C"),
+          ex("a4e9","Return to Running Programme",1,"Walk 2 min / Jog 1 min \u00D7 8","Week 1",
+            "Alternate walking for 2 minutes with jogging for 1 minute, repeating this cycle 8 times. Progress gradually each week if symptoms remain stable.",
+            "Gradually reintroduces running load in a structured way that respects tendon tolerance.",
+            "Progressing to the next week's running volume before symptoms have remained stable; skipping the walk intervals.", "\uD83C\uDFC3")
+        ],
+        progression:[
+          "Pain-free with running and jumping",
+          "Strength and hop tests comparable to the unaffected side",
+          "Confident returning to full training and competition",
+          "Discuss ongoing monitoring with your practitioner"
+        ]
+      }
+    ]
+  },
+  {
+    id:"proximal-itb",
+    name:"Proximal ITB Injury",
+    meta:"5 stages \u00B7 criteria-based progression",
+    icon:"\uD83E\uDDB5",
+    available:true,
+    heroSub:"The IT band is a strong band of connective tissue that runs down the outside of the thigh. Near the hip, it works closely with the TFL and gluteal muscles. After a proximal tear, this programme gradually rebuilds movement, strength and load tolerance before a graded return to running. Move through each stage at your own pace \u2014 progress is based on meeting the criteria at the end of a stage, not a fixed number of days.",
+    purpose:[
+      "Restore comfortable walking","Rebuild hip and thigh strength","Improve single-leg control",
+      "Gradually increase tolerance to loading","Prepare for impact and running","Support a safe return to sport"
+    ],
+    suitableFor:[
+      "Confirmed proximal iliotibial band (ITB) tear",
+      "Possible tensor fasciae latae (TFL) involvement",
+      "Patients who can currently walk comfortably for more than 30 minutes"
+    ],
+    notSuitableFor:[
+      "Significant, worsening or unclear symptoms that haven't yet been assessed by a clinician",
+      "A suspected additional injury that hasn't been examined"
+    ],
+    stepBackSigns:[
+      "Pain becomes sharper",
+      "Walking becomes worse",
+      "A limp develops",
+      "Pain keeps increasing after exercise",
+      "Symptoms are worse the next morning",
+      "New swelling or bruising develops",
+      "Strength or movement suddenly deteriorates"
+    ],
+    painRules:[
+      { chip:"safe",    range:"0\u20132/10", text:"Generally acceptable." },
+      { chip:"caution", range:"3/10", text:"Proceed cautiously and monitor closely." },
+      { chip:"stop",    range:"Above 3/10", text:"Reduce the exercise or load \u2014 also reduce for sharp pain, worsening symptoms, or altered movement." }
+    ],
+    painNote:[
+      "Symptoms should settle back to baseline by the following day.",
+      "Do not progress if symptoms are progressively worsening from session to session.",
+      "This is a general rehabilitation guide \u2014 your treating clinician may adjust your progression based on your injury severity, examination and response to loading."
+    ],
+    education:[
+      "Avoid aggressive stretching or deep massage directly over the injured proximal ITB/TFL region.",
+      "Gradual, consistent loading tends to work better than pushing through significant pain.",
+      "Progress is based on meeting the criteria at the end of each stage, not a fixed calendar."
+    ],
+    stages:[
+      {
+        id:"stage-1",
+        label:"Stage 1",
+        weeks:"Early loading & symptom control",
+        goals:["Walk comfortably for 30-45+ minutes","Normal walking pattern without significant limping","Minimal pain at rest","Tolerate gentle hip loading without an increase in symptoms","No significant increase in symptoms the next morning"],
+        notes:["All exercises in this stage should feel easy, not challenging \u2014 the aim is comfortable movement and gentle loading."],
+        exercises:[
+          ex("itb1e1","Pain-Free Hip Range of Motion",2,"10 each direction","Daily",
+            "Lying or standing, gently move your hip through comfortable bending, straightening and out-to-the-side movements, staying well within a pain-free range.",
+            "You should feel light, easy movement, with no sharp pain \u2014 mild, dull awareness in the area is okay.",
+            "Forcing the movement further to \u2018stretch it out\u2019; pushing through sharp or pinching pain.", "\uD83E\uDDCE"),
+          ex("itb1e2","Glute Bridge",2,"10","Daily",
+            "Lying on your back with knees bent and feet flat, gently lift your hips off the floor, then lower slowly with control.",
+            "You should feel gentle work through your buttock and the back of your thigh, without pain at the outer hip.",
+            "Lifting too high too soon; arching hard through the lower back instead of a controlled lift.", "\uD83C\uDF51"),
+          ex("itb1e3","Supine Hip Abduction Isometric",3,"10 sec hold","Daily",
+            "Lying on your back with legs straight, gently press one leg outward against a fixed resistance, such as your hand or a wall, without the leg actually moving.",
+            "A gentle, steady muscle effort at the outer hip \u2014 not sharp or pinching.",
+            "Pushing too hard, too soon; holding your breath during the hold.", "\u23F1\uFE0F"),
+          ex("itb1e4","Standing Hip Abduction Isometric Against Wall",3,"10 sec hold","Daily",
+            "Standing side-on to a wall, gently press the outside of your leg into the wall without the leg actually moving.",
+            "A gentle, steady muscle effort at the outer hip and buttock.",
+            "Leaning your whole body into the wall instead of isolating the hip muscles; pushing into sharp pain.", "\uD83E\uDDB5"),
+          ex("itb1e5","Gentle Sit-to-Stand",2,"8","Daily",
+            "Sitting in a sturdy chair, stand up slowly and with control, then lower yourself back down slowly.",
+            "A comfortable, everyday movement \u2014 mild effort in the thighs and buttocks is normal.",
+            "Using momentum to stand up quickly; dropping heavily back into the chair.", "\uD83E\uDE91"),
+          ex("itb1e6","Calf Raises",2,"12","Daily",
+            "Standing with support nearby, rise up onto the balls of your feet, then lower slowly with control.",
+            "Keeps the rest of the leg moving and loaded gently while the hip settles.",
+            "Rushing the movement; not lowering with control.", "\uD83E\uDDB5")
+        ],
+        progression:[
+          "Walk 45\u201360 minutes comfortably",
+          "No significant limp",
+          "Daily activities tolerated without increasing symptoms",
+          "Hip abduction isometrics tolerated well",
+          "10 controlled sit-to-stands completed comfortably",
+          "Symptoms return to baseline within 24 hours after exercise"
+        ]
+      },
+      {
+        id:"stage-2",
+        label:"Stage 2",
+        weeks:"Strength & capacity",
+        goals:["Build TFL, gluteal and hip strength","Improve single-leg control","Increase tolerance to repeated loading","Prepare the leg for more demanding functional movements"],
+        notes:["Progress each exercise gradually from bodyweight to light added resistance as it feels comfortable and controlled."],
+        exercises:[
+          ex("itb2e1","Glute Bridge Progression",3,"12","3\u00D7 per week",
+            "Lying on your back with knees bent, lift your hips further and hold briefly at the top, progressing towards a single-leg version as it feels comfortable.",
+            "A building sense of strength through the buttock and thigh, without outer-hip pain.",
+            "Progressing to single-leg too soon; letting the hips dip to one side.", "\uD83C\uDF51"),
+          ex("itb2e2","Side-Lying Hip Abduction",3,"12 each side","3\u00D7 per week",
+            "Lying on your side with your bottom leg bent for support, lift your top leg upward with control, keeping it in line with your body, then lower slowly.",
+            "A working feeling through the outer hip and buttock \u2014 not sharp pain at the front of the hip.",
+            "Lifting the leg too high and rocking the pelvis backward; rushing the lowering phase.", "\uD83E\uDDB5"),
+          ex("itb2e3","Standing Resisted Hip Abduction",3,"12 each side","3\u00D7 per week",
+            "With a resistance band around your ankles, stand tall and move one leg outward against the band's resistance, then return with control.",
+            "A firm but manageable working effort through the outer hip.",
+            "Leaning your trunk away to help lift the leg; using a band that's too strong to control well.", "\uD83C\uDF80"),
+          ex("itb2e4","Mini Squat",3,"10","3\u00D7 per week",
+            "Standing with feet shoulder-width apart, bend your knees into a small, comfortable squat, then return to standing.",
+            "A general working feeling through the thighs and hips.",
+            "Letting the knees cave inward; squatting deeper than feels controlled.", "\uD83E\uDDCE"),
+          ex("itb2e5","Step-Up",3,"10 each side","3\u00D7 per week",
+            "Step up onto a low step, driving through the heel to stand tall, then step back down with control.",
+            "A building strength sense through the hip and thigh of the stepping leg.",
+            "Pushing off the trailing leg instead of driving through the top leg; stepping down without control.", "\uD83E\uDE9C"),
+          ex("itb2e6","Lateral Step-Up",3,"10 each side","3\u00D7 per week",
+            "Standing side-on to a low step, step sideways up onto it leading with the injured leg, then step back down with control.",
+            "Targets the outer hip muscles in a side-to-side direction relevant to daily movement.",
+            "Rotating the trunk to assist the step; rushing the movement.", "\uD83E\uDE9C"),
+          ex("itb2e7","Supported Single-Leg Stance",3,"20\u201330 sec","3\u00D7 per week",
+            "Standing on the injured leg with light fingertip support nearby, hold a steady, balanced position.",
+            "A steady balance challenge \u2014 mild muscle work through the hip is expected.",
+            "Relying heavily on support instead of gradually reducing it; letting the pelvis drop to one side.", "\uD83E\uDDCD"),
+          ex("itb2e8","Calf Raises",3,"15","3\u00D7 per week",
+            "Standing with support nearby, rise up onto the balls of your feet, then lower slowly with control.",
+            "Continues to build lower-leg strength and endurance.",
+            "Rushing the movement; not lowering with control.", "\uD83E\uDDB5"),
+          ex("itb2e9","Hip Hinge / RDL Pattern",3,"10","3\u00D7 per week",
+            "Standing tall, hinge forward at the hips with a soft bend in the knees and a flat back, reaching towards the floor before returning to standing.",
+            "Builds a safe, confident bending pattern using the hips and hamstrings.",
+            "Rounding through the lower back; bending mainly through the knees instead of the hips.", "\uD83C\uDFCB\uFE0F")
+        ],
+        progression:[
+          "Walk 60 minutes without significant symptoms",
+          "Complete 15 controlled single-leg calf raises",
+          "Perform 10 controlled step-ups",
+          "Perform 10 controlled single-leg mini squats to a comfortable depth",
+          "Hold single-leg stance for 30 seconds with good pelvic control",
+          "Complete strengthening sessions without symptoms exceeding 3/10",
+          "No meaningful increase in symptoms the next morning"
+        ]
+      },
+      {
+        id:"stage-3",
+        label:"Stage 3",
+        weeks:"Advanced strength & single-leg control",
+        goals:["Restore high-level hip and leg strength","Improve frontal-plane control","Prepare the tissues for impact and running","Develop confidence with single-leg loading"],
+        notes:["Progress resistance gradually across these exercises. Only include the pogo/ankle exercise if it feels completely appropriate and pain-free \u2014 skip it otherwise and revisit it later."],
+        exercises:[
+          ex("itb3e1","Split Squat",3,"10 each side","3\u00D7 per week",
+            "In a staggered stance, lower your back knee towards the floor while keeping your front heel down, then push back up to standing.",
+            "A solid, building strength sense through the front leg's hip and thigh.",
+            "Letting the front knee travel too far past the toes; losing balance and rushing the movement.", "\uD83E\uDD3E"),
+          ex("itb3e2","Single-Leg RDL",3,"10 each side","3\u00D7 per week",
+            "Standing on the injured leg, hinge forward at the hip while extending the other leg behind you, reaching towards the floor, then return to standing with control.",
+            "Builds single-leg strength, balance and hip control together.",
+            "Rotating the hips open instead of keeping them square; losing balance and rushing the movement.", "\uD83E\uDDBF"),
+          ex("itb3e3","Lateral Step-Down",3,"10 each side","3\u00D7 per week",
+            "Standing on a step on the injured leg, slowly lower the other foot sideways towards the floor with control, then return to standing.",
+            "Challenges frontal-plane hip control in a way that's relevant to walking and running.",
+            "Letting the standing knee cave inward; dropping down quickly instead of lowering slowly.", "\uD83E\uDE9C"),
+          ex("itb3e4","Lateral Lunge",3,"10 each side","3\u00D7 per week",
+            "Standing tall, step sideways into a lunge, bending the leading knee while keeping the trailing leg straight, then push back to standing.",
+            "Builds strength and control in a side-to-side direction relevant to running and change of direction.",
+            "Letting the leading knee cave inward; leaning the trunk too far forward.", "\uD83E\uDD3E"),
+          ex("itb3e5","Single-Leg Bridge",3,"10","3\u00D7 per week",
+            "In the bridge position, straighten one leg out and lift your hips using only the other leg, keeping your hips level throughout.",
+            "Progresses glute strength by challenging one side at a time.",
+            "Letting the hips drop or rotate to one side; overarching through the lower back.", "\uD83C\uDF51"),
+          ex("itb3e6","Resisted Lateral Walks",3,"15 steps each direction","3\u00D7 per week",
+            "With a resistance band around your ankles or knees in a mini-squat position, take small steps sideways, keeping tension on the band throughout.",
+            "Builds hip abductor strength and control used in walking and running.",
+            "Standing too upright instead of staying in a mini-squat; letting the knees cave inward.", "\u2194\uFE0F"),
+          ex("itb3e7","Controlled Step-Down",3,"10 each side","3\u00D7 per week",
+            "Standing on a step on the injured leg, slowly lower the other foot straight down towards the floor with control, then return to standing.",
+            "Builds eccentric control of the hip and thigh, important for running and landing.",
+            "Dropping down quickly instead of lowering slowly; letting the standing knee wobble.", "\uD83E\uDE9C"),
+          ex("itb3e8","Single-Leg Squat Progression",3,"8 each side","3\u00D7 per week",
+            "Standing on the injured leg, slowly bend your knee to squat down to a comfortable depth, then push back up to standing, using light support if needed.",
+            "A demanding but controlled single-leg strength challenge.",
+            "Squatting deeper than feels controlled; letting the knee collapse inward.", "\uD83E\uDDCE"),
+          ex("itb3e9","Low-Level Pogo / Ankle Stiffness Exercise",2,"10","Only if completely pain-free",
+            "Standing tall, perform small, gentle vertical hops using mostly your ankles \u2014 only if this feels completely comfortable and pain-free.",
+            "A very early, low-level introduction to spring-like loading, done only when appropriate.",
+            "Attempting this before it's completely pain-free; landing heavily instead of softly.", "\u26A1")
+        ],
+        progression:[
+          "Brisk walking for 45\u201360 minutes without significant pain",
+          "Normal walking and stair function",
+          "10+ controlled single-leg squats, or an equivalent single-leg strength exercise",
+          "Good pelvic control during single-leg loading",
+          "15\u201320 controlled step-downs without significant pain or loss of control",
+          "Strength exercises tolerated without symptoms worsening the following day",
+          "Able to perform low-level impact preparation exercises without pain",
+          "Feeling confident loading the injured side"
+        ]
+      },
+      {
+        id:"stage-4",
+        label:"Stage 4",
+        weeks:"Running preparation",
+        goals:["Gradually expose the ITB/TFL complex to increasing impact","Build confidence before continuous running","Maintain strength gains from earlier stages"],
+        notes:["Follow this general order as each step feels comfortable: marching \u2192 skipping \u2192 double-leg pogo \u2192 single-leg pogo \u2192 small hops \u2192 multidirectional hops \u2192 running. Keep these early plyometric exercises low in volume."],
+        exercises:[
+          ex("itb4e1","Marching Drills",3,"20 sec","3\u00D7 per week",
+            "Marching on the spot, lift your knees to hip height at a steady, controlled pace, landing softly each time.",
+            "A gentle introduction to repeated single-leg loading.",
+            "Marching too fast or heavily; leaning the trunk backward.", "\uD83E\uDDB5"),
+          ex("itb4e2","A-March",3,"10 each side","3\u00D7 per week",
+            "Marching forward, drive one knee up to hip height while extending the same-side ankle, then step through and repeat on the other side.",
+            "Builds hip drive and coordination in preparation for running.",
+            "Rushing the movement; losing control of the landing leg.", "\uD83D\uDEB6"),
+          ex("itb4e3","Low-Level Skipping",3,"30 sec","3\u00D7 per week",
+            "Perform gentle, low-level skipping on the spot or moving forward, keeping the movement light and controlled.",
+            "Begins reintroducing rhythmic, spring-like loading through the leg.",
+            "Skipping too high or forcefully; landing heavily instead of softly.", "\u23F1\uFE0F"),
+          ex("itb4e4","Double-Leg Pogo",3,"15","3\u00D7 per week",
+            "Standing tall, perform small, quick vertical hops on both feet using mostly your ankles.",
+            "Builds tolerance to spring-like loading through both legs together.",
+            "Bending the knees too much and turning it into a squat jump; landing flat-footed.", "\u26A1"),
+          ex("itb4e5","Single-Leg Pogo Progression",2,"10 each side","3\u00D7 per week",
+            "Standing on the injured leg, perform small, gentle vertical hops using mostly your ankle, progressing the number of hops gradually.",
+            "A focused, single-leg introduction to impact loading.",
+            "Progressing volume too quickly; landing heavily instead of softly.", "\u26A1"),
+          ex("itb4e6","Small Controlled Hops",2,"8 each side","3\u00D7 per week",
+            "On the injured leg, perform small forward hops, landing softly and absorbing the impact through the ankle, knee and hip.",
+            "Builds single-leg power and tissue tolerance to impact.",
+            "Landing stiffly without absorbing through the leg; hopping too far too soon.", "\uD83E\uDDB5"),
+          ex("itb4e7","Forward Line Hops",2,"10","3\u00D7 per week",
+            "Hop forward and backward over a line on the floor, landing softly and under control each time.",
+            "Builds controlled, repeated impact tolerance in a forward direction.",
+            "Rushing the hops; landing with a stiff, uncontrolled knee.", "\u21C5"),
+          ex("itb4e8","Lateral Line Hops",2,"10","3\u00D7 per week",
+            "Hop sideways over a line on the floor, landing softly and under control each time before hopping back.",
+            "Builds controlled impact tolerance in a side-to-side direction, relevant to running and change of direction.",
+            "Landing with the knee collapsing inward; rushing the hops instead of controlling each landing.", "\u2194\uFE0F")
+        ],
+        progression:[
+          "Brisk walking 60 minutes comfortably",
+          "No significant pain with stairs",
+          "No significant pain with single-leg squat/step-down",
+          "Hop preparation exercises tolerated well",
+          "No increase in symptoms the following day",
+          "Able to complete a normal strength session without a symptom flare",
+          "Good confidence with single-leg loading"
+        ]
+      },
+      {
+        id:"stage-5",
+        label:"Stage 5",
+        weeks:"Return to running",
+        goals:["Gradually reintroduce continuous running","Build running tolerance without symptom flare-ups","Progress pace, hills and distance one variable at a time"],
+        notes:[
+          "These are progression examples, not mandatory dates \u2014 repeat a session as many times as you need before moving to the next one.",
+          "Run every other day initially, and keep the pace easy throughout.",
+          "Don't increase distance and pace at the same time.",
+          "Only progress if symptoms remain stable during the run and over the following 24 hours.",
+          "If symptoms increase, repeat the previous successful session or reduce the running volume.",
+          "Avoid sprinting, hill running, cutting or other high-speed running for now."
+        ],
+        exercises:[
+          ex("itb5r1","Run 1",8,"1 min jog / 2 min walk","Every other day",
+            "Alternate 1 minute of easy jogging with 2 minutes of walking, repeating this cycle 8 times.",
+            "The first gentle reintroduction of running load after your preparation work.",
+            "Running faster than an easy, conversational pace; skipping the walk intervals.", "\uD83C\uDFC3"),
+          ex("itb5r2","Run 2",8,"2 min jog / 2 min walk","Every other day",
+            "Alternate 2 minutes of easy jogging with 2 minutes of walking, repeating this cycle 8 times.",
+            "A small, gradual increase in jogging time from Run 1.",
+            "Increasing the pace as well as the time; pushing on despite worsening symptoms.", "\uD83C\uDFC3"),
+          ex("itb5r3","Run 3",6,"3 min jog / 2 min walk","Every other day",
+            "Alternate 3 minutes of easy jogging with 2 minutes of walking, repeating this cycle 6 times.",
+            "Continued gradual build-up of jogging time.",
+            "Skipping ahead to a later run session; ignoring symptoms that appear the next morning.", "\uD83C\uDFC3"),
+          ex("itb5r4","Run 4",5,"5 min jog / 2 min walk","Every other day",
+            "Alternate 5 minutes of easy jogging with 2 minutes of walking, repeating this cycle 5 times.",
+            "A noticeable step up in continuous jogging time.",
+            "Running faster to 'get it over with'; not repeating an earlier session if symptoms increased.", "\uD83C\uDFC3"),
+          ex("itb5r5","Run 5",4,"8 min jog / 2 min walk","Every other day",
+            "Alternate 8 minutes of easy jogging with 2 minutes of walking, repeating this cycle 4 times.",
+            "Builds towards longer periods of continuous running.",
+            "Increasing pace alongside duration; running on consecutive days too soon.", "\uD83C\uDFC3"),
+          ex("itb5r6","Run 6",3,"10 min jog / 2 min walk","Every other day",
+            "Alternate 10 minutes of easy jogging with 2 minutes of walking, repeating this cycle 3 times.",
+            "Getting closer to fully continuous running.",
+            "Pushing through sharp pain to complete the session; increasing volume too quickly.", "\uD83C\uDFC3"),
+          ex("itb5r7","Run 7",2,"15 min run / 2 min walk","Every other day",
+            "Alternate 15 minutes of easy running with 2 minutes of walking, repeating this cycle twice.",
+            "A late-stage step towards fully continuous running.",
+            "Rushing to skip to continuous running before this feels comfortable.", "\uD83C\uDFC3"),
+          ex("itb5r8","Run 8",1,"20\u201325 min continuous","Every other day",
+            "Run continuously and easily for 20\u201325 minutes, without walk breaks.",
+            "Your first fully continuous run \u2014 keep the pace comfortable throughout.",
+            "Running faster than an easy pace to 'test' the leg; adding hills or speed at the same time.", "\uD83C\uDFC3"),
+          ex("itb5r9","Run 9",1,"30 min continuous","Every other day",
+            "Run continuously and easily for 30 minutes, without walk breaks.",
+            "Builds towards a typical easy training run duration.",
+            "Increasing pace and distance in the same session; ignoring symptoms the next morning.", "\uD83C\uDFC3"),
+          ex("itb5r10","Run 10",1,"35\u201340 min continuous","Every other day",
+            "Run continuously and easily for 35\u201340 minutes, without walk breaks.",
+            "A solid, comfortable base of continuous running to build from.",
+            "Introducing speed, hills and distance increases all at once instead of one at a time.", "\uD83C\uDFC3")
+        ],
+        progression:[
+          "30 minutes of easy continuous running with no significant symptoms",
+          "40 minutes of easy running with no symptom increase the following day",
+          "Running 2\u20133 times per week consistently without flare-ups",
+          "Ready to gradually introduce one variable at a time \u2014 slightly faster running, longer runs, or gentle hills",
+          "For sprinting, cutting, field or court sports: keep progressing gradually through faster running, hills, acceleration/deceleration, lateral movement, cutting, sport-specific drills, full training and competition \u2014 don't jump straight from easy jogging to sprinting or cutting"
+        ]
+      }
+    ]
+  },
   { id:"rotator-cuff",   name:"Rotator Cuff Tear",           icon:"\u{1F4AA}", available:false },
   { id:"tennis-elbow",   name:"Tennis Elbow",                icon:"\u{1F3BE}", available:false },
   { id:"golfers-elbow",  name:"Golfer's Elbow",              icon:"\u26F3", available:false },
-  { id:"low-back-pain",  name:"Low Back Pain",               icon:"\u{1F9B4}", available:false },
-  { id:"hip-pain",       name:"Hip Pain",                    icon:"\u{1F9CD}", available:false },
+    { id:"hip-pain",       name:"Hip Pain",                    icon:"\u{1F9CD}", available:false },
   { id:"trochanteric",   name:"Trochanteric Pain Syndrome",  icon:"\u{1FA7B}", available:false },
   { id:"pregnancy",      name:"Pregnancy",                   icon:"\u{1F930}", available:false },
   { id:"plantar-fasciitis", name:"Plantar Fasciitis",        icon:"\u{1F9B6}", available:false }
@@ -1249,17 +1718,6 @@ var CONDITIONS = [
 var LS_COMPLETED = "rbg_completed_exercises";
 var LS_SETTINGS  = "rbg_settings";
 var LS_DISCLAIMER = "rbg_disclaimer_acknowledged_v1";
-var LS_FEEDBACK = "rbg_exercise_feedback";
-
-/* Quick post-exercise check-in shown after marking an exercise complete (Shoulder Impingement
-   programme only, for now). Codes A-D are fixed options; E is an open text field. */
-var FEEDBACK_OPTIONS = [
-  { code:"A", label:"- Felt good and strong" },
-  { code:"B", label:"- Felt good, slight pain" },
-  { code:"C", label:"- Couldn't finish due to pain" },
-  { code:"D", label:"- Couldn't do any" },
-  { code:"E", label:"- Other" }
-];
 
 function loadJSON(key, fallback){
   try{ var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
@@ -1271,7 +1729,6 @@ function saveJSON(key, val){
 
 var state = {
   completed: loadJSON(LS_COMPLETED, {}),   // { exerciseId: true }
-  feedback:  loadJSON(LS_FEEDBACK, {}),    // { exerciseId: { code:"A".."E", note:"" } }
   settings:  loadJSON(LS_SETTINGS, {}),
   view: "home",                            // home | condition | stage | progress | about
   tab: "home",                              // which bottom-nav tab is active
@@ -1279,7 +1736,6 @@ var state = {
   stageId: null
 };
 function persistCompleted(){ saveJSON(LS_COMPLETED, state.completed); }
-function persistFeedback(){ saveJSON(LS_FEEDBACK, state.feedback); }
 function persistSettings(){ saveJSON(LS_SETTINGS, state.settings); }
 
 /* ============================================================================================
@@ -1447,6 +1903,16 @@ function renderCondition(condition){
     wrap.appendChild(warn);
   }
 
+  if(condition.stepBackSigns && condition.stepBackSigns.length){
+    var stepBack = el("div","pain-rule");
+    stepBack.style.marginBottom = "22px";
+    var stepRows = condition.stepBackSigns.map(function(p){
+      return '<div class="pain-row"><div class="pain-chip stop">Stop</div><div class="pain-text">'+esc(p)+'</div></div>';
+    }).join("");
+    stepBack.innerHTML = '<div class="pain-rule-title">\u{1F6D1} When to step back</div>' + stepRows;
+    wrap.appendChild(stepBack);
+  }
+
   wrap.appendChild(el("div","section-label","Stages"));
   condition.stages.forEach(function(s, idx){
     var c = stageCompletion(s);
@@ -1525,7 +1991,7 @@ function renderStage(condition, stage){
   }
 
   stage.exercises.forEach(function(exercise){
-    wrap.appendChild(renderExerciseCard(exercise, stage, condition));
+    wrap.appendChild(renderExerciseCard(exercise, stage));
   });
 
   var progBlock = el("div","progression-block");
@@ -1540,12 +2006,10 @@ function renderStage(condition, stage){
   return wrap;
 }
 
-function renderExerciseCard(exercise, stage, condition){
+function renderExerciseCard(exercise, stage){
   var card = el("div","exercise-card");
   card.dataset.exerciseId = exercise.id;
   var isDone = !!state.completed[exercise.id];
-  var feedbackEnabled = !!(condition && condition.id === "shoulder-impingement");
-  var fb = state.feedback[exercise.id] || null;
 
   card.innerHTML =
     '<div class="ex-top">' +
@@ -1570,37 +2034,6 @@ function renderExerciseCard(exercise, stage, condition){
       '<div><div class="vp-text">Video demonstration</div><div class="vp-sub">Coming soon</div></div>' +
     '</div>' +
     '<button class="mark-done-btn'+(isDone?" done":"")+'">'+(isDone ? (CHECK_ICON+" Completed") : "Mark as done")+'</button>';
-
-  if(feedbackEnabled && isDone){
-    var fbBlock = el("div","feedback-block");
-    var optionsHtml = FEEDBACK_OPTIONS.map(function(opt){
-      var selected = fb && fb.code === opt.code;
-      return '<button type="button" class="feedback-option'+(selected?" selected":"")+'" data-code="'+opt.code+'">' +
-             '<span class="feedback-letter">'+opt.code+'</span><span class="feedback-label">'+esc(opt.label)+'</span></button>';
-    }).join("");
-    var showOther = fb && fb.code === "E";
-    fbBlock.innerHTML =
-      '<div class="feedback-title">How did that feel?</div>' +
-      optionsHtml +
-      '<textarea class="feedback-other-input'+(showOther?"":" hidden")+'" placeholder="Tell us more\u2026">'+(showOther && fb.note ? esc(fb.note) : "")+'</textarea>' +
-      '<div class="feedback-saved'+((fb && fb.code) ? "" : " hidden")+'">\u2713 Saved</div>';
-    card.appendChild(fbBlock);
-
-    $all(".feedback-option", fbBlock).forEach(function(btn){
-      btn.addEventListener("click", function(){
-        var code = btn.dataset.code;
-        var existingNote = (state.feedback[exercise.id] && state.feedback[exercise.id].note) || "";
-        state.feedback[exercise.id] = { code:code, note: code==="E" ? existingNote : "" };
-        persistFeedback();
-        render();
-      });
-    });
-    var otherInput = $(".feedback-other-input", fbBlock);
-    otherInput.addEventListener("input", function(){
-      state.feedback[exercise.id] = { code:"E", note: otherInput.value };
-      persistFeedback();
-    });
-  }
 
   function toggle(){
     var nowDone = !state.completed[exercise.id];
